@@ -7,5 +7,5 @@ public class HelloGit {
 		System.out.println("Acrescentei");
 	}
 	
-	
+	/* modifiquei sem querer no site do git e quero que essa mudança vá para o eclipse */
 }
