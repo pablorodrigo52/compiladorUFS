@@ -14,10 +14,32 @@ Helpers
     // Definição de caracteres especiais 
     space = ' ' ; //Espaço em branco
     under = '_' ;//Underline 
+    bar = '/' ;
+    barstar = '/*' ;
     
-    // caractere de nova linha 
+    //operadores lógicos
+    greaterthan = '>' ;
+    lessthan = '<' ;
+    equal = '=' ;
+    gore = '>=' ; // leia-se (g ou e) e não (gore)
+    lore = '<=' ; // leia-se (l ou e) e não (lore)
+    
+    //operadores aritméticos
+    sum = '+' ;
+    subtraction = '-' ;
+    multiplication = '*' ;
+    // division = '/'   //precisamos perguntar se precisa definir a divisão porque ela tem a mesma barra que o helper 'bar'
+    
+    // operadores booleanos
+    not = 'nao' ;
+    and = 'e';
+    or = 'ou'; 
+    
+    // caractere de nova linha e atribuição
     newline = 10 ; 
-  
+    att = ':=' ;
+    
+   
 Tokens 
     /* Our simple token definition(s). */ 
    
