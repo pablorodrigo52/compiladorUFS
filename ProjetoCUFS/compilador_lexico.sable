@@ -45,6 +45,8 @@ Helpers
 Tokens 
     /* Our simple token definition(s). */ 
    
+   integer = num+ space*;
+   real = num+,num*; //nao sei se ta certo
    identifier = (under|lowercase|uppercase) (lowercase*|uppercase*|under*)+ ;
    
   
