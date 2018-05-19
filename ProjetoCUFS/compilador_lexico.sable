@@ -5,16 +5,23 @@ Package compilador ;
      
 Helpers 
     /* Our helpers */ 
-    digit = ['0' .. '9'] ; 
-    sp = ' ' ; 
-    nl = 10 ; 
+    
+    // Definição de letras e numeros
+    lowercase = ['a' .. 'z'] ;  /* abcdefghijklmnopqrstuvwxyz */
+    uppercase = ['A' .. 'Z'] ;  /* ABCDEFGHIJKLMNOPQRSTUVWXYZ */
+    num = ['0' .. '9'] ; /* 0123456789 */
+     
+    // Definição de caracteres especiais 
+    space = ' ' ; //Espaço em branco
+    under = '_' ;//Underline 
+    
+    // caractere de nova linha 
+    newline = 10 ; 
   
 Tokens 
     /* Our simple token definition(s). */ 
-    integer = digit+ sp*; 
-    plus = '+' sp*; 
-    semi = ';' nl?; 
+   
   
 Productions 
     /* Our super-simple grammar */ 
-    program = [left]:integer plus [right]:integer semi;
+    
