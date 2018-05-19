@@ -1,10 +1,10 @@
-
+package compilador.interpret;
 
 /* Create an AST, then invoke our interpreter. */ 
-import simpleAdder.interpret.Interpreter; 
-import simpleAdder.parser.* ; 
-import simpleAdder.lexer.* ; 
-import simpleAdder.node.* ; 
+import compilador.interpret.Interpreter; 
+import compilador.parser.* ; 
+import compilador.lexer.* ; 
+import compilador.node.* ; 
   
 import java.io.* ; 
   

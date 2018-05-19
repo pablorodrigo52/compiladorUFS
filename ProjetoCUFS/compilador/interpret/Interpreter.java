@@ -1,10 +1,7 @@
+package compilador.interpret;
 
-
-/* An interpreter for the simple math language we all espouse. */ 
-package simpleAdder.interpret; 
-  
-import simpleAdder.node.* ; 
-import simpleAdder.analysis.* ; 
+import compilador.node.* ; 
+import compilador.analysis.* ; 
 import java.lang.System; 
   
 public class Interpreter extends DepthFirstAdapter { 

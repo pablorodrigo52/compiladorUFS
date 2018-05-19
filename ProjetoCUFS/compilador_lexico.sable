@@ -1,0 +1,20 @@
+/* compilador_lexico.sable:
+      Contem toda a descrição lexica da linguagem  
+*/ 
+Package compilador ; 
+     
+Helpers 
+    /* Our helpers */ 
+    digit = ['0' .. '9'] ; 
+    sp = ' ' ; 
+    nl = 10 ; 
+  
+Tokens 
+    /* Our simple token definition(s). */ 
+    integer = digit+ sp*; 
+    plus = '+' sp*; 
+    semi = ';' nl?; 
+  
+Productions 
+    /* Our super-simple grammar */ 
+    program = [left]:integer plus [right]:integer semi;
