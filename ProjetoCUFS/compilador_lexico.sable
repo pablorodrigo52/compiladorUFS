@@ -16,6 +16,8 @@ Helpers
     under = '_' ;//Underline 
     bar = '/' ;
     barstar = '/*' ;
+    lpar = '(' ;
+    rpar = ')' ;
     
     //operadores lógicos
     greaterthan = '>' ;
