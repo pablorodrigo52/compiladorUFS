@@ -7,48 +7,62 @@ Helpers
     /* Our helpers */ 
     
     // Definição de letras e numeros
-    lowercase = ['a' .. 'z'] ;  /* abcdefghijklmnopqrstuvwxyz */
-    uppercase = ['A' .. 'Z'] ;  /* ABCDEFGHIJKLMNOPQRSTUVWXYZ */
+    letra = ['a' .. 'z'] | ['A' .. 'Z'];  /* abcdefghijklmnopqrstuvwxyz */
     num = ['0' .. '9'] ; /* 0123456789 */
      
     // Definição de caracteres especiais 
-    space = ' ' ; //Espaço em branco
-    under = '_' ;//Underline 
-    bar = '/' ;
-    barstar = '/*' ;
-    lpar = '(' ;
-    rpar = ')' ;
-    
-    //operadores lógicos
-    greaterthan = '>' ;
-    lessthan = '<' ;
-    equal = '=' ;
-    gore = '>=' ; // leia-se (g ou e) e não (gore)
-    lore = '<=' ; // leia-se (l ou e) e não (lore)
-    
-    //operadores aritméticos
-    sum = '+' ;
-    subtraction = '-' ;
-    multiplication = '*' ;
-    // division = '/'   //precisamos perguntar se precisa definir a divisão porque ela tem a mesma barra que o helper 'bar'
-    
-    // operadores booleanos
-    not = 'nao' ;
-    and = 'e';
-    or = 'ou'; 
+    spc = ' ' ; //Espaço em branco
     
     // caractere de nova linha e atribuição
     newline = 10 ; 
-    att = ':=' ;
     
    
 Tokens 
     /* Our simple token definition(s). */ 
    
-   integer = num+ space*;
-   real = num+,num*; //nao sei se ta certo
-   identifier = (under|lowercase|uppercase) (lowercase*|uppercase*|under*)+ ;
+   //simbolos especiais
+   coment = '//' ;
+   abrebloco = '/*' ;
+   fechabloco = '*/' ;
+   under = '_' ; 
+   lpar = '(' ;
+   rpar = ')' ;
+   lcol = '[' ;
+   rcol = ']' ;
+   att = ':=' ;
+   endline = ';' newline? ; 
+      
+   //operadores lógicos
+   greater =  '>' ;
+   less = '<' ;
+   eq = '=' ;
+   gore = '>=' ; // leia-se (g ou e) e não (gore)
+   lore = '<=' ; // leia-se (l ou e) e não (lore)
    
+    //operadores aritméticos
+   sum = '+' ;
+   sub = '-' ;
+   mult = '*' ;
+   div = '/' ;
+
+	//operadores booleanos
+   not = 'nao' ;
+   and = 'e' ;
+   or = 'ou' ; 
+   
+   //identificador
+   id = (under|letra) (letra*|under*)+ ;
+   
+   //numeros inteiros e reais  
+   idint = num+ ;
+   idreal = num+','num+ ;
+   
+   //TIPOS
+   inteiro = 'inteiro' ;
+   real = 'real' ;
+   caractere = 'caractere' ;
+   tipo = (inteiro|real|caractere) ; 
+  
   
 Productions 
     /* Our super-simple grammar */ 
