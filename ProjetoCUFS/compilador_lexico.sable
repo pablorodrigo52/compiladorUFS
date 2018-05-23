@@ -1,7 +1,7 @@
 /* compilador_lexico.sable:
       Contem toda a descrição lexica da linguagem  
 */ 
-Package compilador ; 
+Package compilador ;
      
 Helpers 
     /* Our helpers */ 
@@ -10,66 +10,82 @@ Helpers
     letra = ['a' .. 'z'] | ['A' .. 'Z'];  /* abcdefghijklmnopqrstuvwxyz */
     num = ['0' .. '9'] ; /* 0123456789 */
      
+    string = ''' (letra|num)* ''' ;
+     
     // Definição de caracteres especiais 
-    spc = ' ' ; //Espaço em branco
+ 	spc = ' ' ; //Espaço em branco 
+    under = '_' ; 
     
-    // caractere de nova linha e atribuição
-    newline = 10 ; 
     
-   
+    // caractere de nova linha e tabulacao, \n e \t
+    cr = 13 ;
+    nl = 10 ;
+    tb = 9;
+
+	// vazio representa simbolos em branco que devo ignorar
+	vazio = (spc | tb | cr | cr nl)+ ;
+
 Tokens 
-    /* Our simple token definition(s). .... */ 
+    /* Our simple token definition(s). .... */
    
-<<<<<<< HEAD
-   //simbolos especiais
-   coment = '//' ;
-   abrebloco = '/*' ;
-   fechabloco = '*/' ;
-   under = '_' ; 
+      //PALAVRAS RESERVADAS
+   inicio = 'inicio' nl? ;
+   fim = 'fim' nl? ;
+   se = 'se' ;
+   senao = 'senao' ;
+   enquanto = 'enquanto' ;
+   para = 'para' ;
+   avalie = 'avalie' ;
+   caso = 'caso' ;
+   verdadeiro = 'verdadeiro' ;
+   falso = 'falso';
+   string = string ;
+   
+     //TIPOS
+   tipointeiro = 'inteiro' ;
+   tiporeal = 'real' ;
+   tipocaractere = 'caractere' ;
+   tipobooleano = 'booleano' ; 
+   
+     //SIMBOLOS ESPECIAIS
+   pontoevirgula = ';' nl? ;
+   fechabloco = '*/' nl? ;
+   abrebloco = '/*' nl? ;
+   doispontos = ':' ;
+   coment = '//' ; 
    lpar = '(' ;
    rpar = ')' ;
    lcol = '[' ;
    rcol = ']' ;
    att = ':=' ;
-   endline = ';' newline? ; 
-      
-   //operadores lógicos
-   greater =  '>' ;
-   less = '<' ;
-   eq = '=' ;
-   gore = '>=' ; // leia-se (g ou e) e não (gore)
-   lore = '<=' ; // leia-se (l ou e) e não (lore)
-=======
-   integer = num+ space*;
-   real = num+ ',' num*; //adicionei aspas entre a virgula
-   identifier = (under|lowercase|uppercase) (lowercase*|uppercase*|under*)+ ;
->>>>>>> branch 'master' of https://github.com/pablorodrigo52/compiladorUFS
    
-    //operadores aritméticos
-   sum = '+' ;
-   sub = '-' ;
+   novalinha = nl;
+   vazio = vazio ;
+   tab = tb;
+   
+   
+     //IDENTIFICADORES, INTEIRO, REAL
+   id = (under|letra) (letra*|under*|num*)+ ;
+   inteiro = num+ ;
+   real = num+','num+ ;
+  
+     //OPERADORES LÓGICOS
+   maiorq = '>=' ;
+   menorq = '<=' ;
+   maior =  '>' ;
+   menor = '<' ;
+   igual = '=' ;
+   
+    //OPERADORES ARITMÉTICOS
    mult = '*' ;
    div = '/' ;
-
-	//operadores booleanos
-   not = 'nao' ;
-   and = 'e' ;
-   or = 'ou' ; 
+   sum = '+' ;
+   sub = '-' ;
    
-   //identificador
-   id = (under|letra) (letra*|under*)+ ;
+	//OPERADORES BOOLEANOS
+   nao = 'nao' ;
+   e = 'e' ;
+   ou = 'ou' ;
    
-   //numeros inteiros e reais  
-   idint = num+ ;
-   idreal = num+','num+ ;
-   
-   //TIPOS
-   inteiro = 'inteiro' ;
-   real = 'real' ;
-   caractere = 'caractere' ;
-   tipo = (inteiro|real|caractere) ; 
-  
-  
-Productions 
-    /* Our super-simple grammar */ 
-    
+Ignored Tokens
+	vazio, novalinha, tab ;

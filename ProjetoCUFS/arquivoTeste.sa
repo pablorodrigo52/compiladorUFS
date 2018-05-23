@@ -1,1 +1,41 @@
-5 + 5;
+
+jovem5 -> id
+__blabla -> id
+@teste ->  erro
+.
+.
+
+10 -> idInt
+0.000000009 ->  erro
+0,000000009 ->  idReal
+.
+.
+
+// -> coment
+/* -> abrebloco
+*/ -> fechabloco
+
+> -> maior
+< -> menor
+= -> igual
+>= -> maiorq
+<= -> menorq
+
+inteiro _n_umero := 10 -> <tipo, id, att, idInt>
+
+
+inteiro : vetorTeste [10]; -> <tipo, doispontos, id, lcol, idInt, rcol, endline> 
+(a = b) = (c = d) -> <lpar, id, igual, id rpar, igual, lpar, id, igual, id, rpar)
+
+
+'hdsdkjhsakdjhsa'
+
++ -> sum
+- -> sub
+* -> mult
+/ -> div
+
+
+) a ( = b -> <lpar, id, rpar, igual, id> 
+
+
