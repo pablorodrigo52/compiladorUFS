@@ -4,13 +4,17 @@ package compilador.lexer;
 
 import java.io.*;
 import compilador.node.*;
+import compilador.interpret.Pilha;
+
 
 @SuppressWarnings("nls")
 public class Lexer
 {
     protected Token token;
     protected State state = State.INITIAL;
-
+    
+    protected Pilha pilha = new Pilha ();
+    
     private IPushbackReader in;
     private int line;
     private int pos;
@@ -18,10 +22,22 @@ public class Lexer
     private boolean eof;
     private final StringBuffer text = new StringBuffer();
 
+    
+    
     @SuppressWarnings("unused")
     protected void filter() throws LexerException, IOException
     {
-        // Do nothing
+    	
+    	if(this.token.getClass().getSimpleName().equals("TAbrebloco")) {
+    		pilha.push(this.token.getClass().getSimpleName());
+    		System.out.println("Empilhei..");
+    	}
+    	else if (this.token.getClass().getSimpleName().equals("TFechabloco")) {
+    		if (!pilha.isEmpty()) {
+    			pilha.pop();
+    			System.out.println("Desempilhei..");
+    		}
+    	}
     }
 
     public Lexer(@SuppressWarnings("hiding") final PushbackReader in)
@@ -54,7 +70,7 @@ public class Lexer
             this.token = getToken();
             filter();
         }
-
+        
         return this.token;
     }
 
