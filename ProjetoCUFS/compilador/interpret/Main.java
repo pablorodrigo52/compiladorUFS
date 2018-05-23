@@ -35,7 +35,13 @@ public class Main {
             for (int i = 0; i < 14; i++) {
             	Token token = lexer.peek();
             	lexer.next();
+            	
+            	if (token.getClass().getSimpleName().equals("TVazio")) {
+            		System.out.print(" ");
+            	}
+            	
             	System.out.print(token.getClass().getSimpleName());
+            	
 			}		
             
             
