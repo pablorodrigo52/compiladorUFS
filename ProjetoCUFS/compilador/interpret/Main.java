@@ -4,7 +4,9 @@ import compilador.parser.* ;
 import compilador.lexer.* ; 
 import compilador.node.* ; 
   
-import java.io.* ; 
+import java.io.* ;
+
+import javax.swing.text.StyledEditorKit.ForegroundAction; 
   
 public class Main { 
    public static void main(String[] args) { 
@@ -24,8 +26,20 @@ public class Main {
             Linha 1 - TString TSum TInteiro TIgual TInteiro TPontoevirgula
             Linha 2 - TTipointeiro TId TPontoevirgula
             */
+                       
+            /* tem que ver uma forma de de pegar o tamanho dinamico e tirar esse 14 estatico
+               a questao de imprimir na mesma linha "sdfhksdgfhsf jdhfdgfhdfg hgfhdgfdhf" era o print mesmo
+               ainda nao consegui tirar esse TVazio
+           
+            */
+            for (int i = 0; i < 14; i++) {
+            	Token token = lexer.peek();
+            	lexer.next();
+            	System.out.print(token.getClass().getSimpleName());
+			}		
             
-            Token token1 = lexer.peek();
+            
+           /*Token token1 = lexer.peek();
             lexer.next();
             System.out.println(token1.getClass().getSimpleName());
             Token token2 = lexer.peek();
@@ -71,7 +85,7 @@ public class Main {
             lexer.next();
             System.out.println(token15.getClass().getSimpleName());
             
-            
+            */
             //Parser parser = new Parser(lexer); 
             //Start ast = parser.parse() ; 
             /* Get our Interpreter going. */ 
