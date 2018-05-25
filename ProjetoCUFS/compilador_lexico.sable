@@ -10,7 +10,7 @@ Helpers
     letra = ['a' .. 'z'] | ['A' .. 'Z'];  /* abcdefghijklmnopqrstuvwxyz */
     num = ['0' .. '9'] ; /* 0123456789 */
      
-    string = ''' (letra|num)* ''' ;
+    string = ''' (letra|num) (letra|num)+ ''' ;
      
     // Definição de caracteres especiais 
  	spc = ' ' ; //Espaço em branco 
@@ -23,8 +23,11 @@ Helpers
     tb = 9;
 
 	// vazio representa simbolos em branco que devo ignorar
-	vazio = (spc | tb | cr | cr nl)+ ;
-
+	vazio = (spc)+ ;
+	// Caractere de tabulação
+	tab = tb;
+	// Caractere que representa \r ou \r\n (para quebra de linha) 
+	rn = (cr | cr nl);
 Tokens 
     /* Our simple token definition(s). .... */
    
@@ -49,19 +52,22 @@ Tokens
    
      //SIMBOLOS ESPECIAIS
    pontoevirgula = ';' nl? ;
-   fechabloco = '*/' nl? ;
-   abrebloco = '/*' nl? ;
+   fechablococomentario = '*/' nl? ;
+   abreblococomentario = '/*' nl? ;
    doispontos = ':' ;
-   coment = '//' ; 
-   lpar = '(' ;
-   rpar = ')' ;
-   lcol = '[' ;
-   rcol = ']' ;
-   att = ':=' ;
+   comentariosimples = '//' ; 
+   lparentese = '(' ;
+   rparentese = ')' ;
+   lcolchete = '[' ;
+   rcolchete = ']' ;
+   lchave = '{' ;
+   rchave = '}' ;
+   atrib = ':=' ;
    
    novalinha = nl;
    vazio = vazio ;
-   tab = tb;
+   tab = tab;
+   rn = rn;
    
    
      //IDENTIFICADORES, INTEIRO, REAL
@@ -88,4 +94,4 @@ Tokens
    ou = 'ou' ;
    
 Ignored Tokens
-	vazio, novalinha, tab ;
+	vazio, novalinha, tab, rn ;

@@ -165,13 +165,13 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
-    public void caseTFechabloco(TFechabloco node)
+    public void caseTFechablococomentario(TFechablococomentario node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseTAbrebloco(TAbrebloco node)
+    public void caseTAbreblococomentario(TAbreblococomentario node)
     {
         defaultCase(node);
     }
@@ -183,37 +183,49 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
-    public void caseTComent(TComent node)
+    public void caseTComentariosimples(TComentariosimples node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseTLpar(TLpar node)
+    public void caseTLparentese(TLparentese node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseTRpar(TRpar node)
+    public void caseTRparentese(TRparentese node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseTLcol(TLcol node)
+    public void caseTLcolchete(TLcolchete node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseTRcol(TRcol node)
+    public void caseTRcolchete(TRcolchete node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseTAtt(TAtt node)
+    public void caseTLchave(TLchave node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseTRchave(TRchave node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseTAtrib(TAtrib node)
     {
         defaultCase(node);
     }
@@ -232,6 +244,12 @@ public class AnalysisAdapter implements Analysis
 
     @Override
     public void caseTTab(TTab node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseTRn(TRn node)
     {
         defaultCase(node);
     }
