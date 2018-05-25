@@ -15,32 +15,48 @@ public class ComentarioAninhado extends Lexer{
 		super(in);
 	}
 	
+	int can_cont = 0;
+	int csi_cont = 0;
+	
 	 @SuppressWarnings("unused")
 	protected void filter(Token token) throws LexerException, IOException{
 		
 		 switch (token.getClass().getSimpleName()) {
-			 case "TVazio":
+			
+		     case "TVazio":
 				 System.out.print(" "); break;
 			 case "TTab":
 				 System.out.print("\t"); break;
 			 case "TNovalinha":
 				 System.out.print("\n"); break;
 			 case "TRn":
-				 System.out.print("\n"); break;
-			 case "TAbrebloco":
+				 System.out.print("\n"); break; 
+				 
+			 case "TAbreblococomentario":
+			
+				 can_cont++;
 				 pilha.push(token.getClass().getSimpleName());
 				 line = token.getLine(); position = token.getPos();
 				 System.out.print("[" + token.getClass().getSimpleName() + "]"); break;
-			 case "TFechabloco":
+			 
+			 case "TFechablococomentario":
+				 
+				 can_cont--;
 				 System.out.print("[" + token.getClass().getSimpleName() + "]");
 		     		if(!pilha.isEmpty())
 		     			pilha.pop();
 		     		else {
 		     			System.out.println("\n\n\nERRO: Comentário não aninhado na linha "+ token.getLine() + " coluna " + token.getPos());
 		     		}
-		     	break;
+		          break;
+			 
 			 default:
-				 System.out.print("[" + token.getClass().getSimpleName() + "]"); break;
+				
+				 if (can_cont == 0) {
+					 System.out.print("[" + token.getClass().getSimpleName() + "]"); 	
+				 }
+			     	 
+				 break;
 		 }
 	 }
 	

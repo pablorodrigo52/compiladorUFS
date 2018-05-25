@@ -44,7 +44,7 @@ public class Main {
          }
       }else{ 
          System.err.println("usage: java compilador inputFile"); 
-         System.exit(1); 
+         System.exit(1);
       } 
    }
    
