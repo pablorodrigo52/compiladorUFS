@@ -28,7 +28,7 @@ public class Main {
             	filtro.filter(token);
             	lexer.next();
 			}
-            
+           
             if (!filtro.pilhaVazia())
               System.out.println("\n\n\nERRO: Comentário não aninhado");
             

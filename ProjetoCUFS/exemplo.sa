@@ -1,12 +1,28 @@
 inicio
-	inteiro : num1 := 0; // Tudo apos isso deve ser ignorado
+	inteiro : num1 := 0; // Tudo isso aqui deve ser ignorado
 	inteiro : num2 := 0;
 	inteiro : soma := 0;
 	
-	num1 := 15; /* Tudo apos isso deve ser ignorado */
+	inteiro : vetor [200]; 
+	
+	num1 := 15; /* Tudo aqui dentro deve ser ignorado */
 	num2 := 17;
 	
-	enquanto ((num1 - num2) < soma){
-		soma = num1 - num2;
+	enquanto ((num1 - num2) < soma){ 
+		soma = num1 - num2; /* isso aqui subtrai dois numeros */ /* /*Testando comentario aninhado */ */
 	}
 fim
+
+
+/* 
+
+inteiro : vetor [200]; 
+	
+	num1 := 15; /* Tudo aqui dentro deve ser ignorado */
+	num2 := 17;
+
+	inteiro : num1 := 0; // Tudo isso aqui deve ser ignorado
+	inteiro : num2 := 0;
+	inteiro : soma := 0;
+	
+fim 

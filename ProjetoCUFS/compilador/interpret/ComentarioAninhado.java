@@ -31,40 +31,31 @@ public class ComentarioAninhado extends Lexer{
 				 System.out.print("\n"); break;
 			 case "TRn":
 				 System.out.print("\n"); break; 
-				 
 			 case "TAbreblococomentario":
-			
 				 can_cont++;
 				 pilha.push(token.getClass().getSimpleName());
 				 line = token.getLine(); position = token.getPos();
-				 System.out.print("[" + token.getClass().getSimpleName() + "]"); break;
-			 
+				 System.out.print("[" + token.getClass().getSimpleName() + "]"); 
+				 break;
 			 case "TFechablococomentario":
-				 
 				 can_cont--;
 				 System.out.print("[" + token.getClass().getSimpleName() + "]");
 		     		if(!pilha.isEmpty())
 		     			pilha.pop();
-		     		else {
+		     		else
 		     			System.out.println("\n\n\nERRO: Comentário não aninhado na linha "+ token.getLine() + " coluna " + token.getPos());
-		     		}
-		          break;
-			 
+		          break; 		
 			 default:
-				
-				 if (can_cont == 0) {
+				 if (can_cont == 0)
 					 System.out.print("[" + token.getClass().getSimpleName() + "]"); 	
-				 }
-			     	 
 				 break;
 		 }
 	 }
 	
 	 boolean pilhaVazia() {
-		 if( pilha.isEmpty()) 
+		 if( pilha.isEmpty())
 			 return true;
 		 else
 			 return false;
 	 }
 }
-
