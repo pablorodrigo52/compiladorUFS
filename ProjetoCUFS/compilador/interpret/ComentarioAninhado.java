@@ -16,7 +16,7 @@ public class ComentarioAninhado extends Lexer{
 	}
 	
 	int can_cont = 0;
-	int csi_cont = 0;
+	boolean csi_cont = false;
 	
 	 @SuppressWarnings("unused")
 	protected void filter(Token token) throws LexerException, IOException{
@@ -28,10 +28,16 @@ public class ComentarioAninhado extends Lexer{
 			 case "TTab":
 				 System.out.print("\t"); break;
 			 case "TNovalinha":
-				 System.out.print("\n"); break;
+				 csi_cont = false;
+				 System.out.print("\n"); break; 
 			 case "TRn":
 				 System.out.print("\n"); break; 
 				 
+			 case "TComentariosimples":
+				  csi_cont = true;  
+				  System.out.print("[" + token.getClass().getSimpleName() + "]");
+				  break;
+			
 			 case "TAbreblococomentario":
 			
 				 can_cont++;
@@ -52,7 +58,7 @@ public class ComentarioAninhado extends Lexer{
 			 
 			 default:
 				
-				 if (can_cont == 0) {
+				 if (can_cont == 0 & csi_cont == false) {
 					 System.out.print("[" + token.getClass().getSimpleName() + "]"); 	
 				 }
 			     	 
