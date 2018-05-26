@@ -290,6 +290,7 @@ public class Lexer
                     case 11:
                         {
                             @SuppressWarnings("hiding") Token token = new11(
+                                getText(accept_length),
                                 start_line + 1,
                                 start_pos + 1);
                             pushBack(accept_length);
@@ -320,6 +321,7 @@ public class Lexer
                     case 14:
                         {
                             @SuppressWarnings("hiding") Token token = new14(
+                                getText(accept_length),
                                 start_line + 1,
                                 start_pos + 1);
                             pushBack(accept_length);
@@ -363,6 +365,7 @@ public class Lexer
                     case 18:
                         {
                             @SuppressWarnings("hiding") Token token = new18(
+                                getText(accept_length),
                                 start_line + 1,
                                 start_pos + 1);
                             pushBack(accept_length);
@@ -373,6 +376,7 @@ public class Lexer
                     case 19:
                         {
                             @SuppressWarnings("hiding") Token token = new19(
+                                getText(accept_length),
                                 start_line + 1,
                                 start_pos + 1);
                             pushBack(accept_length);
@@ -423,6 +427,7 @@ public class Lexer
                     case 24:
                         {
                             @SuppressWarnings("hiding") Token token = new24(
+                                getText(accept_length),
                                 start_line + 1,
                                 start_pos + 1);
                             pushBack(accept_length);
@@ -433,6 +438,7 @@ public class Lexer
                     case 25:
                         {
                             @SuppressWarnings("hiding") Token token = new25(
+                                getText(accept_length),
                                 start_line + 1,
                                 start_pos + 1);
                             pushBack(accept_length);
@@ -443,6 +449,7 @@ public class Lexer
                     case 26:
                         {
                             @SuppressWarnings("hiding") Token token = new26(
+                                getText(accept_length),
                                 start_line + 1,
                                 start_pos + 1);
                             pushBack(accept_length);
@@ -453,7 +460,6 @@ public class Lexer
                     case 27:
                         {
                             @SuppressWarnings("hiding") Token token = new27(
-                                getText(accept_length),
                                 start_line + 1,
                                 start_pos + 1);
                             pushBack(accept_length);
@@ -464,7 +470,6 @@ public class Lexer
                     case 28:
                         {
                             @SuppressWarnings("hiding") Token token = new28(
-                                getText(accept_length),
                                 start_line + 1,
                                 start_pos + 1);
                             pushBack(accept_length);
@@ -475,7 +480,6 @@ public class Lexer
                     case 29:
                         {
                             @SuppressWarnings("hiding") Token token = new29(
-                                getText(accept_length),
                                 start_line + 1,
                                 start_pos + 1);
                             pushBack(accept_length);
@@ -486,7 +490,6 @@ public class Lexer
                     case 30:
                         {
                             @SuppressWarnings("hiding") Token token = new30(
-                                getText(accept_length),
                                 start_line + 1,
                                 start_pos + 1);
                             pushBack(accept_length);
@@ -530,6 +533,7 @@ public class Lexer
                     case 34:
                         {
                             @SuppressWarnings("hiding") Token token = new34(
+                                getText(accept_length),
                                 start_line + 1,
                                 start_pos + 1);
                             pushBack(accept_length);
@@ -630,6 +634,7 @@ public class Lexer
                     case 44:
                         {
                             @SuppressWarnings("hiding") Token token = new44(
+                                getText(accept_length),
                                 start_line + 1,
                                 start_pos + 1);
                             pushBack(accept_length);
@@ -640,6 +645,62 @@ public class Lexer
                     case 45:
                         {
                             @SuppressWarnings("hiding") Token token = new45(
+                                getText(accept_length),
+                                start_line + 1,
+                                start_pos + 1);
+                            pushBack(accept_length);
+                            this.pos = accept_pos;
+                            this.line = accept_line;
+                            return token;
+                        }
+                    case 46:
+                        {
+                            @SuppressWarnings("hiding") Token token = new46(
+                                getText(accept_length),
+                                start_line + 1,
+                                start_pos + 1);
+                            pushBack(accept_length);
+                            this.pos = accept_pos;
+                            this.line = accept_line;
+                            return token;
+                        }
+                    case 47:
+                        {
+                            @SuppressWarnings("hiding") Token token = new47(
+                                getText(accept_length),
+                                start_line + 1,
+                                start_pos + 1);
+                            pushBack(accept_length);
+                            this.pos = accept_pos;
+                            this.line = accept_line;
+                            return token;
+                        }
+                    case 48:
+                        {
+                            @SuppressWarnings("hiding") Token token = new48(
+                                getText(accept_length),
+                                start_line + 1,
+                                start_pos + 1);
+                            pushBack(accept_length);
+                            this.pos = accept_pos;
+                            this.line = accept_line;
+                            return token;
+                        }
+                    case 49:
+                        {
+                            @SuppressWarnings("hiding") Token token = new49(
+                                getText(accept_length),
+                                start_line + 1,
+                                start_pos + 1);
+                            pushBack(accept_length);
+                            this.pos = accept_pos;
+                            this.line = accept_line;
+                            return token;
+                        }
+                    case 50:
+                        {
+                            @SuppressWarnings("hiding") Token token = new50(
+                                getText(accept_length),
                                 start_line + 1,
                                 start_pos + 1);
                             pushBack(accept_length);
@@ -679,41 +740,46 @@ public class Lexer
     Token new8(@SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TVerdadeiro(line, pos); }
     Token new9(@SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TFalso(line, pos); }
     Token new10(@SuppressWarnings("hiding") String text, @SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TString(text, line, pos); }
-    Token new11(@SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TTipointeiro(line, pos); }
-    Token new12(@SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TTiporeal(line, pos); }
-    Token new13(@SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TTipocaractere(line, pos); }
-    Token new14(@SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TTipobooleano(line, pos); }
-    Token new15(@SuppressWarnings("hiding") String text, @SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TPontoevirgula(text, line, pos); }
-    Token new16(@SuppressWarnings("hiding") String text, @SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TFechablococomentario(text, line, pos); }
-    Token new17(@SuppressWarnings("hiding") String text, @SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TAbreblococomentario(text, line, pos); }
-    Token new18(@SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TDoispontos(line, pos); }
-    Token new19(@SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TComentariosimples(line, pos); }
-    Token new20(@SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TLparentese(line, pos); }
-    Token new21(@SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TRparentese(line, pos); }
-    Token new22(@SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TLcolchete(line, pos); }
-    Token new23(@SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TRcolchete(line, pos); }
-    Token new24(@SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TLchave(line, pos); }
-    Token new25(@SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TRchave(line, pos); }
-    Token new26(@SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TAtrib(line, pos); }
-    Token new27(@SuppressWarnings("hiding") String text, @SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TNovalinha(text, line, pos); }
-    Token new28(@SuppressWarnings("hiding") String text, @SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TVazio(text, line, pos); }
-    Token new29(@SuppressWarnings("hiding") String text, @SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TTab(text, line, pos); }
-    Token new30(@SuppressWarnings("hiding") String text, @SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TRn(text, line, pos); }
-    Token new31(@SuppressWarnings("hiding") String text, @SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TId(text, line, pos); }
-    Token new32(@SuppressWarnings("hiding") String text, @SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TInteiro(text, line, pos); }
-    Token new33(@SuppressWarnings("hiding") String text, @SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TReal(text, line, pos); }
-    Token new34(@SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TMaiorq(line, pos); }
-    Token new35(@SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TMenorq(line, pos); }
-    Token new36(@SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TMaior(line, pos); }
-    Token new37(@SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TMenor(line, pos); }
-    Token new38(@SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TIgual(line, pos); }
-    Token new39(@SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TMult(line, pos); }
-    Token new40(@SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TDiv(line, pos); }
-    Token new41(@SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TSum(line, pos); }
-    Token new42(@SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TSub(line, pos); }
-    Token new43(@SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TNao(line, pos); }
-    Token new44(@SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TE(line, pos); }
-    Token new45(@SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TOu(line, pos); }
+    Token new11(@SuppressWarnings("hiding") String text, @SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TPrograma(text, line, pos); }
+    Token new12(@SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TLeia(line, pos); }
+    Token new13(@SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TEscreva(line, pos); }
+    Token new14(@SuppressWarnings("hiding") String text, @SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TDiferente(text, line, pos); }
+    Token new15(@SuppressWarnings("hiding") String text, @SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TMaioreq(text, line, pos); }
+    Token new16(@SuppressWarnings("hiding") String text, @SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TMenorq(text, line, pos); }
+    Token new17(@SuppressWarnings("hiding") String text, @SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TMaior(text, line, pos); }
+    Token new18(@SuppressWarnings("hiding") String text, @SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TMenor(text, line, pos); }
+    Token new19(@SuppressWarnings("hiding") String text, @SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TIgual(text, line, pos); }
+    Token new20(@SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TMult(line, pos); }
+    Token new21(@SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TDiv(line, pos); }
+    Token new22(@SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TSum(line, pos); }
+    Token new23(@SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TSub(line, pos); }
+    Token new24(@SuppressWarnings("hiding") String text, @SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TNao(text, line, pos); }
+    Token new25(@SuppressWarnings("hiding") String text, @SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TE(text, line, pos); }
+    Token new26(@SuppressWarnings("hiding") String text, @SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TOu(text, line, pos); }
+    Token new27(@SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TTipointeiro(line, pos); }
+    Token new28(@SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TTiporeal(line, pos); }
+    Token new29(@SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TTipocaractere(line, pos); }
+    Token new30(@SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TTipobooleano(line, pos); }
+    Token new31(@SuppressWarnings("hiding") String text, @SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TVirgula(text, line, pos); }
+    Token new32(@SuppressWarnings("hiding") String text, @SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TPontoevirgula(text, line, pos); }
+    Token new33(@SuppressWarnings("hiding") String text, @SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TFechablococomentario(text, line, pos); }
+    Token new34(@SuppressWarnings("hiding") String text, @SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TAbreblococomentario(text, line, pos); }
+    Token new35(@SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TDoispontos(line, pos); }
+    Token new36(@SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TComentariosimples(line, pos); }
+    Token new37(@SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TAparentese(line, pos); }
+    Token new38(@SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TFparentese(line, pos); }
+    Token new39(@SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TAcolchete(line, pos); }
+    Token new40(@SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TFcolchete(line, pos); }
+    Token new41(@SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TAchave(line, pos); }
+    Token new42(@SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TFchave(line, pos); }
+    Token new43(@SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TAtrib(line, pos); }
+    Token new44(@SuppressWarnings("hiding") String text, @SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TNovalinha(text, line, pos); }
+    Token new45(@SuppressWarnings("hiding") String text, @SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TVazio(text, line, pos); }
+    Token new46(@SuppressWarnings("hiding") String text, @SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TTab(text, line, pos); }
+    Token new47(@SuppressWarnings("hiding") String text, @SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TRn(text, line, pos); }
+    Token new48(@SuppressWarnings("hiding") String text, @SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TId(text, line, pos); }
+    Token new49(@SuppressWarnings("hiding") String text, @SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TInteiro(text, line, pos); }
+    Token new50(@SuppressWarnings("hiding") String text, @SuppressWarnings("hiding") int line, @SuppressWarnings("hiding") int pos) { return new TReal(text, line, pos); }
 
     private int getChar() throws IOException
     {
@@ -773,142 +839,160 @@ public class Lexer
     private static int[][][][] gotoTable;
 /*  {
         { // INITIAL
-            {{9, 9, 1}, {10, 10, 2}, {13, 13, 3}, {32, 32, 4}, {39, 39, 5}, {40, 40, 6}, {41, 41, 7}, {42, 42, 8}, {43, 43, 9}, {45, 45, 10}, {47, 47, 11}, {48, 57, 12}, {58, 58, 13}, {59, 59, 14}, {60, 60, 15}, {61, 61, 16}, {62, 62, 17}, {65, 90, 18}, {91, 91, 19}, {93, 93, 20}, {95, 95, 21}, {97, 97, 22}, {98, 98, 23}, {99, 99, 24}, {100, 100, 25}, {101, 101, 26}, {102, 102, 27}, {103, 104, 25}, {105, 105, 28}, {106, 109, 25}, {110, 110, 29}, {111, 111, 30}, {112, 112, 31}, {113, 113, 25}, {114, 114, 32}, {115, 115, 33}, {116, 117, 25}, {118, 118, 34}, {119, 122, 25}, {123, 123, 35}, {125, 125, 36}, },
+            {{9, 9, 1}, {10, 10, 2}, {13, 13, 3}, {32, 32, 4}, {39, 39, 5}, {40, 40, 6}, {41, 41, 7}, {42, 42, 8}, {43, 43, 9}, {44, 44, 10}, {45, 45, 11}, {47, 47, 12}, {48, 57, 13}, {58, 58, 14}, {59, 59, 15}, {60, 60, 16}, {61, 61, 17}, {62, 62, 18}, {65, 90, 19}, {91, 91, 20}, {93, 93, 21}, {95, 95, 22}, {97, 97, 23}, {98, 98, 24}, {99, 99, 25}, {100, 100, 26}, {101, 101, 27}, {102, 102, 28}, {103, 104, 26}, {105, 105, 29}, {106, 107, 26}, {108, 108, 30}, {109, 109, 26}, {110, 110, 31}, {111, 111, 32}, {112, 112, 33}, {113, 113, 26}, {114, 114, 34}, {115, 115, 35}, {116, 117, 26}, {118, 118, 36}, {119, 122, 26}, {123, 123, 37}, {125, 125, 38}, },
             {},
             {},
-            {{10, 10, 37}, },
+            {{10, 10, 39}, },
             {{32, 32, 4}, },
-            {{48, 57, 38}, {65, 90, 39}, {97, 122, 40}, },
+            {{32, 32, 40}, {48, 57, 41}, {65, 90, 42}, {97, 122, 43}, },
             {},
             {},
-            {{47, 47, 41}, },
+            {{47, 47, 44}, },
             {},
             {},
-            {{42, 42, 42}, {47, 47, 43}, },
-            {{44, 44, 44}, {48, 57, 12}, },
-            {{61, 61, 45}, },
-            {{10, 10, 46}, },
-            {{61, 61, 47}, },
             {},
+            {{42, 42, 45}, {47, 47, 46}, },
+            {{44, 44, 47}, {48, 57, 13}, },
             {{61, 61, 48}, },
-            {{48, 57, 49}, {65, 90, 50}, {95, 95, 51}, {97, 122, 52}, },
+            {{10, 10, 49}, },
+            {{61, 61, 50}, {62, 62, 51}, },
+            {},
+            {{61, 61, 52}, },
+            {{48, 57, 53}, {65, 90, 54}, {95, 95, 55}, {97, 122, 56}, },
             {},
             {},
-            {{48, 122, -20}, },
-            {{48, 95, -20}, {97, 117, 52}, {118, 118, 53}, {119, 122, 52}, },
-            {{48, 95, -20}, {97, 110, 52}, {111, 111, 54}, {112, 122, 52}, },
-            {{48, 95, -20}, {97, 97, 55}, {98, 122, 52}, },
-            {{48, 122, -20}, },
-            {{48, 95, -20}, {97, 109, 52}, {110, 110, 56}, {111, 122, 52}, },
-            {{48, 95, -20}, {97, 97, 57}, {98, 104, 52}, {105, 105, 58}, {106, 122, 52}, },
-            {{48, 109, -28}, {110, 110, 59}, {111, 122, 52}, },
-            {{48, 95, -20}, {97, 97, 60}, {98, 122, 52}, },
-            {{48, 95, -20}, {97, 116, 52}, {117, 117, 61}, {118, 122, 52}, },
-            {{48, 95, -20}, {97, 97, 62}, {98, 122, 52}, },
-            {{48, 95, -20}, {97, 100, 52}, {101, 101, 63}, {102, 122, 52}, },
-            {{48, 100, -34}, {101, 101, 64}, {102, 122, 52}, },
-            {{48, 100, -34}, {101, 101, 65}, {102, 122, 52}, },
-            {},
-            {},
-            {},
-            {{48, 57, 66}, {65, 90, 67}, {97, 122, 68}, },
-            {{48, 122, -40}, },
-            {{48, 122, -40}, },
-            {{10, 10, 69}, },
-            {{10, 10, 70}, },
-            {},
-            {{48, 57, 71}, },
+            {{48, 122, -21}, },
+            {{48, 95, -21}, {97, 117, 56}, {118, 118, 57}, {119, 122, 56}, },
+            {{48, 95, -21}, {97, 110, 56}, {111, 111, 58}, {112, 122, 56}, },
+            {{48, 95, -21}, {97, 97, 59}, {98, 122, 56}, },
+            {{48, 122, -21}, },
+            {{48, 95, -21}, {97, 109, 56}, {110, 110, 60}, {111, 114, 56}, {115, 115, 61}, {116, 122, 56}, },
+            {{48, 95, -21}, {97, 97, 62}, {98, 104, 56}, {105, 105, 63}, {106, 122, 56}, },
+            {{48, 109, -29}, {110, 110, 64}, {111, 122, 56}, },
+            {{48, 95, -21}, {97, 100, 56}, {101, 101, 65}, {102, 122, 56}, },
+            {{48, 95, -21}, {97, 97, 66}, {98, 122, 56}, },
+            {{48, 95, -21}, {97, 116, 56}, {117, 117, 67}, {118, 122, 56}, },
+            {{48, 95, -21}, {97, 97, 68}, {98, 113, 56}, {114, 114, 69}, {115, 122, 56}, },
+            {{48, 100, -32}, {101, 101, 70}, {102, 122, 56}, },
+            {{48, 100, -32}, {101, 101, 71}, {102, 122, 56}, },
+            {{48, 100, -32}, {101, 101, 72}, {102, 122, 56}, },
             {},
             {},
             {},
+            {{32, 32, 40}, {39, 39, 73}, {48, 122, -7}, },
+            {{32, 122, -42}, },
+            {{32, 122, -42}, },
+            {{32, 122, -42}, },
+            {{10, 10, 74}, },
+            {{10, 10, 75}, },
             {},
-            {{48, 122, -20}, },
-            {{48, 122, -20}, },
-            {{48, 122, -20}, },
-            {{48, 122, -20}, },
-            {{48, 95, -20}, {97, 97, 72}, {98, 122, 52}, },
-            {{48, 110, -25}, {111, 111, 73}, {112, 122, 52}, },
-            {{48, 95, -20}, {97, 113, 52}, {114, 114, 74}, {115, 115, 75}, {116, 122, 52}, },
-            {{48, 95, -20}, {97, 112, 52}, {113, 113, 76}, {114, 122, 52}, },
-            {{48, 95, -20}, {97, 107, 52}, {108, 108, 77}, {109, 122, 52}, },
-            {{48, 95, -20}, {97, 108, 52}, {109, 109, 78}, {110, 122, 52}, },
-            {{48, 95, -20}, {97, 104, 52}, {105, 105, 79}, {106, 115, 52}, {116, 116, 80}, {117, 122, 52}, },
-            {{48, 110, -25}, {111, 111, 81}, {112, 122, 52}, },
-            {{48, 122, -20}, },
-            {{48, 113, -57}, {114, 114, 82}, {115, 122, 52}, },
-            {{48, 95, -20}, {97, 97, 83}, {98, 122, 52}, },
-            {{48, 109, -28}, {110, 110, 84}, {111, 122, 52}, },
-            {{48, 113, -57}, {114, 114, 85}, {115, 122, 52}, },
-            {{39, 39, 86}, {48, 122, -40}, },
-            {{39, 122, -68}, },
-            {{39, 122, -68}, },
+            {{48, 57, 76}, },
             {},
             {},
-            {{48, 57, 71}, },
-            {{48, 107, -59}, {108, 108, 87}, {109, 122, 52}, },
-            {{48, 107, -59}, {108, 108, 88}, {109, 122, 52}, },
-            {{48, 95, -20}, {97, 97, 89}, {98, 122, 52}, },
-            {{48, 110, -25}, {111, 111, 90}, {112, 122, 52}, },
-            {{48, 116, -32}, {117, 117, 91}, {118, 122, 52}, },
-            {{48, 95, -20}, {97, 114, 52}, {115, 115, 92}, {116, 122, 52}, },
-            {{10, 10, 93}, {48, 122, -20}, },
-            {{48, 95, -20}, {97, 98, 52}, {99, 99, 94}, {100, 122, 52}, },
-            {{48, 100, -34}, {101, 101, 95}, {102, 122, 52}, },
-            {{48, 122, -20}, },
-            {{48, 95, -20}, {97, 97, 96}, {98, 122, 52}, },
-            {{48, 107, -59}, {108, 108, 97}, {109, 122, 52}, },
-            {{48, 95, -20}, {97, 97, 98}, {98, 122, 52}, },
-            {{48, 95, -20}, {97, 99, 52}, {100, 100, 99}, {101, 122, 52}, },
             {},
-            {{48, 104, -61}, {105, 105, 100}, {106, 122, 52}, },
-            {{48, 100, -34}, {101, 101, 101}, {102, 122, 52}, },
-            {{48, 98, -81}, {99, 99, 102}, {100, 122, 52}, },
-            {{48, 122, -20}, },
-            {{48, 95, -20}, {97, 97, 103}, {98, 122, 52}, },
-            {{48, 110, -25}, {111, 111, 104}, {112, 122, 52}, },
             {},
-            {{48, 104, -61}, {105, 105, 105}, {106, 122, 52}, },
-            {{48, 104, -61}, {105, 105, 106}, {106, 122, 52}, },
-            {{48, 122, -20}, },
-            {{48, 122, -20}, },
-            {{48, 110, -25}, {111, 111, 107}, {112, 122, 52}, },
-            {{48, 95, -20}, {97, 97, 108}, {98, 122, 52}, },
-            {{48, 100, -34}, {101, 101, 109}, {102, 122, 52}, },
-            {{48, 95, -20}, {97, 97, 110}, {98, 122, 52}, },
-            {{48, 95, -20}, {97, 115, 52}, {116, 116, 111}, {117, 122, 52}, },
-            {{48, 109, -28}, {110, 110, 112}, {111, 122, 52}, },
-            {{48, 122, -20}, },
-            {{48, 110, -25}, {111, 111, 113}, {112, 122, 52}, },
-            {{48, 113, -57}, {114, 114, 114}, {115, 122, 52}, },
-            {{48, 122, -20}, },
-            {{48, 99, -87}, {100, 100, 115}, {101, 122, 52}, },
-            {{48, 122, -20}, },
-            {{48, 109, -28}, {110, 110, 116}, {111, 122, 52}, },
-            {{48, 100, -34}, {101, 101, 117}, {102, 122, 52}, },
-            {{48, 115, -104}, {116, 116, 118}, {117, 122, 52}, },
-            {{10, 10, 119}, {48, 122, -20}, },
-            {{48, 110, -25}, {111, 111, 120}, {112, 122, 52}, },
-            {{48, 100, -34}, {101, 101, 121}, {102, 122, 52}, },
-            {{48, 110, -25}, {111, 111, 122}, {112, 122, 52}, },
-            {{48, 113, -57}, {114, 114, 123}, {115, 122, 52}, },
-            {{48, 110, -25}, {111, 111, 124}, {112, 122, 52}, },
             {},
-            {{48, 122, -20}, },
-            {{48, 104, -61}, {105, 105, 125}, {106, 122, 52}, },
-            {{48, 122, -20}, },
-            {{48, 100, -34}, {101, 101, 126}, {102, 122, 52}, },
-            {{48, 122, -20}, },
-            {{48, 113, -57}, {114, 114, 127}, {115, 122, 52}, },
-            {{48, 122, -20}, },
-            {{48, 110, -25}, {111, 111, 128}, {112, 122, 52}, },
-            {{48, 122, -20}, },
+            {{48, 122, -21}, },
+            {{48, 122, -21}, },
+            {{48, 122, -21}, },
+            {{48, 122, -21}, },
+            {{48, 95, -21}, {97, 97, 77}, {98, 122, 56}, },
+            {{48, 110, -26}, {111, 111, 78}, {112, 122, 56}, },
+            {{48, 95, -21}, {97, 113, 56}, {114, 114, 79}, {115, 115, 80}, {116, 122, 56}, },
+            {{48, 95, -21}, {97, 112, 56}, {113, 113, 81}, {114, 122, 56}, },
+            {{48, 95, -21}, {97, 98, 56}, {99, 99, 82}, {100, 122, 56}, },
+            {{48, 95, -21}, {97, 107, 56}, {108, 108, 83}, {109, 122, 56}, },
+            {{48, 95, -21}, {97, 108, 56}, {109, 109, 84}, {110, 122, 56}, },
+            {{48, 95, -21}, {97, 104, 56}, {105, 105, 85}, {106, 115, 56}, {116, 116, 86}, {117, 122, 56}, },
+            {{48, 104, -66}, {105, 105, 87}, {106, 122, 56}, },
+            {{48, 110, -26}, {111, 111, 88}, {112, 122, 56}, },
+            {{48, 122, -21}, },
+            {{48, 113, -61}, {114, 114, 89}, {115, 122, 56}, },
+            {{48, 110, -26}, {111, 111, 90}, {112, 122, 56}, },
+            {{48, 95, -21}, {97, 97, 91}, {98, 122, 56}, },
+            {{48, 109, -29}, {110, 110, 92}, {111, 122, 56}, },
+            {{48, 113, -61}, {114, 114, 93}, {115, 122, 56}, },
+            {},
+            {},
+            {},
+            {{48, 57, 76}, },
+            {{48, 107, -64}, {108, 108, 94}, {109, 122, 56}, },
+            {{48, 107, -64}, {108, 108, 95}, {109, 122, 56}, },
+            {{48, 95, -21}, {97, 97, 96}, {98, 122, 56}, },
+            {{48, 110, -26}, {111, 111, 97}, {112, 122, 56}, },
+            {{48, 116, -34}, {117, 117, 98}, {118, 122, 56}, },
+            {{48, 113, -61}, {114, 114, 99}, {115, 122, 56}, },
+            {{48, 95, -21}, {97, 114, 56}, {115, 115, 100}, {116, 122, 56}, },
+            {{10, 10, 101}, {48, 122, -21}, },
+            {{48, 98, -63}, {99, 99, 102}, {100, 122, 56}, },
+            {{48, 100, -32}, {101, 101, 103}, {102, 122, 56}, },
+            {{48, 95, -21}, {97, 97, 104}, {98, 122, 56}, },
+            {{48, 122, -21}, },
+            {{48, 95, -21}, {97, 97, 105}, {98, 122, 56}, },
+            {{48, 95, -21}, {97, 102, 56}, {103, 103, 106}, {104, 122, 56}, },
+            {{48, 107, -64}, {108, 108, 107}, {109, 122, 56}, },
+            {{48, 95, -21}, {97, 97, 108}, {98, 122, 56}, },
+            {{48, 95, -21}, {97, 99, 56}, {100, 100, 109}, {101, 122, 56}, },
+            {{48, 104, -66}, {105, 105, 110}, {106, 122, 56}, },
+            {{48, 100, -32}, {101, 101, 111}, {102, 122, 56}, },
+            {{48, 98, -63}, {99, 99, 112}, {100, 122, 56}, },
+            {{48, 122, -21}, },
+            {{48, 95, -21}, {97, 97, 113}, {98, 122, 56}, },
+            {{48, 100, -32}, {101, 101, 114}, {102, 122, 56}, },
+            {{48, 110, -26}, {111, 111, 115}, {112, 122, 56}, },
+            {},
+            {{48, 104, -66}, {105, 105, 116}, {106, 122, 56}, },
+            {{48, 104, -66}, {105, 105, 117}, {106, 122, 56}, },
+            {{48, 122, -21}, },
+            {{48, 122, -21}, },
+            {{48, 113, -61}, {114, 114, 118}, {115, 122, 56}, },
+            {{48, 122, -21}, },
+            {{48, 110, -26}, {111, 111, 119}, {112, 122, 56}, },
+            {{48, 95, -21}, {97, 97, 120}, {98, 122, 56}, },
+            {{48, 100, -32}, {101, 101, 121}, {102, 122, 56}, },
+            {{48, 95, -21}, {97, 97, 122}, {98, 122, 56}, },
+            {{48, 95, -21}, {97, 115, 56}, {116, 116, 123}, {117, 122, 56}, },
+            {{48, 109, -29}, {110, 110, 124}, {111, 122, 56}, },
+            {{48, 117, -25}, {118, 118, 125}, {119, 122, 56}, },
+            {{48, 122, -21}, },
+            {{48, 110, -26}, {111, 111, 126}, {112, 122, 56}, },
+            {{48, 113, -61}, {114, 114, 127}, {115, 122, 56}, },
+            {{48, 95, -21}, {97, 97, 128}, {98, 122, 56}, },
+            {{48, 122, -21}, },
+            {{48, 99, -95}, {100, 100, 129}, {101, 122, 56}, },
+            {{48, 122, -21}, },
+            {{48, 109, -29}, {110, 110, 130}, {111, 122, 56}, },
+            {{48, 100, -32}, {101, 101, 131}, {102, 122, 56}, },
+            {{48, 115, -114}, {116, 116, 132}, {117, 122, 56}, },
+            {{48, 95, -21}, {97, 97, 133}, {98, 122, 56}, },
+            {{10, 10, 134}, {48, 122, -21}, },
+            {{48, 110, -26}, {111, 111, 135}, {112, 122, 56}, },
+            {{48, 108, -65}, {109, 109, 136}, {110, 122, 56}, },
+            {{48, 100, -32}, {101, 101, 137}, {102, 122, 56}, },
+            {{48, 110, -26}, {111, 111, 138}, {112, 122, 56}, },
+            {{48, 113, -61}, {114, 114, 139}, {115, 122, 56}, },
+            {{48, 110, -26}, {111, 111, 140}, {112, 122, 56}, },
+            {{48, 122, -21}, },
+            {},
+            {{48, 122, -21}, },
+            {{48, 95, -21}, {97, 97, 141}, {98, 122, 56}, },
+            {{48, 104, -66}, {105, 105, 142}, {106, 122, 56}, },
+            {{48, 122, -21}, },
+            {{48, 100, -32}, {101, 101, 143}, {102, 122, 56}, },
+            {{48, 122, -21}, },
+            {{10, 10, 144}, {48, 122, -21}, },
+            {{48, 113, -61}, {114, 114, 145}, {115, 122, 56}, },
+            {{48, 122, -21}, },
+            {},
+            {{48, 110, -26}, {111, 111, 146}, {112, 122, 56}, },
+            {{48, 122, -21}, },
         }
     };*/
 
     private static int[][] accept;
 /*  {
         // INITIAL
-        {-1, 29, 27, 30, 28, -1, 20, 21, 39, 41, 42, 40, 32, 18, 15, 37, 38, 36, 31, 22, 23, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 24, 25, 30, -1, -1, -1, 16, 17, 19, -1, 26, 15, 35, 34, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 2, 31, -1, -1, -1, 16, 17, 33, 31, 31, 31, 31, 31, 31, 1, 31, 31, 31, 31, 31, 31, 31, 10, 31, 31, 31, 7, 31, 31, 1, 31, 31, 5, 12, 31, 31, 31, 31, 31, 31, 9, 31, 31, 3, 31, 6, 31, 31, 31, 0, 31, 31, 31, 31, 31, 0, 11, 31, 14, 31, 4, 31, 13, 31, 8, },
+        {-1, 46, 44, 47, 45, -1, 37, 38, 20, 22, 31, 23, 21, 49, 35, 32, 18, 19, 17, 48, 39, 40, 48, 48, 48, 48, 48, 25, 48, 48, 48, 48, 48, 48, 48, 48, 48, 41, 42, 47, -1, -1, -1, -1, 33, 34, 36, -1, 43, 32, 16, 14, 15, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 48, 26, 48, 48, 48, 2, 48, 10, 33, 34, 50, 48, 48, 48, 48, 48, 48, 48, 1, 48, 48, 48, 24, 48, 48, 48, 48, 48, 48, 48, 48, 7, 48, 48, 48, 1, 48, 48, 12, 5, 48, 28, 48, 48, 48, 48, 48, 48, 48, 9, 48, 48, 48, 3, 48, 6, 48, 48, 48, 48, 0, 48, 48, 48, 48, 48, 48, 13, 0, 27, 48, 48, 30, 48, 4, 11, 48, 29, 11, 48, 8, },
 
     };*/
 

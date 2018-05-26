@@ -7,14 +7,14 @@ import compilador.analysis.*;
 @SuppressWarnings("nls")
 public final class TNao extends Token
 {
-    public TNao()
+    public TNao(String text)
     {
-        super.setText("nao");
+        setText(text);
     }
 
-    public TNao(int line, int pos)
+    public TNao(String text, int line, int pos)
     {
-        super.setText("nao");
+        setText(text);
         setLine(line);
         setPos(pos);
     }
@@ -22,18 +22,12 @@ public final class TNao extends Token
     @Override
     public Object clone()
     {
-      return new TNao(getLine(), getPos());
+      return new TNao(getText(), getLine(), getPos());
     }
 
     @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseTNao(this);
-    }
-
-    @Override
-    public void setText(@SuppressWarnings("unused") String text)
-    {
-        throw new RuntimeException("Cannot change TNao text.");
     }
 }

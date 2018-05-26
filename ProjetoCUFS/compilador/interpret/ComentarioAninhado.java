@@ -10,7 +10,7 @@ import compilador.node.Token;
 public class ComentarioAninhado extends Lexer{
 
 	Deque<String> pilha = new ArrayDeque<String>(); 
-	int line = 0, position = 0 ;
+	static int line = 0, position = 0 ;
 	public ComentarioAninhado(java.io.PushbackReader in) {
 		super(in);
 	}
@@ -31,37 +31,33 @@ public class ComentarioAninhado extends Lexer{
 				 csi_cont = false;
 				 System.out.print("\n"); break; 
 			 case "TRn":
-				 System.out.print("\n"); break; 
+				 System.out.print("\n"); break;
 				 
 			 case "TComentariosimples":
+				 if (can_cont == 0 & csi_cont == false)
+					 System.out.print("[" + token.getClass().getSimpleName() + "]");
 				  csi_cont = true;  
-				  System.out.print("[" + token.getClass().getSimpleName() + "]");
 				  break;
 			
 			 case "TAbreblococomentario":
-			
 				 can_cont++;
 				 pilha.push(token.getClass().getSimpleName());
 				 line = token.getLine(); position = token.getPos();
-				 System.out.print("[" + token.getClass().getSimpleName() + "]"); break;
+				 System.out.print("[" + token.getClass().getSimpleName() + "]"); 
+				 break;
 			 
 			 case "TFechablococomentario":
-				 
 				 can_cont--;
 				 System.out.print("[" + token.getClass().getSimpleName() + "]");
 		     		if(!pilha.isEmpty())
 		     			pilha.pop();
-		     		else {
-		     			System.out.println("\n\n\nERRO: Comentário não aninhado na linha "+ token.getLine() + " coluna " + token.getPos());
-		     		}
+		     		else
+		     			System.out.println("\n\n\nERRO: Comentário não aninhado na linha "+ token.getLine() + " coluna " + token.getPos() + ": erro em " + token.getClass().getSimpleName());
 		          break;
 			 
 			 default:
-				
-				 if (can_cont == 0 & csi_cont == false) {
+				 if (can_cont == 0 & csi_cont == false)
 					 System.out.print("[" + token.getClass().getSimpleName() + "]"); 	
-				 }
-			     	 
 				 break;
 		 }
 	 }
@@ -73,4 +69,3 @@ public class ComentarioAninhado extends Lexer{
 			 return false;
 	 }
 }
-

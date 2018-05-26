@@ -7,14 +7,14 @@ import compilador.analysis.*;
 @SuppressWarnings("nls")
 public final class TMenorq extends Token
 {
-    public TMenorq()
+    public TMenorq(String text)
     {
-        super.setText("<=");
+        setText(text);
     }
 
-    public TMenorq(int line, int pos)
+    public TMenorq(String text, int line, int pos)
     {
-        super.setText("<=");
+        setText(text);
         setLine(line);
         setPos(pos);
     }
@@ -22,18 +22,12 @@ public final class TMenorq extends Token
     @Override
     public Object clone()
     {
-      return new TMenorq(getLine(), getPos());
+      return new TMenorq(getText(), getLine(), getPos());
     }
 
     @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseTMenorq(this);
-    }
-
-    @Override
-    public void setText(@SuppressWarnings("unused") String text)
-    {
-        throw new RuntimeException("Cannot change TMenorq text.");
     }
 }

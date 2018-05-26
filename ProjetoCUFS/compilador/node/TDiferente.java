@@ -5,14 +5,14 @@ package compilador.node;
 import compilador.analysis.*;
 
 @SuppressWarnings("nls")
-public final class TIgual extends Token
+public final class TDiferente extends Token
 {
-    public TIgual(String text)
+    public TDiferente(String text)
     {
         setText(text);
     }
 
-    public TIgual(String text, int line, int pos)
+    public TDiferente(String text, int line, int pos)
     {
         setText(text);
         setLine(line);
@@ -22,12 +22,12 @@ public final class TIgual extends Token
     @Override
     public Object clone()
     {
-      return new TIgual(getText(), getLine(), getPos());
+      return new TDiferente(getText(), getLine(), getPos());
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseTIgual(this);
+        ((Analysis) sw).caseTDiferente(this);
     }
 }

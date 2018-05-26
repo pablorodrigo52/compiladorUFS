@@ -30,7 +30,7 @@ public class Main {
 			}
             
             if (!filtro.pilhaVazia())
-              System.out.println("\n\n\nERRO: Comentário não aninhado");
+              System.out.println("\n\n\nERRO: Comentário não aninhado na linha: "+ filtro.line + " coluna: " + filtro.position + ": erro em " + token.getClass().getSimpleName());
             
             /* - Parte sintatica e semântica
             Parser parser = new Parser(lexer); 

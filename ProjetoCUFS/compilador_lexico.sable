@@ -10,11 +10,11 @@ Helpers
     letra = ['a' .. 'z'] | ['A' .. 'Z'];  /* abcdefghijklmnopqrstuvwxyz */
     num = ['0' .. '9'] ; /* 0123456789 */
      
-    string = ''' (letra|num) (letra|num)+ ''' ;
      
     // Definição de caracteres especiais 
  	spc = ' ' ; //Espaço em branco 
     under = '_' ; 
+    virgula = ',' ;
     
     
     // caractere de nova linha e tabulacao, \n e \t
@@ -28,6 +28,16 @@ Helpers
 	tab = tb;
 	// Caractere que representa \r ou \r\n (para quebra de linha) 
 	rn = (cr | cr nl);
+
+	nao = 'nao' ;
+    e = 'e' ;
+    ou = 'ou' ;
+
+	maior = '>' ;
+	menor = '<' ;
+	igual = '=' ;
+
+	
 Tokens 
     /* Our simple token definition(s). .... */
    
@@ -42,7 +52,28 @@ Tokens
    caso = 'caso' ;
    verdadeiro = 'verdadeiro' ;
    falso = 'falso';
-   string = string ;
+   string = '''(letra|num|vazio)+''' ;
+   programa = 'programa' nl? ;
+   leia = 'leia' ;
+   escreva = 'escreva' ; 
+   
+        //OPERADORES LÓGICOS
+   diferente = menor maior; 
+   maioreq = maior igual ;
+   menorq = menor igual ;
+   maior =  maior ;
+   menor = menor ;
+   igual = igual ;
+    //OPERADORES ARITMÉTICOS
+   mult = '*' ;
+   div = '/' ;
+   sum = '+' ;
+   sub = '-' ;
+   
+	//OPERADORES BOOLEANOS
+   nao = nao ;
+   e = e ;
+   ou = ou ;
    
      //TIPOS
    tipointeiro = 'inteiro' ;
@@ -51,17 +82,18 @@ Tokens
    tipobooleano = 'booleano' ; 
    
      //SIMBOLOS ESPECIAIS
+   virgula = virgula ; 
    pontoevirgula = ';' nl? ;
    fechablococomentario = '*/' nl? ;
    abreblococomentario = '/*' nl? ;
    doispontos = ':' ;
    comentariosimples = '//' ; 
-   lparentese = '(' ;
-   rparentese = ')' ;
-   lcolchete = '[' ;
-   rcolchete = ']' ;
-   lchave = '{' ;
-   rchave = '}' ;
+   aparentese = '(' ;
+   fparentese = ')' ;
+   acolchete = '[' ;
+   fcolchete = ']' ;
+   achave = '{' ;
+   fchave = '}' ;
    atrib = ':=' ;
    
    novalinha = nl;
@@ -73,25 +105,7 @@ Tokens
      //IDENTIFICADORES, INTEIRO, REAL
    id = (under|letra) (letra*|under*|num*)+ ;
    inteiro = num+ ;
-   real = num+','num+ ;
-  
-     //OPERADORES LÓGICOS
-   maiorq = '>=' ;
-   menorq = '<=' ;
-   maior =  '>' ;
-   menor = '<' ;
-   igual = '=' ;
-   
-    //OPERADORES ARITMÉTICOS
-   mult = '*' ;
-   div = '/' ;
-   sum = '+' ;
-   sub = '-' ;
-   
-	//OPERADORES BOOLEANOS
-   nao = 'nao' ;
-   e = 'e' ;
-   ou = 'ou' ;
+   real = num+ virgula num+ ;
    
 Ignored Tokens
 	vazio, novalinha, tab, rn ;

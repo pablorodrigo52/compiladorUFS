@@ -7,14 +7,14 @@ import compilador.analysis.*;
 @SuppressWarnings("nls")
 public final class TE extends Token
 {
-    public TE()
+    public TE(String text)
     {
-        super.setText("e");
+        setText(text);
     }
 
-    public TE(int line, int pos)
+    public TE(String text, int line, int pos)
     {
-        super.setText("e");
+        setText(text);
         setLine(line);
         setPos(pos);
     }
@@ -22,18 +22,12 @@ public final class TE extends Token
     @Override
     public Object clone()
     {
-      return new TE(getLine(), getPos());
+      return new TE(getText(), getLine(), getPos());
     }
 
     @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseTE(this);
-    }
-
-    @Override
-    public void setText(@SuppressWarnings("unused") String text)
-    {
-        throw new RuntimeException("Cannot change TE text.");
     }
 }

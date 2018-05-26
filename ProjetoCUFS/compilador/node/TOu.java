@@ -7,14 +7,14 @@ import compilador.analysis.*;
 @SuppressWarnings("nls")
 public final class TOu extends Token
 {
-    public TOu()
+    public TOu(String text)
     {
-        super.setText("ou");
+        setText(text);
     }
 
-    public TOu(int line, int pos)
+    public TOu(String text, int line, int pos)
     {
-        super.setText("ou");
+        setText(text);
         setLine(line);
         setPos(pos);
     }
@@ -22,18 +22,12 @@ public final class TOu extends Token
     @Override
     public Object clone()
     {
-      return new TOu(getLine(), getPos());
+      return new TOu(getText(), getLine(), getPos());
     }
 
     @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseTOu(this);
-    }
-
-    @Override
-    public void setText(@SuppressWarnings("unused") String text)
-    {
-        throw new RuntimeException("Cannot change TOu text.");
     }
 }

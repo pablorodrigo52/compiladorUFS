@@ -1,12 +1,22 @@
+programa teste
 inicio
-	inteiro : num1 := 0; // Tudo apos isso deve ser ignorado
-	inteiro : num2 := 0;
-	inteiro : soma := 0;
+
+	inteiro: variavel1 := 10;
+	real: variavel2 := 2,2;
+	booleano: variavel3 := verdadeiro;
+	caractere: variavel4[30] := 'Uma string qualquer'; 
 	
-	num1 := 15; /* Tudo apos isso deve ser ignorado */
-	num2 := 17;
-	
-	enquanto ((num1 - num2) < soma){
-		soma = num1 - num2;
+	para (i := 0; i < 30; i++){
+		j := variavel4[i];
 	}
+	
+	10+30;
+	20 ; 10 +
+	verdadeiro - falso;
+	
+	se ( _variavelReal > variavelinteira ){
+		10,30 - 50,20;
+	senao
+		variavel1 := variavel2;
+		
 fim
