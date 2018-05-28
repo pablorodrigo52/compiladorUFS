@@ -52,8 +52,6 @@ public interface Analysis extends Switch
     void caseTFparentese(TFparentese node);
     void caseTAcolchete(TAcolchete node);
     void caseTFcolchete(TFcolchete node);
-    void caseTAchave(TAchave node);
-    void caseTFchave(TFchave node);
     void caseTAtrib(TAtrib node);
     void caseTNovalinha(TNovalinha node);
     void caseTVazio(TVazio node);

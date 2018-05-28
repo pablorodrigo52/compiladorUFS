@@ -92,9 +92,7 @@ Tokens
    fparentese = ')' ;
    acolchete = '[' ;
    fcolchete = ']' ;
-   achave = '{' ;
-   fchave = '}' ;
-   atrib = ':=' ;
+   atrib = '<-' ;
    
    novalinha = nl;
    vazio = vazio ;

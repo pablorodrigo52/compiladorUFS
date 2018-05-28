@@ -315,18 +315,6 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
-    public void caseTAchave(TAchave node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseTFchave(TFchave node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
     public void caseTAtrib(TAtrib node)
     {
         defaultCase(node);
