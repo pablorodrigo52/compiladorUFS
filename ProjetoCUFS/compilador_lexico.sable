@@ -15,6 +15,8 @@ Helpers
  	spc = ' ' ; //Espaço em branco 
     under = '_' ; 
     virgula = ',' ;
+    aspasimples = '''; 
+    aspasduplas = '"'; 
     
     
     // caractere de nova linha e tabulacao, \n e \t
@@ -37,7 +39,9 @@ Helpers
 	menor = '<' ;
 	igual = '=' ;
 
-	
+States
+	normal, comentario_bloco;
+
 Tokens 
     /* Our simple token definition(s). .... */
    
@@ -52,7 +56,7 @@ Tokens
    caso = 'caso' ;
    verdadeiro = 'verdadeiro' ;
    falso = 'falso';
-   string = '''(letra|num|vazio)+''' ;
+   string = aspasimples (letra|num|vazio)+ aspasimples ;
    programa = 'programa' nl? ;
    leia = 'leia' ;
    escreva = 'escreva' ; 
@@ -64,6 +68,7 @@ Tokens
    maior =  maior ;
    menor = menor ;
    igual = igual ;
+   
     //OPERADORES ARITMÉTICOS
    mult = '*' ;
    div = '/' ;
@@ -82,7 +87,8 @@ Tokens
    tipobooleano = 'booleano' ; 
    
      //SIMBOLOS ESPECIAIS
-   virgula = virgula ; 
+   virgula 	= virgula ;
+   ponto = '.' ; 
    pontoevirgula = ';' nl? ;
    fechablococomentario = '*/' nl? ;
    abreblococomentario = '/*' nl? ;
@@ -93,12 +99,13 @@ Tokens
    acolchete = '[' ;
    fcolchete = ']' ;
    atrib = '<-' ;
+   aspasimples = aspasimples;
+   aspasduplas = aspasduplas;  
    
    novalinha = nl;
    vazio = vazio ;
    tab = tab;
    rn = rn;
-   
    
      //IDENTIFICADORES, INTEIRO, REAL
    id = (under|letra) (letra*|under*|num*)+ ;

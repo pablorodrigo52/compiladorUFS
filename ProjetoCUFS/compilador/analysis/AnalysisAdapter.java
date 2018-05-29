@@ -261,6 +261,12 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
+    public void caseTPonto(TPonto node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
     public void caseTPontoevirgula(TPontoevirgula node)
     {
         defaultCase(node);
@@ -316,6 +322,18 @@ public class AnalysisAdapter implements Analysis
 
     @Override
     public void caseTAtrib(TAtrib node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseTAspasimples(TAspasimples node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseTAspasduplas(TAspasduplas node)
     {
         defaultCase(node);
     }

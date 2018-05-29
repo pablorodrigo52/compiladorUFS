@@ -43,6 +43,7 @@ public interface Analysis extends Switch
     void caseTTipocaractere(TTipocaractere node);
     void caseTTipobooleano(TTipobooleano node);
     void caseTVirgula(TVirgula node);
+    void caseTPonto(TPonto node);
     void caseTPontoevirgula(TPontoevirgula node);
     void caseTFechablococomentario(TFechablococomentario node);
     void caseTAbreblococomentario(TAbreblococomentario node);
@@ -53,6 +54,8 @@ public interface Analysis extends Switch
     void caseTAcolchete(TAcolchete node);
     void caseTFcolchete(TFcolchete node);
     void caseTAtrib(TAtrib node);
+    void caseTAspasimples(TAspasimples node);
+    void caseTAspasduplas(TAspasduplas node);
     void caseTNovalinha(TNovalinha node);
     void caseTVazio(TVazio node);
     void caseTTab(TTab node);

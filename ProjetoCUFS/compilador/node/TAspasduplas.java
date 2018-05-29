@@ -5,14 +5,14 @@ package compilador.node;
 import compilador.analysis.*;
 
 @SuppressWarnings("nls")
-public final class TBooleano extends Token
+public final class TAspasduplas extends Token
 {
-    public TBooleano(String text)
+    public TAspasduplas(String text)
     {
         setText(text);
     }
 
-    public TBooleano(String text, int line, int pos)
+    public TAspasduplas(String text, int line, int pos)
     {
         setText(text);
         setLine(line);
@@ -22,12 +22,12 @@ public final class TBooleano extends Token
     @Override
     public Object clone()
     {
-      return new TBooleano(getText(), getLine(), getPos());
+      return new TAspasduplas(getText(), getLine(), getPos());
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseTBooleano(this);
+        ((Analysis) sw).caseTAspasduplas(this);
     }
 }
