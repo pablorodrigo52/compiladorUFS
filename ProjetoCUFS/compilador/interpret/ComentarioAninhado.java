@@ -21,7 +21,7 @@ public class ComentarioAninhado extends Lexer{
 	 @SuppressWarnings("unused")
 	protected void filter(Token token) throws LexerException, IOException{
 		
-		 
+		 //System.out.println(token.getClass().getSimpleName());
 		 switch (token.getClass().getSimpleName()) {
 		     case "TVazio": // Se meu token for espaço em branco, \t, \n ou \r\n, formato a saída pra imprimir bonitinho. 
 		    	 if (csi_cont == false && can_cont == 0)
@@ -51,12 +51,14 @@ public class ComentarioAninhado extends Lexer{
 				 pilha.push(token.getClass().getSimpleName());
 				 line = token.getLine(); position = token.getPos(); //Salvo a linha e a coluna pra saber a posição exata do token na hora da impressão
 				 can_cont++; // e empilho o token 				 
+				 //System.out.println("Can_cont: "+ can_cont + " Csi_cont: "+ csi_cont);
 				 break;
 				 
 				 
 				 
 			 case "TFechablococomentario":
 				 can_cont--;
+				 //System.out.println("Can_cont: "+ can_cont + " Csi_cont: "+ csi_cont);
 				 if(!pilha.isEmpty() && can_cont == 0) //Se eu tiver passado por algum TAbreBloco.. e a flag can_cont > 1, então eu tenho um bloco dentro de outro bloco (que por consequência, é tratado como um comentário).
 					 System.out.print("[TComentarioBloco]"); //Se o can_cont = 1, então eu passei exatamente por um TAbreBloco, logo, a pilha não está vazia e ao entrar no TFechaBloco, imprimo "ComentárioBloco". 
 				 else if(pilha.isEmpty()) // Se eu entrar em TFechaBloco.. e cair nesse if, significa que não passei por nenhum TAbreBloco.. logo, é um erro. 
@@ -66,10 +68,14 @@ public class ComentarioAninhado extends Lexer{
 					 pilha.pop();
 				 break;
 			 default: //Se não for nenhum dos casos acima, é um token normal, logo se eu não estiver em um comentário de bloco ou de linha, imprimo o token. 
-				// System.out.println("Can_cont: "+ can_cont + " Csi_cont: "+ csi_cont);
+				 //System.out.println("Can_cont: "+ can_cont + " Csi_cont: "+ csi_cont);
 				 if (can_cont == 0 && csi_cont == false)
 					 System.out.print("[" + token.getClass().getSimpleName() + "]"); 	
 				 break;
+		 }
+		 
+		 if( can_cont < 0) {
+			 can_cont = 0;
 		 }
 	 }
 	
