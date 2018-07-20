@@ -11,6 +11,29 @@ public interface Analysis extends Switch
     Object getOut(Node node);
     void setOut(Node node, Object o);
 
+    void caseStart(Start node);
+    void caseAInicioProg(AInicioProg node);
+    void caseADeclaracaoCondicionalDeclaracoes(ADeclaracaoCondicionalDeclaracoes node);
+    void caseAVariasDeclaracoesCondDeclaracao(AVariasDeclaracoesCondDeclaracao node);
+    void caseAVariaveisDeclaracao(AVariaveisDeclaracao node);
+    void caseAVetoresDeclaracao(AVetoresDeclaracao node);
+    void caseAConstanteDeclaracao(AConstanteDeclaracao node);
+    void caseATintTipo(ATintTipo node);
+    void caseATfloatTipo(ATfloatTipo node);
+    void caseATstrTipo(ATstrTipo node);
+    void caseATboolTipo(ATboolTipo node);
+    void caseAVariasVariaveisVar(AVariasVariaveisVar node);
+    void caseAIdentificadorVar(AIdentificadorVar node);
+    void caseAVetorVetor(AVetorVetor node);
+    void caseAVariosVetoresVarvetor(AVariosVetoresVarvetor node);
+    void caseAUmVetorVarvetor(AUmVetorVarvetor node);
+    void caseAIntValor(AIntValor node);
+    void caseAFloatValor(AFloatValor node);
+    void caseAStrValor(AStrValor node);
+    void caseABoolValor(ABoolValor node);
+    void caseATrueBooleano(ATrueBooleano node);
+    void caseAFalseBooleano(AFalseBooleano node);
+
     void caseTInicio(TInicio node);
     void caseTFim(TFim node);
     void caseTSe(TSe node);
@@ -25,6 +48,7 @@ public interface Analysis extends Switch
     void caseTPrograma(TPrograma node);
     void caseTLeia(TLeia node);
     void caseTEscreva(TEscreva node);
+    void caseTConstante(TConstante node);
     void caseTDiferente(TDiferente node);
     void caseTMaioreq(TMaioreq node);
     void caseTMenorq(TMenorq node);

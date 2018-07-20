@@ -59,7 +59,8 @@ Tokens
    string = aspasimples (letra|num|vazio)+ aspasimples ;
    programa = 'programa' nl? ;
    leia = 'leia' ;
-   escreva = 'escreva' ; 
+   escreva = 'escreva' ;
+   constante = 'constante' ;
    
         //OPERADORES LÓGICOS
    diferente = menor maior; 
@@ -114,3 +115,24 @@ Tokens
    
 Ignored Tokens
 	vazio, novalinha, tab, rn ;
+	
+Productions
+	
+	prog = {inicio} programa id inicio declaracoes comando fim ; //falta a parte de comando ainda, pra rodar, tem que tirar comando daqui..
+	
+	
+	declaracoes = {declaracao_condicional} cond_declaracao? ; 
+	cond_declaracao = {varias_declaracoes} declaracao+ ;
+	declaracao = {variaveis} tipo doispontos var pontoevirgula 
+			   | {vetores} vetor 
+			   | {constante} constante id valor ; 
+	
+	
+	tipo = {tint} tipointeiro | {tfloat} tiporeal | {tstr} tipocaractere | {tbool} tipobooleano ;
+	var = {varias_variaveis} var virgula id
+		| {identificador} id ;
+	vetor = {vetor} tipo doispontos varvetor pontoevirgula ;
+	varvetor = {varios_vetores} varvetor virgula id acolchete inteiro fcolchete
+			 | {um_vetor} id acolchete inteiro fcolchete ; 
+	valor = {int} inteiro | {float} real | {str} string | {bool} booleano ;
+	booleano = {true} verdadeiro | {false} falso ;
