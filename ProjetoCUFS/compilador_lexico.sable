@@ -118,16 +118,58 @@ Ignored Tokens
 	
 Productions
 	
-	prog = {inicio} programa id inicio declaracoes comando fim ; //falta a parte de comando ainda, pra rodar, tem que tirar comando daqui..
+	prog = {inicio} programa id inicio declaracoes comandos fim ; //falta a parte de comando ainda, pra rodar, tem que tirar comando daqui..
 	
 	
+	//_______________________________________________________ DECLARAÇÕES:
 	declaracoes = {declaracao_condicional} cond_declaracao? ; 
 	cond_declaracao = {varias_declaracoes} declaracao+ ;
+	
 	declaracao = {variaveis} tipo doispontos var pontoevirgula 
 			   | {vetores} vetor 
 			   | {constante} constante id valor ; 
 	
+	//________________________________________________ COMANDOS:
+	comandos = {comando_condicional} cond_comando? ;
+	cond_comando = {varios_comandos} comando+ ;
 	
+	comando = {atribuicao_variavel} var atrib exp 
+			| {atribuicao_vetor} varvetor atrib exp ;
+	
+	// ... ainda faltam os outros comandos ...
+	
+	// EXPRESSAO (PODE SER ARITMETICA OU LÓGICA
+	exp = {expressao} expressao | {exp_logica} exp_logica ; 
+	//______________________________________ ARITMETICA: 
+	expressao = expressao_esq ;
+	expressao_esq = {exp_soma} expressao_esq sum expressao_dir
+			  	  | {exp_subtracao} expressao_esq sub expressao_dir 
+			  	  | {exp_dir} expressao_dir ;
+	expressao_dir = {expressao_dir_multiplicacao} expressao_dir mult expressao_fator
+		  		  | {expressao_dir_divisao} expressao_dir div expressao_fator
+		  		  | {expressao_dir_fator} expressao_fator; 
+	expressao_fator = {fator_aninhado} aparentese expressao_fator fparentese
+		  	  | {fator_variavel} var
+		  	  | {fator_vetor} varvetor
+		  	  | {fator_negativo} sub expressao_fator
+		  	  | {fator_coeficiente} valor ;
+	//______________________________________ LOGICA:
+	exp_logica = exp_logica_esq ; 
+	exp_logica_esq = {expe_e} exp_logica_esq e exp_logica_dir
+			   	   | {expe_ou} exp_logica_esq ou exp_logica_dir
+			   	   | {expe_dir} exp_logica_dir ; 
+			   
+	exp_logica_dir = {exp_logica_aninhada} aparentese exp_logica_esq fparentese
+				   | {expe_nao} nao exp_logica_dir
+				   | {exp_logica_fator} exp_logica_fator ; 
+			   
+	exp_logica_fator = {expe_igual} expressao_esq igual expressao_dir
+			   		 | {expe_diferente} expressao_esq diferente expressao_dir
+			   		 | {expe_maior} expressao_esq maior expressao_dir
+			   		 | {expe_menor} expressao_esq menor expressao_dir
+			   		 | {expe_maioreq} expressao_esq maioreq expressao_dir
+			   		 | {expe_menoreq} expressao_esq menorq expressao_dir ;
+	//___________________________________________________________________ PRODUÇÕES EXTRAS:
 	tipo = {tint} tipointeiro | {tfloat} tiporeal | {tstr} tipocaractere | {tbool} tipobooleano ;
 	var = {varias_variaveis} var virgula id
 		| {identificador} id ;
@@ -136,3 +178,4 @@ Productions
 			 | {um_vetor} id acolchete inteiro fcolchete ; 
 	valor = {int} inteiro | {float} real | {str} string | {bool} booleano ;
 	booleano = {true} verdadeiro | {false} falso ;
+	

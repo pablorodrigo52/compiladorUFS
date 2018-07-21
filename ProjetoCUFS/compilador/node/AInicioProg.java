@@ -11,6 +11,7 @@ public final class AInicioProg extends PProg
     private TId _id_;
     private TInicio _inicio_;
     private PDeclaracoes _declaracoes_;
+    private PComandos _comandos_;
     private TFim _fim_;
 
     public AInicioProg()
@@ -23,6 +24,7 @@ public final class AInicioProg extends PProg
         @SuppressWarnings("hiding") TId _id_,
         @SuppressWarnings("hiding") TInicio _inicio_,
         @SuppressWarnings("hiding") PDeclaracoes _declaracoes_,
+        @SuppressWarnings("hiding") PComandos _comandos_,
         @SuppressWarnings("hiding") TFim _fim_)
     {
         // Constructor
@@ -33,6 +35,8 @@ public final class AInicioProg extends PProg
         setInicio(_inicio_);
 
         setDeclaracoes(_declaracoes_);
+
+        setComandos(_comandos_);
 
         setFim(_fim_);
 
@@ -46,6 +50,7 @@ public final class AInicioProg extends PProg
             cloneNode(this._id_),
             cloneNode(this._inicio_),
             cloneNode(this._declaracoes_),
+            cloneNode(this._comandos_),
             cloneNode(this._fim_));
     }
 
@@ -155,6 +160,31 @@ public final class AInicioProg extends PProg
         this._declaracoes_ = node;
     }
 
+    public PComandos getComandos()
+    {
+        return this._comandos_;
+    }
+
+    public void setComandos(PComandos node)
+    {
+        if(this._comandos_ != null)
+        {
+            this._comandos_.parent(null);
+        }
+
+        if(node != null)
+        {
+            if(node.parent() != null)
+            {
+                node.parent().removeChild(node);
+            }
+
+            node.parent(this);
+        }
+
+        this._comandos_ = node;
+    }
+
     public TFim getFim()
     {
         return this._fim_;
@@ -188,6 +218,7 @@ public final class AInicioProg extends PProg
             + toString(this._id_)
             + toString(this._inicio_)
             + toString(this._declaracoes_)
+            + toString(this._comandos_)
             + toString(this._fim_);
     }
 
@@ -216,6 +247,12 @@ public final class AInicioProg extends PProg
         if(this._declaracoes_ == child)
         {
             this._declaracoes_ = null;
+            return;
+        }
+
+        if(this._comandos_ == child)
+        {
+            this._comandos_ = null;
             return;
         }
 
@@ -253,6 +290,12 @@ public final class AInicioProg extends PProg
         if(this._declaracoes_ == oldChild)
         {
             setDeclaracoes((PDeclaracoes) newChild);
+            return;
+        }
+
+        if(this._comandos_ == oldChild)
+        {
+            setComandos((PComandos) newChild);
             return;
         }
 

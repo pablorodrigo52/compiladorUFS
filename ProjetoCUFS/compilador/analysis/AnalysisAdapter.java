@@ -111,6 +111,192 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
+    public void caseAComandoCondicionalComandos(AComandoCondicionalComandos node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAVariosComandosCondComando(AVariosComandosCondComando node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAAtribuicaoVariavelComando(AAtribuicaoVariavelComando node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAAtribuicaoVetorComando(AAtribuicaoVetorComando node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAExpressaoExp(AExpressaoExp node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAExpLogicaExp(AExpLogicaExp node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAExpressao(AExpressao node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAExpSomaExpressaoEsq(AExpSomaExpressaoEsq node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAExpSubtracaoExpressaoEsq(AExpSubtracaoExpressaoEsq node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAExpDirExpressaoEsq(AExpDirExpressaoEsq node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAExpressaoDirMultiplicacaoExpressaoDir(AExpressaoDirMultiplicacaoExpressaoDir node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAExpressaoDirDivisaoExpressaoDir(AExpressaoDirDivisaoExpressaoDir node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAExpressaoDirFatorExpressaoDir(AExpressaoDirFatorExpressaoDir node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAFatorAninhadoFatorExp(AFatorAninhadoFatorExp node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAFatorVariavelFatorExp(AFatorVariavelFatorExp node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAFatorVetorFatorExp(AFatorVetorFatorExp node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAFatorNegativoFatorExp(AFatorNegativoFatorExp node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAFatorCoeficienteFatorExp(AFatorCoeficienteFatorExp node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAExpLogica(AExpLogica node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAExpeEExpLogicaEsq(AExpeEExpLogicaEsq node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAExpeOuExpLogicaEsq(AExpeOuExpLogicaEsq node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAExpeDirExpLogicaEsq(AExpeDirExpLogicaEsq node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAExpLogicaAninhadaExpLogicaDir(AExpLogicaAninhadaExpLogicaDir node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAExpeNaoExpLogicaDir(AExpeNaoExpLogicaDir node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAExpLogicaFatorExpLogicaDir(AExpLogicaFatorExpLogicaDir node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAExpeIgualExpLogicaFator(AExpeIgualExpLogicaFator node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAExpeDiferenteExpLogicaFator(AExpeDiferenteExpLogicaFator node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAExpeMaiorExpLogicaFator(AExpeMaiorExpLogicaFator node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAExpeMenorExpLogicaFator(AExpeMenorExpLogicaFator node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAExpeMaioreqExpLogicaFator(AExpeMaioreqExpLogicaFator node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAExpeMenoreqExpLogicaFator(AExpeMenoreqExpLogicaFator node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
     public void caseATintTipo(ATintTipo node)
     {
         defaultCase(node);
