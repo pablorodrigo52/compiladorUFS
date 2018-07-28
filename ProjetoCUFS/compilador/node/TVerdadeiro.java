@@ -7,14 +7,14 @@ import compilador.analysis.*;
 @SuppressWarnings("nls")
 public final class TVerdadeiro extends Token
 {
-    public TVerdadeiro()
+    public TVerdadeiro(String text)
     {
-        super.setText("verdadeiro");
+        setText(text);
     }
 
-    public TVerdadeiro(int line, int pos)
+    public TVerdadeiro(String text, int line, int pos)
     {
-        super.setText("verdadeiro");
+        setText(text);
         setLine(line);
         setPos(pos);
     }
@@ -22,18 +22,12 @@ public final class TVerdadeiro extends Token
     @Override
     public Object clone()
     {
-      return new TVerdadeiro(getLine(), getPos());
+      return new TVerdadeiro(getText(), getLine(), getPos());
     }
 
     @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseTVerdadeiro(this);
-    }
-
-    @Override
-    public void setText(@SuppressWarnings("unused") String text)
-    {
-        throw new RuntimeException("Cannot change TVerdadeiro text.");
     }
 }

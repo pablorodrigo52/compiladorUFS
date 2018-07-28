@@ -5,46 +5,46 @@ package compilador.node;
 import compilador.analysis.*;
 
 @SuppressWarnings("nls")
-public final class AExpressaoDirFatorExpressaoDir extends PExpressaoDir
+public final class AFatorVetorExpressaoFator extends PExpressaoFator
 {
-    private PExpressaoFator _expressaoFator_;
+    private PVarvetor _varvetor_;
 
-    public AExpressaoDirFatorExpressaoDir()
+    public AFatorVetorExpressaoFator()
     {
         // Constructor
     }
 
-    public AExpressaoDirFatorExpressaoDir(
-        @SuppressWarnings("hiding") PExpressaoFator _expressaoFator_)
+    public AFatorVetorExpressaoFator(
+        @SuppressWarnings("hiding") PVarvetor _varvetor_)
     {
         // Constructor
-        setExpressaoFator(_expressaoFator_);
+        setVarvetor(_varvetor_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new AExpressaoDirFatorExpressaoDir(
-            cloneNode(this._expressaoFator_));
+        return new AFatorVetorExpressaoFator(
+            cloneNode(this._varvetor_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseAExpressaoDirFatorExpressaoDir(this);
+        ((Analysis) sw).caseAFatorVetorExpressaoFator(this);
     }
 
-    public PExpressaoFator getExpressaoFator()
+    public PVarvetor getVarvetor()
     {
-        return this._expressaoFator_;
+        return this._varvetor_;
     }
 
-    public void setExpressaoFator(PExpressaoFator node)
+    public void setVarvetor(PVarvetor node)
     {
-        if(this._expressaoFator_ != null)
+        if(this._varvetor_ != null)
         {
-            this._expressaoFator_.parent(null);
+            this._varvetor_.parent(null);
         }
 
         if(node != null)
@@ -57,23 +57,23 @@ public final class AExpressaoDirFatorExpressaoDir extends PExpressaoDir
             node.parent(this);
         }
 
-        this._expressaoFator_ = node;
+        this._varvetor_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._expressaoFator_);
+            + toString(this._varvetor_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._expressaoFator_ == child)
+        if(this._varvetor_ == child)
         {
-            this._expressaoFator_ = null;
+            this._varvetor_ = null;
             return;
         }
 
@@ -84,9 +84,9 @@ public final class AExpressaoDirFatorExpressaoDir extends PExpressaoDir
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._expressaoFator_ == oldChild)
+        if(this._varvetor_ == oldChild)
         {
-            setExpressaoFator((PExpressaoFator) newChild);
+            setVarvetor((PVarvetor) newChild);
             return;
         }
 

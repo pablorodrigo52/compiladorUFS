@@ -189,31 +189,31 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
-    public void caseAFatorAninhadoFatorExp(AFatorAninhadoFatorExp node)
+    public void caseAFatorAninhadoExpressaoFator(AFatorAninhadoExpressaoFator node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseAFatorVariavelFatorExp(AFatorVariavelFatorExp node)
+    public void caseAFatorVariavelExpressaoFator(AFatorVariavelExpressaoFator node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseAFatorVetorFatorExp(AFatorVetorFatorExp node)
+    public void caseAFatorVetorExpressaoFator(AFatorVetorExpressaoFator node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseAFatorNegativoFatorExp(AFatorNegativoFatorExp node)
+    public void caseAFatorNegativoExpressaoFator(AFatorNegativoExpressaoFator node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseAFatorCoeficienteFatorExp(AFatorCoeficienteFatorExp node)
+    public void caseAFatorCoeficienteExpressaoFator(AFatorCoeficienteExpressaoFator node)
     {
         defaultCase(node);
     }
@@ -375,13 +375,7 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
-    public void caseATrueBooleano(ATrueBooleano node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseAFalseBooleano(AFalseBooleano node)
+    public void caseACharValor(ACharValor node)
     {
         defaultCase(node);
     }
@@ -435,19 +429,7 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
-    public void caseTVerdadeiro(TVerdadeiro node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseTFalso(TFalso node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseTString(TString node)
+    public void caseTPare(TPare node)
     {
         defaultCase(node);
     }
@@ -472,6 +454,36 @@ public class AnalysisAdapter implements Analysis
 
     @Override
     public void caseTConstante(TConstante node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseTNulo(TNulo node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseTRetorne(TRetorne node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseTFaca(TFaca node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseTVerdadeiro(TVerdadeiro node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseTFalso(TFalso node)
     {
         defaultCase(node);
     }
@@ -532,6 +544,12 @@ public class AnalysisAdapter implements Analysis
 
     @Override
     public void caseTSub(TSub node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseTMod(TMod node)
     {
         defaultCase(node);
     }
@@ -700,6 +718,24 @@ public class AnalysisAdapter implements Analysis
 
     @Override
     public void caseTReal(TReal node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseTCaractere(TCaractere node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseTString(TString node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseTBooleano(TBooleano node)
     {
         defaultCase(node);
     }

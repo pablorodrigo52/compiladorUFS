@@ -9,7 +9,7 @@ public final class AExpressaoDirMultiplicacaoExpressaoDir extends PExpressaoDir
 {
     private PExpressaoDir _expressaoDir_;
     private TMult _mult_;
-    private PFatorExp _fatorExp_;
+    private PExpressaoFator _expressaoFator_;
 
     public AExpressaoDirMultiplicacaoExpressaoDir()
     {
@@ -19,14 +19,14 @@ public final class AExpressaoDirMultiplicacaoExpressaoDir extends PExpressaoDir
     public AExpressaoDirMultiplicacaoExpressaoDir(
         @SuppressWarnings("hiding") PExpressaoDir _expressaoDir_,
         @SuppressWarnings("hiding") TMult _mult_,
-        @SuppressWarnings("hiding") PFatorExp _fatorExp_)
+        @SuppressWarnings("hiding") PExpressaoFator _expressaoFator_)
     {
         // Constructor
         setExpressaoDir(_expressaoDir_);
 
         setMult(_mult_);
 
-        setFatorExp(_fatorExp_);
+        setExpressaoFator(_expressaoFator_);
 
     }
 
@@ -36,7 +36,7 @@ public final class AExpressaoDirMultiplicacaoExpressaoDir extends PExpressaoDir
         return new AExpressaoDirMultiplicacaoExpressaoDir(
             cloneNode(this._expressaoDir_),
             cloneNode(this._mult_),
-            cloneNode(this._fatorExp_));
+            cloneNode(this._expressaoFator_));
     }
 
     @Override
@@ -95,16 +95,16 @@ public final class AExpressaoDirMultiplicacaoExpressaoDir extends PExpressaoDir
         this._mult_ = node;
     }
 
-    public PFatorExp getFatorExp()
+    public PExpressaoFator getExpressaoFator()
     {
-        return this._fatorExp_;
+        return this._expressaoFator_;
     }
 
-    public void setFatorExp(PFatorExp node)
+    public void setExpressaoFator(PExpressaoFator node)
     {
-        if(this._fatorExp_ != null)
+        if(this._expressaoFator_ != null)
         {
-            this._fatorExp_.parent(null);
+            this._expressaoFator_.parent(null);
         }
 
         if(node != null)
@@ -117,7 +117,7 @@ public final class AExpressaoDirMultiplicacaoExpressaoDir extends PExpressaoDir
             node.parent(this);
         }
 
-        this._fatorExp_ = node;
+        this._expressaoFator_ = node;
     }
 
     @Override
@@ -126,7 +126,7 @@ public final class AExpressaoDirMultiplicacaoExpressaoDir extends PExpressaoDir
         return ""
             + toString(this._expressaoDir_)
             + toString(this._mult_)
-            + toString(this._fatorExp_);
+            + toString(this._expressaoFator_);
     }
 
     @Override
@@ -145,9 +145,9 @@ public final class AExpressaoDirMultiplicacaoExpressaoDir extends PExpressaoDir
             return;
         }
 
-        if(this._fatorExp_ == child)
+        if(this._expressaoFator_ == child)
         {
-            this._fatorExp_ = null;
+            this._expressaoFator_ = null;
             return;
         }
 
@@ -170,9 +170,9 @@ public final class AExpressaoDirMultiplicacaoExpressaoDir extends PExpressaoDir
             return;
         }
 
-        if(this._fatorExp_ == oldChild)
+        if(this._expressaoFator_ == oldChild)
         {
-            setFatorExp((PFatorExp) newChild);
+            setExpressaoFator((PExpressaoFator) newChild);
             return;
         }
 

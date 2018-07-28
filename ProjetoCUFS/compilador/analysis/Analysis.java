@@ -31,11 +31,11 @@ public interface Analysis extends Switch
     void caseAExpressaoDirMultiplicacaoExpressaoDir(AExpressaoDirMultiplicacaoExpressaoDir node);
     void caseAExpressaoDirDivisaoExpressaoDir(AExpressaoDirDivisaoExpressaoDir node);
     void caseAExpressaoDirFatorExpressaoDir(AExpressaoDirFatorExpressaoDir node);
-    void caseAFatorAninhadoFatorExp(AFatorAninhadoFatorExp node);
-    void caseAFatorVariavelFatorExp(AFatorVariavelFatorExp node);
-    void caseAFatorVetorFatorExp(AFatorVetorFatorExp node);
-    void caseAFatorNegativoFatorExp(AFatorNegativoFatorExp node);
-    void caseAFatorCoeficienteFatorExp(AFatorCoeficienteFatorExp node);
+    void caseAFatorAninhadoExpressaoFator(AFatorAninhadoExpressaoFator node);
+    void caseAFatorVariavelExpressaoFator(AFatorVariavelExpressaoFator node);
+    void caseAFatorVetorExpressaoFator(AFatorVetorExpressaoFator node);
+    void caseAFatorNegativoExpressaoFator(AFatorNegativoExpressaoFator node);
+    void caseAFatorCoeficienteExpressaoFator(AFatorCoeficienteExpressaoFator node);
     void caseAExpLogica(AExpLogica node);
     void caseAExpeEExpLogicaEsq(AExpeEExpLogicaEsq node);
     void caseAExpeOuExpLogicaEsq(AExpeOuExpLogicaEsq node);
@@ -62,8 +62,7 @@ public interface Analysis extends Switch
     void caseAFloatValor(AFloatValor node);
     void caseAStrValor(AStrValor node);
     void caseABoolValor(ABoolValor node);
-    void caseATrueBooleano(ATrueBooleano node);
-    void caseAFalseBooleano(AFalseBooleano node);
+    void caseACharValor(ACharValor node);
 
     void caseTInicio(TInicio node);
     void caseTFim(TFim node);
@@ -73,13 +72,16 @@ public interface Analysis extends Switch
     void caseTPara(TPara node);
     void caseTAvalie(TAvalie node);
     void caseTCaso(TCaso node);
-    void caseTVerdadeiro(TVerdadeiro node);
-    void caseTFalso(TFalso node);
-    void caseTString(TString node);
+    void caseTPare(TPare node);
     void caseTPrograma(TPrograma node);
     void caseTLeia(TLeia node);
     void caseTEscreva(TEscreva node);
     void caseTConstante(TConstante node);
+    void caseTNulo(TNulo node);
+    void caseTRetorne(TRetorne node);
+    void caseTFaca(TFaca node);
+    void caseTVerdadeiro(TVerdadeiro node);
+    void caseTFalso(TFalso node);
     void caseTDiferente(TDiferente node);
     void caseTMaioreq(TMaioreq node);
     void caseTMenorq(TMenorq node);
@@ -90,6 +92,7 @@ public interface Analysis extends Switch
     void caseTDiv(TDiv node);
     void caseTSum(TSum node);
     void caseTSub(TSub node);
+    void caseTMod(TMod node);
     void caseTNao(TNao node);
     void caseTE(TE node);
     void caseTOu(TOu node);
@@ -118,6 +121,9 @@ public interface Analysis extends Switch
     void caseTId(TId node);
     void caseTInteiro(TInteiro node);
     void caseTReal(TReal node);
+    void caseTCaractere(TCaractere node);
+    void caseTString(TString node);
+    void caseTBooleano(TBooleano node);
     void caseEOF(EOF node);
     void caseInvalidToken(InvalidToken node);
 }

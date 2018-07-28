@@ -7,14 +7,14 @@ import compilador.analysis.*;
 @SuppressWarnings("nls")
 public final class TFalso extends Token
 {
-    public TFalso()
+    public TFalso(String text)
     {
-        super.setText("falso");
+        setText(text);
     }
 
-    public TFalso(int line, int pos)
+    public TFalso(String text, int line, int pos)
     {
-        super.setText("falso");
+        setText(text);
         setLine(line);
         setPos(pos);
     }
@@ -22,18 +22,12 @@ public final class TFalso extends Token
     @Override
     public Object clone()
     {
-      return new TFalso(getLine(), getPos());
+      return new TFalso(getText(), getLine(), getPos());
     }
 
     @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseTFalso(this);
-    }
-
-    @Override
-    public void setText(@SuppressWarnings("unused") String text)
-    {
-        throw new RuntimeException("Cannot change TFalso text.");
     }
 }

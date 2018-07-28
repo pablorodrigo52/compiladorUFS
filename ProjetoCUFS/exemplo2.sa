@@ -15,4 +15,4 @@ inicio
 	b <- 2; */
 	c < a + b;
 	escreva(c);
-fim
+fim.

@@ -7,7 +7,7 @@ import compilador.analysis.*;
 @SuppressWarnings("nls")
 public final class ABoolValor extends PValor
 {
-    private PBooleano _booleano_;
+    private TBooleano _booleano_;
 
     public ABoolValor()
     {
@@ -15,7 +15,7 @@ public final class ABoolValor extends PValor
     }
 
     public ABoolValor(
-        @SuppressWarnings("hiding") PBooleano _booleano_)
+        @SuppressWarnings("hiding") TBooleano _booleano_)
     {
         // Constructor
         setBooleano(_booleano_);
@@ -35,12 +35,12 @@ public final class ABoolValor extends PValor
         ((Analysis) sw).caseABoolValor(this);
     }
 
-    public PBooleano getBooleano()
+    public TBooleano getBooleano()
     {
         return this._booleano_;
     }
 
-    public void setBooleano(PBooleano node)
+    public void setBooleano(TBooleano node)
     {
         if(this._booleano_ != null)
         {
@@ -86,7 +86,7 @@ public final class ABoolValor extends PValor
         // Replace child
         if(this._booleano_ == oldChild)
         {
-            setBooleano((PBooleano) newChild);
+            setBooleano((TBooleano) newChild);
             return;
         }
 

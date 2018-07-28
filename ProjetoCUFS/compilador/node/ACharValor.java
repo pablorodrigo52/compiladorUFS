@@ -5,46 +5,46 @@ package compilador.node;
 import compilador.analysis.*;
 
 @SuppressWarnings("nls")
-public final class AExpressaoDirFatorExpressaoDir extends PExpressaoDir
+public final class ACharValor extends PValor
 {
-    private PExpressaoFator _expressaoFator_;
+    private TCaractere _caractere_;
 
-    public AExpressaoDirFatorExpressaoDir()
+    public ACharValor()
     {
         // Constructor
     }
 
-    public AExpressaoDirFatorExpressaoDir(
-        @SuppressWarnings("hiding") PExpressaoFator _expressaoFator_)
+    public ACharValor(
+        @SuppressWarnings("hiding") TCaractere _caractere_)
     {
         // Constructor
-        setExpressaoFator(_expressaoFator_);
+        setCaractere(_caractere_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new AExpressaoDirFatorExpressaoDir(
-            cloneNode(this._expressaoFator_));
+        return new ACharValor(
+            cloneNode(this._caractere_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseAExpressaoDirFatorExpressaoDir(this);
+        ((Analysis) sw).caseACharValor(this);
     }
 
-    public PExpressaoFator getExpressaoFator()
+    public TCaractere getCaractere()
     {
-        return this._expressaoFator_;
+        return this._caractere_;
     }
 
-    public void setExpressaoFator(PExpressaoFator node)
+    public void setCaractere(TCaractere node)
     {
-        if(this._expressaoFator_ != null)
+        if(this._caractere_ != null)
         {
-            this._expressaoFator_.parent(null);
+            this._caractere_.parent(null);
         }
 
         if(node != null)
@@ -57,23 +57,23 @@ public final class AExpressaoDirFatorExpressaoDir extends PExpressaoDir
             node.parent(this);
         }
 
-        this._expressaoFator_ = node;
+        this._caractere_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._expressaoFator_);
+            + toString(this._caractere_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._expressaoFator_ == child)
+        if(this._caractere_ == child)
         {
-            this._expressaoFator_ = null;
+            this._caractere_ = null;
             return;
         }
 
@@ -84,9 +84,9 @@ public final class AExpressaoDirFatorExpressaoDir extends PExpressaoDir
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._expressaoFator_ == oldChild)
+        if(this._caractere_ == oldChild)
         {
-            setExpressaoFator((PExpressaoFator) newChild);
+            setCaractere((TCaractere) newChild);
             return;
         }
 

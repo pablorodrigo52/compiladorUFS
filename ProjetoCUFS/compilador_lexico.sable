@@ -34,33 +34,40 @@ Helpers
 	nao = 'nao' ;
     e = 'e' ;
     ou = 'ou' ;
+    xor = 'xor';
 
 	maior = '>' ;
 	menor = '<' ;
 	igual = '=' ;
+	verdadeiro = 'verdadeiro' ;
+    falso = 'falso';
 
 States
 	normal, comentario_bloco;
 
 Tokens 
-    /* Our simple token definition(s). .... */
+    /* Abaixo está definido algumas palavras que são reservadas na linguagem.
+    Baseado totalmente no PDF que foi passado pelo professor da turma e também
+    na linguagem de programação C */
    
-      //PALAVRAS RESERVADAS
    inicio = 'inicio' nl? ;
-   fim = 'fim' nl? ;
+   fim = 'fim.' nl? ;
    se = 'se' ;
    senao = 'senao' ;
    enquanto = 'enquanto' ;
    para = 'para' ;
    avalie = 'avalie' ;
    caso = 'caso' ;
-   verdadeiro = 'verdadeiro' ;
-   falso = 'falso';
-   string = aspasimples (letra|num|vazio)+ aspasimples ;
+   pare = 'pare'; //break
    programa = 'programa' nl? ;
    leia = 'leia' ;
    escreva = 'escreva' ;
    constante = 'constante' ;
+   nulo = 'nulo'; //null 
+   retorne = 'retorne'; //return
+   faca = 'faca'; //do {...} while();
+   verdadeiro = verdadeiro;
+   falso = falso;
    
         //OPERADORES LÓGICOS
    diferente = menor maior; 
@@ -75,11 +82,13 @@ Tokens
    div = '/' ;
    sum = '+' ;
    sub = '-' ;
+   mod = '%' ;
    
 	//OPERADORES BOOLEANOS
    nao = nao ;
    e = e ;
    ou = ou ;
+   xor = xor; 
    
      //TIPOS
    tipointeiro = 'inteiro' ;
@@ -99,7 +108,7 @@ Tokens
    fparentese = ')' ;
    acolchete = '[' ;
    fcolchete = ']' ;
-   atrib = '<-' ;
+   atrib = ':=' ;
    aspasimples = aspasimples;
    aspasduplas = aspasduplas;  
    
@@ -108,10 +117,13 @@ Tokens
    tab = tab;
    rn = rn;
    
-     //IDENTIFICADORES, INTEIRO, REAL
+     //IDENTIFICADORES, INTEIRO, REAL, caractere, string, booleano
    id = (under|letra) (letra*|under*|num*)+ ;
    inteiro = num+ ;
    real = num+ virgula num+ ;
+   caractere = aspasimples letra aspasimples;
+   string = aspasimples (letra|num|vazio)+ aspasimples;
+   booleano = verdadeiro | falso ;
    
 Ignored Tokens
 	vazio, novalinha, tab, rn ;
@@ -176,6 +188,6 @@ Productions
 	vetor = {vetor} tipo doispontos varvetor pontoevirgula ;
 	varvetor = {varios_vetores} varvetor virgula id acolchete inteiro fcolchete
 			 | {um_vetor} id acolchete inteiro fcolchete ; 
-	valor = {int} inteiro | {float} real | {str} string | {bool} booleano ;
-	booleano = {true} verdadeiro | {false} falso ;
+	valor = {int} inteiro | {float} real | {str} string | {bool} booleano | {char} caractere;
+	
 	

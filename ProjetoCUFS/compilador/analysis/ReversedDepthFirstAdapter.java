@@ -466,9 +466,9 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
     public void caseAExpressaoDirMultiplicacaoExpressaoDir(AExpressaoDirMultiplicacaoExpressaoDir node)
     {
         inAExpressaoDirMultiplicacaoExpressaoDir(node);
-        if(node.getFatorExp() != null)
+        if(node.getExpressaoFator() != null)
         {
-            node.getFatorExp().apply(this);
+            node.getExpressaoFator().apply(this);
         }
         if(node.getMult() != null)
         {
@@ -495,9 +495,9 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
     public void caseAExpressaoDirDivisaoExpressaoDir(AExpressaoDirDivisaoExpressaoDir node)
     {
         inAExpressaoDirDivisaoExpressaoDir(node);
-        if(node.getFatorExp() != null)
+        if(node.getExpressaoFator() != null)
         {
-            node.getFatorExp().apply(this);
+            node.getExpressaoFator().apply(this);
         }
         if(node.getDiv() != null)
         {
@@ -524,128 +524,128 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
     public void caseAExpressaoDirFatorExpressaoDir(AExpressaoDirFatorExpressaoDir node)
     {
         inAExpressaoDirFatorExpressaoDir(node);
-        if(node.getFatorExp() != null)
+        if(node.getExpressaoFator() != null)
         {
-            node.getFatorExp().apply(this);
+            node.getExpressaoFator().apply(this);
         }
         outAExpressaoDirFatorExpressaoDir(node);
     }
 
-    public void inAFatorAninhadoFatorExp(AFatorAninhadoFatorExp node)
+    public void inAFatorAninhadoExpressaoFator(AFatorAninhadoExpressaoFator node)
     {
         defaultIn(node);
     }
 
-    public void outAFatorAninhadoFatorExp(AFatorAninhadoFatorExp node)
+    public void outAFatorAninhadoExpressaoFator(AFatorAninhadoExpressaoFator node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseAFatorAninhadoFatorExp(AFatorAninhadoFatorExp node)
+    public void caseAFatorAninhadoExpressaoFator(AFatorAninhadoExpressaoFator node)
     {
-        inAFatorAninhadoFatorExp(node);
+        inAFatorAninhadoExpressaoFator(node);
         if(node.getFparentese() != null)
         {
             node.getFparentese().apply(this);
         }
-        if(node.getFatorExp() != null)
+        if(node.getExpressaoFator() != null)
         {
-            node.getFatorExp().apply(this);
+            node.getExpressaoFator().apply(this);
         }
         if(node.getAparentese() != null)
         {
             node.getAparentese().apply(this);
         }
-        outAFatorAninhadoFatorExp(node);
+        outAFatorAninhadoExpressaoFator(node);
     }
 
-    public void inAFatorVariavelFatorExp(AFatorVariavelFatorExp node)
+    public void inAFatorVariavelExpressaoFator(AFatorVariavelExpressaoFator node)
     {
         defaultIn(node);
     }
 
-    public void outAFatorVariavelFatorExp(AFatorVariavelFatorExp node)
+    public void outAFatorVariavelExpressaoFator(AFatorVariavelExpressaoFator node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseAFatorVariavelFatorExp(AFatorVariavelFatorExp node)
+    public void caseAFatorVariavelExpressaoFator(AFatorVariavelExpressaoFator node)
     {
-        inAFatorVariavelFatorExp(node);
+        inAFatorVariavelExpressaoFator(node);
         if(node.getVar() != null)
         {
             node.getVar().apply(this);
         }
-        outAFatorVariavelFatorExp(node);
+        outAFatorVariavelExpressaoFator(node);
     }
 
-    public void inAFatorVetorFatorExp(AFatorVetorFatorExp node)
+    public void inAFatorVetorExpressaoFator(AFatorVetorExpressaoFator node)
     {
         defaultIn(node);
     }
 
-    public void outAFatorVetorFatorExp(AFatorVetorFatorExp node)
+    public void outAFatorVetorExpressaoFator(AFatorVetorExpressaoFator node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseAFatorVetorFatorExp(AFatorVetorFatorExp node)
+    public void caseAFatorVetorExpressaoFator(AFatorVetorExpressaoFator node)
     {
-        inAFatorVetorFatorExp(node);
+        inAFatorVetorExpressaoFator(node);
         if(node.getVarvetor() != null)
         {
             node.getVarvetor().apply(this);
         }
-        outAFatorVetorFatorExp(node);
+        outAFatorVetorExpressaoFator(node);
     }
 
-    public void inAFatorNegativoFatorExp(AFatorNegativoFatorExp node)
+    public void inAFatorNegativoExpressaoFator(AFatorNegativoExpressaoFator node)
     {
         defaultIn(node);
     }
 
-    public void outAFatorNegativoFatorExp(AFatorNegativoFatorExp node)
+    public void outAFatorNegativoExpressaoFator(AFatorNegativoExpressaoFator node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseAFatorNegativoFatorExp(AFatorNegativoFatorExp node)
+    public void caseAFatorNegativoExpressaoFator(AFatorNegativoExpressaoFator node)
     {
-        inAFatorNegativoFatorExp(node);
-        if(node.getFatorExp() != null)
+        inAFatorNegativoExpressaoFator(node);
+        if(node.getExpressaoFator() != null)
         {
-            node.getFatorExp().apply(this);
+            node.getExpressaoFator().apply(this);
         }
         if(node.getSub() != null)
         {
             node.getSub().apply(this);
         }
-        outAFatorNegativoFatorExp(node);
+        outAFatorNegativoExpressaoFator(node);
     }
 
-    public void inAFatorCoeficienteFatorExp(AFatorCoeficienteFatorExp node)
+    public void inAFatorCoeficienteExpressaoFator(AFatorCoeficienteExpressaoFator node)
     {
         defaultIn(node);
     }
 
-    public void outAFatorCoeficienteFatorExp(AFatorCoeficienteFatorExp node)
+    public void outAFatorCoeficienteExpressaoFator(AFatorCoeficienteExpressaoFator node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseAFatorCoeficienteFatorExp(AFatorCoeficienteFatorExp node)
+    public void caseAFatorCoeficienteExpressaoFator(AFatorCoeficienteExpressaoFator node)
     {
-        inAFatorCoeficienteFatorExp(node);
+        inAFatorCoeficienteExpressaoFator(node);
         if(node.getValor() != null)
         {
             node.getValor().apply(this);
         }
-        outAFatorCoeficienteFatorExp(node);
+        outAFatorCoeficienteExpressaoFator(node);
     }
 
     public void inAExpLogica(AExpLogica node)
@@ -1322,45 +1322,24 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
         outABoolValor(node);
     }
 
-    public void inATrueBooleano(ATrueBooleano node)
+    public void inACharValor(ACharValor node)
     {
         defaultIn(node);
     }
 
-    public void outATrueBooleano(ATrueBooleano node)
+    public void outACharValor(ACharValor node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseATrueBooleano(ATrueBooleano node)
+    public void caseACharValor(ACharValor node)
     {
-        inATrueBooleano(node);
-        if(node.getVerdadeiro() != null)
+        inACharValor(node);
+        if(node.getCaractere() != null)
         {
-            node.getVerdadeiro().apply(this);
+            node.getCaractere().apply(this);
         }
-        outATrueBooleano(node);
-    }
-
-    public void inAFalseBooleano(AFalseBooleano node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAFalseBooleano(AFalseBooleano node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseAFalseBooleano(AFalseBooleano node)
-    {
-        inAFalseBooleano(node);
-        if(node.getFalso() != null)
-        {
-            node.getFalso().apply(this);
-        }
-        outAFalseBooleano(node);
+        outACharValor(node);
     }
 }

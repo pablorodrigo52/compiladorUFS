@@ -5,46 +5,46 @@ package compilador.node;
 import compilador.analysis.*;
 
 @SuppressWarnings("nls")
-public final class AExpressaoDirFatorExpressaoDir extends PExpressaoDir
+public final class AFatorVariavelExpressaoFator extends PExpressaoFator
 {
-    private PExpressaoFator _expressaoFator_;
+    private PVar _var_;
 
-    public AExpressaoDirFatorExpressaoDir()
+    public AFatorVariavelExpressaoFator()
     {
         // Constructor
     }
 
-    public AExpressaoDirFatorExpressaoDir(
-        @SuppressWarnings("hiding") PExpressaoFator _expressaoFator_)
+    public AFatorVariavelExpressaoFator(
+        @SuppressWarnings("hiding") PVar _var_)
     {
         // Constructor
-        setExpressaoFator(_expressaoFator_);
+        setVar(_var_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new AExpressaoDirFatorExpressaoDir(
-            cloneNode(this._expressaoFator_));
+        return new AFatorVariavelExpressaoFator(
+            cloneNode(this._var_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseAExpressaoDirFatorExpressaoDir(this);
+        ((Analysis) sw).caseAFatorVariavelExpressaoFator(this);
     }
 
-    public PExpressaoFator getExpressaoFator()
+    public PVar getVar()
     {
-        return this._expressaoFator_;
+        return this._var_;
     }
 
-    public void setExpressaoFator(PExpressaoFator node)
+    public void setVar(PVar node)
     {
-        if(this._expressaoFator_ != null)
+        if(this._var_ != null)
         {
-            this._expressaoFator_.parent(null);
+            this._var_.parent(null);
         }
 
         if(node != null)
@@ -57,23 +57,23 @@ public final class AExpressaoDirFatorExpressaoDir extends PExpressaoDir
             node.parent(this);
         }
 
-        this._expressaoFator_ = node;
+        this._var_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._expressaoFator_);
+            + toString(this._var_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._expressaoFator_ == child)
+        if(this._var_ == child)
         {
-            this._expressaoFator_ = null;
+            this._var_ = null;
             return;
         }
 
@@ -84,9 +84,9 @@ public final class AExpressaoDirFatorExpressaoDir extends PExpressaoDir
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._expressaoFator_ == oldChild)
+        if(this._var_ == oldChild)
         {
-            setExpressaoFator((PExpressaoFator) newChild);
+            setVar((PVar) newChild);
             return;
         }
 

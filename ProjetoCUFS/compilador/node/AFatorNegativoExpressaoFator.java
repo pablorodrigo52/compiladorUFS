@@ -5,19 +5,23 @@ package compilador.node;
 import compilador.analysis.*;
 
 @SuppressWarnings("nls")
-public final class AExpressaoDirFatorExpressaoDir extends PExpressaoDir
+public final class AFatorNegativoExpressaoFator extends PExpressaoFator
 {
+    private TSub _sub_;
     private PExpressaoFator _expressaoFator_;
 
-    public AExpressaoDirFatorExpressaoDir()
+    public AFatorNegativoExpressaoFator()
     {
         // Constructor
     }
 
-    public AExpressaoDirFatorExpressaoDir(
+    public AFatorNegativoExpressaoFator(
+        @SuppressWarnings("hiding") TSub _sub_,
         @SuppressWarnings("hiding") PExpressaoFator _expressaoFator_)
     {
         // Constructor
+        setSub(_sub_);
+
         setExpressaoFator(_expressaoFator_);
 
     }
@@ -25,14 +29,40 @@ public final class AExpressaoDirFatorExpressaoDir extends PExpressaoDir
     @Override
     public Object clone()
     {
-        return new AExpressaoDirFatorExpressaoDir(
+        return new AFatorNegativoExpressaoFator(
+            cloneNode(this._sub_),
             cloneNode(this._expressaoFator_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseAExpressaoDirFatorExpressaoDir(this);
+        ((Analysis) sw).caseAFatorNegativoExpressaoFator(this);
+    }
+
+    public TSub getSub()
+    {
+        return this._sub_;
+    }
+
+    public void setSub(TSub node)
+    {
+        if(this._sub_ != null)
+        {
+            this._sub_.parent(null);
+        }
+
+        if(node != null)
+        {
+            if(node.parent() != null)
+            {
+                node.parent().removeChild(node);
+            }
+
+            node.parent(this);
+        }
+
+        this._sub_ = node;
     }
 
     public PExpressaoFator getExpressaoFator()
@@ -64,6 +94,7 @@ public final class AExpressaoDirFatorExpressaoDir extends PExpressaoDir
     public String toString()
     {
         return ""
+            + toString(this._sub_)
             + toString(this._expressaoFator_);
     }
 
@@ -71,6 +102,12 @@ public final class AExpressaoDirFatorExpressaoDir extends PExpressaoDir
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
+        if(this._sub_ == child)
+        {
+            this._sub_ = null;
+            return;
+        }
+
         if(this._expressaoFator_ == child)
         {
             this._expressaoFator_ = null;
@@ -84,6 +121,12 @@ public final class AExpressaoDirFatorExpressaoDir extends PExpressaoDir
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
+        if(this._sub_ == oldChild)
+        {
+            setSub((TSub) newChild);
+            return;
+        }
+
         if(this._expressaoFator_ == oldChild)
         {
             setExpressaoFator((PExpressaoFator) newChild);
