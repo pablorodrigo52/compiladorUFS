@@ -85,52 +85,6 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
         outAInicioProg(node);
     }
 
-    public void inADeclaracaoCondicionalDeclaracoes(ADeclaracaoCondicionalDeclaracoes node)
-    {
-        defaultIn(node);
-    }
-
-    public void outADeclaracaoCondicionalDeclaracoes(ADeclaracaoCondicionalDeclaracoes node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseADeclaracaoCondicionalDeclaracoes(ADeclaracaoCondicionalDeclaracoes node)
-    {
-        inADeclaracaoCondicionalDeclaracoes(node);
-        if(node.getCondDeclaracao() != null)
-        {
-            node.getCondDeclaracao().apply(this);
-        }
-        outADeclaracaoCondicionalDeclaracoes(node);
-    }
-
-    public void inAVariasDeclaracoesCondDeclaracao(AVariasDeclaracoesCondDeclaracao node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAVariasDeclaracoesCondDeclaracao(AVariasDeclaracoesCondDeclaracao node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseAVariasDeclaracoesCondDeclaracao(AVariasDeclaracoesCondDeclaracao node)
-    {
-        inAVariasDeclaracoesCondDeclaracao(node);
-        {
-            List<PDeclaracao> copy = new ArrayList<PDeclaracao>(node.getDeclaracao());
-            Collections.reverse(copy);
-            for(PDeclaracao e : copy)
-            {
-                e.apply(this);
-            }
-        }
-        outAVariasDeclaracoesCondDeclaracao(node);
-    }
-
     public void inAVariaveisDeclaracao(AVariaveisDeclaracao node)
     {
         defaultIn(node);

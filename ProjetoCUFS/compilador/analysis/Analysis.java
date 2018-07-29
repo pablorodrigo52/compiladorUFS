@@ -13,8 +13,6 @@ public interface Analysis extends Switch
 
     void caseStart(Start node);
     void caseAInicioProg(AInicioProg node);
-    void caseADeclaracaoCondicionalDeclaracoes(ADeclaracaoCondicionalDeclaracoes node);
-    void caseAVariasDeclaracoesCondDeclaracao(AVariasDeclaracoesCondDeclaracao node);
     void caseAVariaveisDeclaracao(AVariaveisDeclaracao node);
     void caseAConstanteDeclaracao(AConstanteDeclaracao node);
     void caseAVariasVariaveisVar(AVariasVariaveisVar node);

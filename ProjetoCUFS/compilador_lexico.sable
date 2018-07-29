@@ -141,12 +141,8 @@ Productions
 	
 	prog = {inicio} programa id inicio declaracao* comando* fim ; //falta a parte de comando ainda, pra rodar, tem que tirar comando daqui..
 	//_______________________________________________________ DECLARAÇÕES:
-	declaracoes = {declaracao_condicional} cond_declaracao? ; 
-	cond_declaracao = {varias_declaracoes} declaracao+ ;
-	
 	declaracao = {variaveis} tipo doispontos var pontoevirgula 
-			   | {constante} constante id valor pontoevirgula ;
-			   
+			   | {constante} constante id valor pontoevirgula ;   
 	var = {varias_variaveis} var_ou_vetor virgula var
 		| {uma_variavel} var_ou_vetor;
 	var_ou_vetor = {variavel} id
@@ -181,38 +177,30 @@ Productions
 	
 	// EXPRESSAO (PODE SER ARITMETICA OU LÓGICA
 	exp = {expressao} expressao | {exp_logica} exp_logica ;
-	
 	expressao = {soma} expressao sum termo |
 				{sub} expressao sub termo |
 				{mult} expressao mult termo |
 				{div} expressao div termo |
-				{termo} termo ;
-				
+				{termo} termo ;	
 	termo = {final} expressao_final ;
-	
 	expressao_final = {valor_aninahdo} aparentese expressao fparentese |
 					  {uma_variavel} var_ou_vetor |
 					  {variavel_negativa} sub expressao_final |
 					  {valor_final} valor ;
-					   
-				  
+					   		  
 	//______________________________________ LOGICA:
 	exp_logica = {e} exp_logica e termo_logico |
 				 {ou} exp_logica ou termo_logico |
 				 {xor} exp_logica xor termo_logico |
 				 {nao} nao termo_logico |
 				 {exp_aninhada} aparentese exp_logica fparentese |
-				 {termo_logico} termo_logico ;
-				 
+				 {termo_logico} termo_logico ; 
 	termo_logico = {fator_logico} fator_logico; 
-				   
 	fator_logico = {igual} expressao igual termo |
 				   {maior} expressao maior termo |
 				   {menor} expressao menor termo |
 				   {maiorq} expressao maioreq termo |
 				   {menorq} expressao menorq termo |
-				   {diferente} expressao diferente termo ;
-	
-	
+				   {diferente} expressao diferente termo ;	
 	tipo = {tint} tipointeiro | {tfloat} tiporeal | {tstr} tipocaractere | {tbool} tipobooleano ;
 	valor = {int} inteiro | {float} real | {str} string | {bool} booleano | {char} caractere;

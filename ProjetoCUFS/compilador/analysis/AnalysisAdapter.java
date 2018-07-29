@@ -81,18 +81,6 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
-    public void caseADeclaracaoCondicionalDeclaracoes(ADeclaracaoCondicionalDeclaracoes node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseAVariasDeclaracoesCondDeclaracao(AVariasDeclaracoesCondDeclaracao node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
     public void caseAVariaveisDeclaracao(AVariaveisDeclaracao node)
     {
         defaultCase(node);
