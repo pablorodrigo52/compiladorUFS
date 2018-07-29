@@ -145,69 +145,74 @@ Productions
 	cond_declaracao = {varias_declaracoes} declaracao+ ;
 	
 	declaracao = {variaveis} tipo doispontos var pontoevirgula 
-			   | {constante} constante id valor ;
+			   | {constante} constante id valor pontoevirgula ;
 			   
 	var = {varias_variaveis} var_ou_vetor virgula var
 		| {uma_variavel} var_ou_vetor;
 	var_ou_vetor = {variavel} id
-			 	 | {vetor} id acolchete inteiro fcolchete ;
+			 	 | {vetor} id acolchete posicao fcolchete ;
+	posicao = {um_identificador} id |{um_inteiro} inteiro; 
 	
 	//________________________________________________ COMANDOS:
 	comandos = {comando_condicional} cond_comando? ;
 	cond_comando = {varios_comandos} comando+ ;
-	comando = {atribuicao_variavel} var atrib exp pontoevirgula
-			| {comando_leia} leia aparentese var fparentese pontoevirgula
-			| {comando_escreva} escreva aparentese exp fparentese pontoevirgula
-			| {comando_se} se condicao_se entao causa_se fimse pontoevirgula
-			| {comando_avalie} avalie condicao_avalie casos_avalie fimavalie pontoevirgula
-			| {comando_enquanto} enquanto condicao_se faca comandos comando fimenquanto pontoevirgula
-			| {comando_repita} repita comandos ate condicao_se pontoevirgula
-			| {comando_para1} para var de [frist]:inteiro ate [second]:inteiro faca comando_para? comando [third]:pontoevirgula fimpara [four]:pontoevirgula
-			| {comando_para2} para var de [fifth]:inteiro passo [sixth]:inteiro faca comandos comando fimpara pontoevirgula ;
+	comando = {atribuicao_variavel} var atrib exp pontoevirgula |
+			  {comando_leia} leia aparentese var fparentese pontoevirgula |
+			  {comando_escreva} escreva aparentese exp_escreva fparentese pontoevirgula |
+			  {comando_se} se condicao_se entao causa_se fimse pontoevirgula |
+			  {comando_avalie} avalie condicao_avalie casos_avalie fimavalie pontoevirgula |
+			  {comando_enquanto} enquanto condicao_se faca comandos comando fimenquanto pontoevirgula |
+			  {comando_repita} repita comandos ate condicao_se pontoevirgula |
+			  {comando_para1} para var de [frist]:inteiro ate [second]:inteiro faca comandos comando fimpara [four]:pontoevirgula |
+			  {comando_para2} para var de [fifth]:inteiro passo [sixth]:inteiro faca comandos comando fimpara pontoevirgula ;
+	exp_escreva = {varias_expressoes} exp_ou_explogica virgula exp_escreva |
+				  {uma_expressao} exp_ou_explogica; 
+	exp_ou_explogica = exp;
 	condicao_se = {condicao_se} aparentese exp_logica fparentese ;
 	causa_se = {causa_se} comandos comando comando_senao? ;
-	comando_senao = {comando_senao_se} senao comandos comando 
-				  | {comando_senao_avalie} senao doispontos comandos comando ;
+	comando_senao = {comando_senao_se} senao comandos comando |
+				    {comando_senao_avalie} senao doispontos comandos comando ;
 	condicao_avalie = aparentese exp fparentese; 
 	casos_avalie = cond_comando_casos? comando_senao? ;
 	cond_comando_casos = {varios_cases} comando_caso+ ;
 	comando_caso = {comando_case} caso valor doispontos comandos comando;
 	cond_comando_para = {varios_comandos_para} comando_para+;
-	comando_para = {comando_para} comando pontoevirgula ;
+	comando_para = {comando_para} comando ;
 	
 	// EXPRESSAO (PODE SER ARITMETICA OU LÓGICA
-	exp = {expressao} expressao | {exp_logica} exp_logica ; 
-	//______________________________________ ARITMETICA: 
-	expressao = {exp_esq} expressao_esq ;
-	expressao_esq = {exp_soma} expressao_esq sum expressao_dir
-			  	  | {exp_subtracao} expressao_esq sub expressao_dir 
-			  	  | {exp_dir} expressao_dir ;
-	expressao_dir = {expressao_dir_multiplicacao} expressao_dir mult expressao_fator
-		  		  | {expressao_dir_divisao} expressao_dir div expressao_fator
-		  		  | {expressao_dir_fator} expressao_fator;
-	expressao_fator = {fator_aninhado} aparentese expressao_fator fparentese
-		  	  | {fator_variavel} var
-		  	  | {fator_negativo} sub expressao_fator
-		  	  | {fator_coeficiente} valor ;
+	exp = {expressao} expressao | {exp_logica} exp_logica ;
+	
+	expressao = {soma} expressao sum termo |
+				{sub} expressao sub termo |
+				{mult} expressao mult termo |
+				{div} expressao div termo |
+				{termo} termo ;
+				
+	termo = {final} expressao_final ;
+	
+	expressao_final = {valor_aninahdo} aparentese expressao fparentese |
+					  {uma_variavel} var_ou_vetor |
+					  {variavel_negativa} sub expressao_final |
+					  {valor_final} valor ;
+					   
+				  
 	//______________________________________ LOGICA:
-	exp_logica = {exp_log_esq} exp_logica_esq ; 
-	exp_logica_esq = {expe_e} exp_logica_esq e exp_logica_dir
-			   	   | {expe_ou} exp_logica_esq ou exp_logica_dir
-			   	   | {expe_dir} exp_logica_dir ; 
-			   
-	exp_logica_dir = {exp_logica_aninhada} aparentese exp_logica_esq fparentese
-				   | {expe_nao} nao exp_logica_dir
-				   | {exp_logica_fator} exp_logica_fator ; 
-			   
-	exp_logica_fator = {expe_igual} expressao_esq igual expressao_dir
-			   		 | {expe_diferente} expressao_esq diferente expressao_dir
-			   		 | {expe_maior} expressao_esq maior expressao_dir
-			   		 | {expe_menor} expressao_esq menor expressao_dir
-			   		 | {expe_maioreq} expressao_esq maioreq expressao_dir
-			   		 | {expe_menoreq} expressao_esq menorq expressao_dir ;
+	exp_logica = {e} exp_logica e termo_logico |
+				 {ou} exp_logica ou termo_logico |
+				 {xor} exp_logica xor termo_logico |
+				 {nao} nao termo_logico |
+				 {exp_aninhada} aparentese exp_logica fparentese |
+				 {termo_logico} termo_logico ;
+				 
+	termo_logico = {fator_logico} fator_logico; 
+				   
+	fator_logico = {igual} expressao igual termo |
+				   {maior} expressao maior termo |
+				   {menor} expressao menor termo |
+				   {maiorq} expressao maioreq termo |
+				   {menorq} expressao menorq termo |
+				   {diferente} expressao diferente termo ;
+	
+	
 	tipo = {tint} tipointeiro | {tfloat} tiporeal | {tstr} tipocaractere | {tbool} tipobooleano ;
-	
-			  
 	valor = {int} inteiro | {float} real | {str} string | {bool} booleano | {char} caractere;
-	
-	

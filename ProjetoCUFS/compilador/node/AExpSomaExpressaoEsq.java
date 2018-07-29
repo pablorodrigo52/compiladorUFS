@@ -7,7 +7,7 @@ import compilador.analysis.*;
 @SuppressWarnings("nls")
 public final class AExpSomaExpressaoEsq extends PExpressaoEsq
 {
-    private PExpressaoEsq _expressaoEsq_;
+    private PExp _exp_;
     private TSum _sum_;
     private PExpressaoDir _expressaoDir_;
 
@@ -17,12 +17,12 @@ public final class AExpSomaExpressaoEsq extends PExpressaoEsq
     }
 
     public AExpSomaExpressaoEsq(
-        @SuppressWarnings("hiding") PExpressaoEsq _expressaoEsq_,
+        @SuppressWarnings("hiding") PExp _exp_,
         @SuppressWarnings("hiding") TSum _sum_,
         @SuppressWarnings("hiding") PExpressaoDir _expressaoDir_)
     {
         // Constructor
-        setExpressaoEsq(_expressaoEsq_);
+        setExp(_exp_);
 
         setSum(_sum_);
 
@@ -34,7 +34,7 @@ public final class AExpSomaExpressaoEsq extends PExpressaoEsq
     public Object clone()
     {
         return new AExpSomaExpressaoEsq(
-            cloneNode(this._expressaoEsq_),
+            cloneNode(this._exp_),
             cloneNode(this._sum_),
             cloneNode(this._expressaoDir_));
     }
@@ -45,16 +45,16 @@ public final class AExpSomaExpressaoEsq extends PExpressaoEsq
         ((Analysis) sw).caseAExpSomaExpressaoEsq(this);
     }
 
-    public PExpressaoEsq getExpressaoEsq()
+    public PExp getExp()
     {
-        return this._expressaoEsq_;
+        return this._exp_;
     }
 
-    public void setExpressaoEsq(PExpressaoEsq node)
+    public void setExp(PExp node)
     {
-        if(this._expressaoEsq_ != null)
+        if(this._exp_ != null)
         {
-            this._expressaoEsq_.parent(null);
+            this._exp_.parent(null);
         }
 
         if(node != null)
@@ -67,7 +67,7 @@ public final class AExpSomaExpressaoEsq extends PExpressaoEsq
             node.parent(this);
         }
 
-        this._expressaoEsq_ = node;
+        this._exp_ = node;
     }
 
     public TSum getSum()
@@ -124,7 +124,7 @@ public final class AExpSomaExpressaoEsq extends PExpressaoEsq
     public String toString()
     {
         return ""
-            + toString(this._expressaoEsq_)
+            + toString(this._exp_)
             + toString(this._sum_)
             + toString(this._expressaoDir_);
     }
@@ -133,9 +133,9 @@ public final class AExpSomaExpressaoEsq extends PExpressaoEsq
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._expressaoEsq_ == child)
+        if(this._exp_ == child)
         {
-            this._expressaoEsq_ = null;
+            this._exp_ = null;
             return;
         }
 
@@ -158,9 +158,9 @@ public final class AExpSomaExpressaoEsq extends PExpressaoEsq
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._expressaoEsq_ == oldChild)
+        if(this._exp_ == oldChild)
         {
-            setExpressaoEsq((PExpressaoEsq) newChild);
+            setExp((PExp) newChild);
             return;
         }
 

@@ -1,0 +1,88 @@
+programa exemplo
+inicio
+
+	inteiro: _a, teste, teste2, teste3, vetorDeInteiro[15];
+	caractere: b, i , j;
+	real: c;
+	booleano: d;
+	caractere: var[20], var[30], var[teste];
+	caractere: var2[a]; 
+	const ident 1,1789525 ;
+	
+	
+	b := 'b';
+	i,j := 'ij';
+	_a := 1+2;
+	teste := a * 5;
+	teste2 := ((5+7)+7) + (10+10) - ((20/2)*(30+40));
+	
+	b := a;
+	
+	leia(a);
+	leia(teste,teste2,teste3);
+	
+	escreva(vetorDeInteiro[4]);
+	escreva(vetorDeInteiro[20], 20, b, c);
+	
+	
+	se (a = c[0]) entao
+		str := 'y';
+	senao
+		str := 'n';
+	fim se;
+	
+	
+	avalie( a > b )
+		caso 10 :
+			a := 10;
+		caso 20 :
+			a := (a - 1);
+		caso 30 :
+			se (a = c[0]) entao
+				str := 'y';
+			senao
+				str := 'n';
+			fim se;
+	senao
+		leia(a);
+		leia(teste,teste2,teste3);
+		
+		escreva(vetorDeInteiro[4]);
+		escreva(vetorDeInteiro[20], 20, b, c);
+		
+		
+		se (a = c[0]) entao
+			str := 'y';
+		senao
+			str := 'n';
+		fim se;
+	fim avalie;
+	
+	
+	enquanto( a < 5 ) faca
+		a := a + 1;
+		b := b; 
+		enquanto (a < 5) faca
+			leia(teste,teste2,teste3);
+		fim enquanto;
+	fim enquanto;
+	
+	repita
+		a := a + 2;
+		a := a + 2;
+		a := a + 2;
+	ate(a < 10);
+	
+	
+	para a de 20 ate 10 faca 
+		a := a-1 ;
+		b := b-2 ;
+	fim para;
+	
+	para a de 20 passo 10 faca 
+		a := a-1 ;
+		b := b-2 ;
+	fim para;
+
+	
+fim.

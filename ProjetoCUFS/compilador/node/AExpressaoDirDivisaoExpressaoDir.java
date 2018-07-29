@@ -7,9 +7,9 @@ import compilador.analysis.*;
 @SuppressWarnings("nls")
 public final class AExpressaoDirDivisaoExpressaoDir extends PExpressaoDir
 {
-    private PExpressaoDir _expressaoDir_;
+    private PExp _exp_;
     private TDiv _div_;
-    private PExpressaoFator _expressaoFator_;
+    private PValor _valor_;
 
     public AExpressaoDirDivisaoExpressaoDir()
     {
@@ -17,16 +17,16 @@ public final class AExpressaoDirDivisaoExpressaoDir extends PExpressaoDir
     }
 
     public AExpressaoDirDivisaoExpressaoDir(
-        @SuppressWarnings("hiding") PExpressaoDir _expressaoDir_,
+        @SuppressWarnings("hiding") PExp _exp_,
         @SuppressWarnings("hiding") TDiv _div_,
-        @SuppressWarnings("hiding") PExpressaoFator _expressaoFator_)
+        @SuppressWarnings("hiding") PValor _valor_)
     {
         // Constructor
-        setExpressaoDir(_expressaoDir_);
+        setExp(_exp_);
 
         setDiv(_div_);
 
-        setExpressaoFator(_expressaoFator_);
+        setValor(_valor_);
 
     }
 
@@ -34,9 +34,9 @@ public final class AExpressaoDirDivisaoExpressaoDir extends PExpressaoDir
     public Object clone()
     {
         return new AExpressaoDirDivisaoExpressaoDir(
-            cloneNode(this._expressaoDir_),
+            cloneNode(this._exp_),
             cloneNode(this._div_),
-            cloneNode(this._expressaoFator_));
+            cloneNode(this._valor_));
     }
 
     @Override
@@ -45,16 +45,16 @@ public final class AExpressaoDirDivisaoExpressaoDir extends PExpressaoDir
         ((Analysis) sw).caseAExpressaoDirDivisaoExpressaoDir(this);
     }
 
-    public PExpressaoDir getExpressaoDir()
+    public PExp getExp()
     {
-        return this._expressaoDir_;
+        return this._exp_;
     }
 
-    public void setExpressaoDir(PExpressaoDir node)
+    public void setExp(PExp node)
     {
-        if(this._expressaoDir_ != null)
+        if(this._exp_ != null)
         {
-            this._expressaoDir_.parent(null);
+            this._exp_.parent(null);
         }
 
         if(node != null)
@@ -67,7 +67,7 @@ public final class AExpressaoDirDivisaoExpressaoDir extends PExpressaoDir
             node.parent(this);
         }
 
-        this._expressaoDir_ = node;
+        this._exp_ = node;
     }
 
     public TDiv getDiv()
@@ -95,16 +95,16 @@ public final class AExpressaoDirDivisaoExpressaoDir extends PExpressaoDir
         this._div_ = node;
     }
 
-    public PExpressaoFator getExpressaoFator()
+    public PValor getValor()
     {
-        return this._expressaoFator_;
+        return this._valor_;
     }
 
-    public void setExpressaoFator(PExpressaoFator node)
+    public void setValor(PValor node)
     {
-        if(this._expressaoFator_ != null)
+        if(this._valor_ != null)
         {
-            this._expressaoFator_.parent(null);
+            this._valor_.parent(null);
         }
 
         if(node != null)
@@ -117,25 +117,25 @@ public final class AExpressaoDirDivisaoExpressaoDir extends PExpressaoDir
             node.parent(this);
         }
 
-        this._expressaoFator_ = node;
+        this._valor_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._expressaoDir_)
+            + toString(this._exp_)
             + toString(this._div_)
-            + toString(this._expressaoFator_);
+            + toString(this._valor_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._expressaoDir_ == child)
+        if(this._exp_ == child)
         {
-            this._expressaoDir_ = null;
+            this._exp_ = null;
             return;
         }
 
@@ -145,9 +145,9 @@ public final class AExpressaoDirDivisaoExpressaoDir extends PExpressaoDir
             return;
         }
 
-        if(this._expressaoFator_ == child)
+        if(this._valor_ == child)
         {
-            this._expressaoFator_ = null;
+            this._valor_ = null;
             return;
         }
 
@@ -158,9 +158,9 @@ public final class AExpressaoDirDivisaoExpressaoDir extends PExpressaoDir
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._expressaoDir_ == oldChild)
+        if(this._exp_ == oldChild)
         {
-            setExpressaoDir((PExpressaoDir) newChild);
+            setExp((PExp) newChild);
             return;
         }
 
@@ -170,9 +170,9 @@ public final class AExpressaoDirDivisaoExpressaoDir extends PExpressaoDir
             return;
         }
 
-        if(this._expressaoFator_ == oldChild)
+        if(this._valor_ == oldChild)
         {
-            setExpressaoFator((PExpressaoFator) newChild);
+            setValor((PValor) newChild);
             return;
         }
 

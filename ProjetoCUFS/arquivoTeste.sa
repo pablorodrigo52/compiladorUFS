@@ -46,3 +46,28 @@ inicio
 		a := a + 98798;
 	fim para;
 fim.
+
+
+
+
+
+exp = {expressao} expressao | {exp_logica} exp_logica ; 
+
+
+//______________________________________ LOGICA:
+	exp_logica = {exp_log_esq_aninhada} aparentese exp_logica fparentese
+			   | {exp_log_esq} exp_logica_esq; 
+			   
+	exp_logica_esq = {expe_e} exp e exp_logica_dir
+			   	   | {expe_ou} exp ou exp_logica_dir
+			   	   | {expe_dir} exp_logica_dir ; 
+			   
+	exp_logica_dir = {expe_nao} nao exp_logica_dir
+				   | {exp_logica_fator} exp_logica_fator ; 
+			   
+	exp_logica_fator = {expe_igual} exp igual expressao_dir
+			   		 | {expe_diferente} exp diferente expressao_dir
+			   		 | {expe_maior} exp maior expressao_dir
+			   		 | {expe_menor} exp menor expressao_dir
+			   		 | {expe_maioreq} exp maioreq expressao_dir
+			   		 | {expe_menoreq} exp menorq expressao_dir ;
