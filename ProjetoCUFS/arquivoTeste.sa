@@ -1,41 +1,48 @@
+programa exemplo
+inicio
+	const PI 3,1416;
+	inteiro : a, b, c[20];
+	real : d;
+	caractere : str;
+	
+	a := 10;
+	b := a;
+	c[0] := 0;
 
-jovem5 -> id
-__blabla -> id
-@teste ->  erro
-.
-.
-
-10 -> idInt
-0.000000009 ->  erro
-0,000000009 ->  idReal
-.
-.
-
-// -> coment
-/* -> abrebloco
-*/ -> fechabloco
-
-> -> maior
-< -> menor
-= -> igual
->= -> maiorq
-<= -> menorq
-
-inteiro _n_umero := 10 -> <tipo, id, att, idInt>
-
-
-inteiro : vetorTeste [10]; -> <tipo, doispontos, id, lcol, idInt, rcol, endline> 
-(a = b) = (c = d) -> <lpar, id, igual, id rpar, igual, lpar, id, igual, id, rpar)
-
-
-'hdsdkjhsakdjhsa'
-
-+ -> sum
-- -> sub
-* -> mult
-/ -> div
-
-
-) a ( = b -> <lpar, id, rpar, igual, id> 
-
-
+	leia(a);
+	leia(a,b,c);
+	
+	escreva(a);
+	escreva(a, 12);
+	
+	se(a) entao
+		str := 'y';
+	fim se;
+	
+	se (a < c[0]) entao
+		str := 'y';
+	senao
+		str := 'n';
+	fim se;
+	
+	avalie( a )
+		caso 10 :
+			a := 10;
+	fim avalie;
+	
+	enquanto( a < 5 ) faca
+		a := a + 1;
+	fim enquanto;
+	
+	repita
+		a := a + 2;
+	ate(a < 10);
+	
+	para a de 0 ate 20 faca
+		a := 44;
+	fim para;
+	
+	para a de 20 passo 40 ate 2 faca
+		a := a + 98798;
+	fim para;
+fim.

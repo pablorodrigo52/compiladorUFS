@@ -7,9 +7,9 @@ import compilador.analysis.*;
 @SuppressWarnings("nls")
 public final class AVariasVariaveisVar extends PVar
 {
-    private PVar _var_;
+    private PVarOuVetor _varOuVetor_;
     private TVirgula _virgula_;
-    private TId _id_;
+    private PVar _var_;
 
     public AVariasVariaveisVar()
     {
@@ -17,16 +17,16 @@ public final class AVariasVariaveisVar extends PVar
     }
 
     public AVariasVariaveisVar(
-        @SuppressWarnings("hiding") PVar _var_,
+        @SuppressWarnings("hiding") PVarOuVetor _varOuVetor_,
         @SuppressWarnings("hiding") TVirgula _virgula_,
-        @SuppressWarnings("hiding") TId _id_)
+        @SuppressWarnings("hiding") PVar _var_)
     {
         // Constructor
-        setVar(_var_);
+        setVarOuVetor(_varOuVetor_);
 
         setVirgula(_virgula_);
 
-        setId(_id_);
+        setVar(_var_);
 
     }
 
@@ -34,9 +34,9 @@ public final class AVariasVariaveisVar extends PVar
     public Object clone()
     {
         return new AVariasVariaveisVar(
-            cloneNode(this._var_),
+            cloneNode(this._varOuVetor_),
             cloneNode(this._virgula_),
-            cloneNode(this._id_));
+            cloneNode(this._var_));
     }
 
     @Override
@@ -45,16 +45,16 @@ public final class AVariasVariaveisVar extends PVar
         ((Analysis) sw).caseAVariasVariaveisVar(this);
     }
 
-    public PVar getVar()
+    public PVarOuVetor getVarOuVetor()
     {
-        return this._var_;
+        return this._varOuVetor_;
     }
 
-    public void setVar(PVar node)
+    public void setVarOuVetor(PVarOuVetor node)
     {
-        if(this._var_ != null)
+        if(this._varOuVetor_ != null)
         {
-            this._var_.parent(null);
+            this._varOuVetor_.parent(null);
         }
 
         if(node != null)
@@ -67,7 +67,7 @@ public final class AVariasVariaveisVar extends PVar
             node.parent(this);
         }
 
-        this._var_ = node;
+        this._varOuVetor_ = node;
     }
 
     public TVirgula getVirgula()
@@ -95,16 +95,16 @@ public final class AVariasVariaveisVar extends PVar
         this._virgula_ = node;
     }
 
-    public TId getId()
+    public PVar getVar()
     {
-        return this._id_;
+        return this._var_;
     }
 
-    public void setId(TId node)
+    public void setVar(PVar node)
     {
-        if(this._id_ != null)
+        if(this._var_ != null)
         {
-            this._id_.parent(null);
+            this._var_.parent(null);
         }
 
         if(node != null)
@@ -117,25 +117,25 @@ public final class AVariasVariaveisVar extends PVar
             node.parent(this);
         }
 
-        this._id_ = node;
+        this._var_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._var_)
+            + toString(this._varOuVetor_)
             + toString(this._virgula_)
-            + toString(this._id_);
+            + toString(this._var_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._var_ == child)
+        if(this._varOuVetor_ == child)
         {
-            this._var_ = null;
+            this._varOuVetor_ = null;
             return;
         }
 
@@ -145,9 +145,9 @@ public final class AVariasVariaveisVar extends PVar
             return;
         }
 
-        if(this._id_ == child)
+        if(this._var_ == child)
         {
-            this._id_ = null;
+            this._var_ = null;
             return;
         }
 
@@ -158,9 +158,9 @@ public final class AVariasVariaveisVar extends PVar
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._var_ == oldChild)
+        if(this._varOuVetor_ == oldChild)
         {
-            setVar((PVar) newChild);
+            setVarOuVetor((PVarOuVetor) newChild);
             return;
         }
 
@@ -170,9 +170,9 @@ public final class AVariasVariaveisVar extends PVar
             return;
         }
 
-        if(this._id_ == oldChild)
+        if(this._var_ == oldChild)
         {
-            setId((TId) newChild);
+            setVar((PVar) newChild);
             return;
         }
 

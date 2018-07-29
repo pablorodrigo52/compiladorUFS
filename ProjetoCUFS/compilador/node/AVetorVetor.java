@@ -7,8 +7,6 @@ import compilador.analysis.*;
 @SuppressWarnings("nls")
 public final class AVetorVetor extends PVetor
 {
-    private PTipo _tipo_;
-    private TDoispontos _doispontos_;
     private PVarvetor _varvetor_;
     private TPontoevirgula _pontoevirgula_;
 
@@ -18,16 +16,10 @@ public final class AVetorVetor extends PVetor
     }
 
     public AVetorVetor(
-        @SuppressWarnings("hiding") PTipo _tipo_,
-        @SuppressWarnings("hiding") TDoispontos _doispontos_,
         @SuppressWarnings("hiding") PVarvetor _varvetor_,
         @SuppressWarnings("hiding") TPontoevirgula _pontoevirgula_)
     {
         // Constructor
-        setTipo(_tipo_);
-
-        setDoispontos(_doispontos_);
-
         setVarvetor(_varvetor_);
 
         setPontoevirgula(_pontoevirgula_);
@@ -38,8 +30,6 @@ public final class AVetorVetor extends PVetor
     public Object clone()
     {
         return new AVetorVetor(
-            cloneNode(this._tipo_),
-            cloneNode(this._doispontos_),
             cloneNode(this._varvetor_),
             cloneNode(this._pontoevirgula_));
     }
@@ -48,56 +38,6 @@ public final class AVetorVetor extends PVetor
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseAVetorVetor(this);
-    }
-
-    public PTipo getTipo()
-    {
-        return this._tipo_;
-    }
-
-    public void setTipo(PTipo node)
-    {
-        if(this._tipo_ != null)
-        {
-            this._tipo_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._tipo_ = node;
-    }
-
-    public TDoispontos getDoispontos()
-    {
-        return this._doispontos_;
-    }
-
-    public void setDoispontos(TDoispontos node)
-    {
-        if(this._doispontos_ != null)
-        {
-            this._doispontos_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._doispontos_ = node;
     }
 
     public PVarvetor getVarvetor()
@@ -154,8 +94,6 @@ public final class AVetorVetor extends PVetor
     public String toString()
     {
         return ""
-            + toString(this._tipo_)
-            + toString(this._doispontos_)
             + toString(this._varvetor_)
             + toString(this._pontoevirgula_);
     }
@@ -164,18 +102,6 @@ public final class AVetorVetor extends PVetor
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._tipo_ == child)
-        {
-            this._tipo_ = null;
-            return;
-        }
-
-        if(this._doispontos_ == child)
-        {
-            this._doispontos_ = null;
-            return;
-        }
-
         if(this._varvetor_ == child)
         {
             this._varvetor_ = null;
@@ -195,18 +121,6 @@ public final class AVetorVetor extends PVetor
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._tipo_ == oldChild)
-        {
-            setTipo((PTipo) newChild);
-            return;
-        }
-
-        if(this._doispontos_ == oldChild)
-        {
-            setDoispontos((TDoispontos) newChild);
-            return;
-        }
-
         if(this._varvetor_ == oldChild)
         {
             setVarvetor((PVarvetor) newChild);

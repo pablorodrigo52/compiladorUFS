@@ -9,12 +9,12 @@ public final class TConstante extends Token
 {
     public TConstante()
     {
-        super.setText("constante");
+        super.setText("const");
     }
 
     public TConstante(int line, int pos)
     {
-        super.setText("constante");
+        super.setText("const");
         setLine(line);
         setPos(pos);
     }

@@ -2,6 +2,7 @@
 
 package compilador.node;
 
+import java.util.*;
 import compilador.analysis.*;
 
 @SuppressWarnings("nls")
@@ -10,8 +11,8 @@ public final class AInicioProg extends PProg
     private TPrograma _programa_;
     private TId _id_;
     private TInicio _inicio_;
-    private PDeclaracoes _declaracoes_;
-    private PComandos _comandos_;
+    private final LinkedList<PDeclaracao> _declaracao_ = new LinkedList<PDeclaracao>();
+    private final LinkedList<PComando> _comando_ = new LinkedList<PComando>();
     private TFim _fim_;
 
     public AInicioProg()
@@ -23,8 +24,8 @@ public final class AInicioProg extends PProg
         @SuppressWarnings("hiding") TPrograma _programa_,
         @SuppressWarnings("hiding") TId _id_,
         @SuppressWarnings("hiding") TInicio _inicio_,
-        @SuppressWarnings("hiding") PDeclaracoes _declaracoes_,
-        @SuppressWarnings("hiding") PComandos _comandos_,
+        @SuppressWarnings("hiding") List<?> _declaracao_,
+        @SuppressWarnings("hiding") List<?> _comando_,
         @SuppressWarnings("hiding") TFim _fim_)
     {
         // Constructor
@@ -34,9 +35,9 @@ public final class AInicioProg extends PProg
 
         setInicio(_inicio_);
 
-        setDeclaracoes(_declaracoes_);
+        setDeclaracao(_declaracao_);
 
-        setComandos(_comandos_);
+        setComando(_comando_);
 
         setFim(_fim_);
 
@@ -49,8 +50,8 @@ public final class AInicioProg extends PProg
             cloneNode(this._programa_),
             cloneNode(this._id_),
             cloneNode(this._inicio_),
-            cloneNode(this._declaracoes_),
-            cloneNode(this._comandos_),
+            cloneList(this._declaracao_),
+            cloneList(this._comando_),
             cloneNode(this._fim_));
     }
 
@@ -135,54 +136,56 @@ public final class AInicioProg extends PProg
         this._inicio_ = node;
     }
 
-    public PDeclaracoes getDeclaracoes()
+    public LinkedList<PDeclaracao> getDeclaracao()
     {
-        return this._declaracoes_;
+        return this._declaracao_;
     }
 
-    public void setDeclaracoes(PDeclaracoes node)
+    public void setDeclaracao(List<?> list)
     {
-        if(this._declaracoes_ != null)
+        for(PDeclaracao e : this._declaracao_)
         {
-            this._declaracoes_.parent(null);
+            e.parent(null);
         }
+        this._declaracao_.clear();
 
-        if(node != null)
+        for(Object obj_e : list)
         {
-            if(node.parent() != null)
+            PDeclaracao e = (PDeclaracao) obj_e;
+            if(e.parent() != null)
             {
-                node.parent().removeChild(node);
+                e.parent().removeChild(e);
             }
 
-            node.parent(this);
+            e.parent(this);
+            this._declaracao_.add(e);
         }
-
-        this._declaracoes_ = node;
     }
 
-    public PComandos getComandos()
+    public LinkedList<PComando> getComando()
     {
-        return this._comandos_;
+        return this._comando_;
     }
 
-    public void setComandos(PComandos node)
+    public void setComando(List<?> list)
     {
-        if(this._comandos_ != null)
+        for(PComando e : this._comando_)
         {
-            this._comandos_.parent(null);
+            e.parent(null);
         }
+        this._comando_.clear();
 
-        if(node != null)
+        for(Object obj_e : list)
         {
-            if(node.parent() != null)
+            PComando e = (PComando) obj_e;
+            if(e.parent() != null)
             {
-                node.parent().removeChild(node);
+                e.parent().removeChild(e);
             }
 
-            node.parent(this);
+            e.parent(this);
+            this._comando_.add(e);
         }
-
-        this._comandos_ = node;
     }
 
     public TFim getFim()
@@ -217,8 +220,8 @@ public final class AInicioProg extends PProg
             + toString(this._programa_)
             + toString(this._id_)
             + toString(this._inicio_)
-            + toString(this._declaracoes_)
-            + toString(this._comandos_)
+            + toString(this._declaracao_)
+            + toString(this._comando_)
             + toString(this._fim_);
     }
 
@@ -244,15 +247,13 @@ public final class AInicioProg extends PProg
             return;
         }
 
-        if(this._declaracoes_ == child)
+        if(this._declaracao_.remove(child))
         {
-            this._declaracoes_ = null;
             return;
         }
 
-        if(this._comandos_ == child)
+        if(this._comando_.remove(child))
         {
-            this._comandos_ = null;
             return;
         }
 
@@ -287,16 +288,40 @@ public final class AInicioProg extends PProg
             return;
         }
 
-        if(this._declaracoes_ == oldChild)
+        for(ListIterator<PDeclaracao> i = this._declaracao_.listIterator(); i.hasNext();)
         {
-            setDeclaracoes((PDeclaracoes) newChild);
-            return;
+            if(i.next() == oldChild)
+            {
+                if(newChild != null)
+                {
+                    i.set((PDeclaracao) newChild);
+                    newChild.parent(this);
+                    oldChild.parent(null);
+                    return;
+                }
+
+                i.remove();
+                oldChild.parent(null);
+                return;
+            }
         }
 
-        if(this._comandos_ == oldChild)
+        for(ListIterator<PComando> i = this._comando_.listIterator(); i.hasNext();)
         {
-            setComandos((PComandos) newChild);
-            return;
+            if(i.next() == oldChild)
+            {
+                if(newChild != null)
+                {
+                    i.set((PComando) newChild);
+                    newChild.parent(this);
+                    oldChild.parent(null);
+                    return;
+                }
+
+                i.remove();
+                oldChild.parent(null);
+                return;
+            }
         }
 
         if(this._fim_ == oldChild)

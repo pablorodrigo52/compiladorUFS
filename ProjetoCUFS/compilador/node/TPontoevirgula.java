@@ -7,14 +7,14 @@ import compilador.analysis.*;
 @SuppressWarnings("nls")
 public final class TPontoevirgula extends Token
 {
-    public TPontoevirgula(String text)
+    public TPontoevirgula()
     {
-        setText(text);
+        super.setText(";");
     }
 
-    public TPontoevirgula(String text, int line, int pos)
+    public TPontoevirgula(int line, int pos)
     {
-        setText(text);
+        super.setText(";");
         setLine(line);
         setPos(pos);
     }
@@ -22,12 +22,18 @@ public final class TPontoevirgula extends Token
     @Override
     public Object clone()
     {
-      return new TPontoevirgula(getText(), getLine(), getPos());
+      return new TPontoevirgula(getLine(), getPos());
     }
 
     @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseTPontoevirgula(this);
+    }
+
+    @Override
+    public void setText(@SuppressWarnings("unused") String text)
+    {
+        throw new RuntimeException("Cannot change TPontoevirgula text.");
     }
 }

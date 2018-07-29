@@ -21,12 +21,19 @@ public class Main {
         	ComentarioAninhado filtro = new ComentarioAninhado(new PushbackReader(new FileReader(args[0]), 1024));
             Lexer lexer = new Lexer (new PushbackReader(new FileReader(args[0]), 1024));
             Token token = null;
+            Parser parser;
+            Start ast; 
             
             token = lexer.peek();
             while(!token.getClass().getSimpleName().equals("EOF")) {
             	try {
 	            	token = lexer.peek();
 	            	filtro.filter(token);
+	            	
+	            	parser = new Parser (lexer);
+	            	ast = parser.parse();
+	            	System.out.println(ast.toString());
+	            	
 	            	lexer.next();
             	}catch(LexerException le) {
             		System.out.println(le.getMessage());
@@ -36,7 +43,6 @@ public class Main {
             if (!filtro.pilhaVazia()) {
             	System.out.println("\n\n\nERRO: Comentário não aninhado na linha: "+ filtro.line + " coluna: " + filtro.position + ": erro em " + ComentarioAninhado.pilha.peek());
             }
-            
             
             /* - Parte sintatica e semântica
             Parser parser = new Parser(lexer); 
