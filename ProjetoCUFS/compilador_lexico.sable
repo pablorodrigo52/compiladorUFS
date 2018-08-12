@@ -207,3 +207,38 @@ Productions
 				   {diferente} expressao diferente termo ;	
 	tipo = {tint} tipointeiro | {tfloat} tiporeal | {tstr} tipocaractere | {tbool} tipobooleano ;
 	valor = {int} inteiro | {float} real | {str} string | {bool} booleano | {char} caractere;
+	
+Abstract Syntax Tree
+
+	prog = {programa} programa id inicio declaracao* comando* fim
+	
+	//_______________________________________________________ DECLARAÇÕES:
+	declaracao = {variaveis} tipo doispontos var // dúvida se tira "doispontos"
+			   | {constante} constante id valor;
+			   
+	var = {varias_variaveis} var_ou_vetor virgula var  //dúvida se tira essa "virgula"
+		| {uma_variavel} var_ou_vetor;	
+		
+	var_ou_vetor = {variavel} id
+			 	 | {vetor} id posicao ;
+	posicao = {um_identificador} id |{um_inteiro} inteiro;	
+	
+	//________________________________________________ COMANDOS:
+	comandos = {comando_condicional} cond_comando? ;
+	cond_comando = {varios_comandos} comando+ ;
+	comando = {atribuicao_variavel} var atrib exp |
+			  {comando_leia} leia var |
+			  {comando_escreva} escreva exp_escreva |
+			  {comando_se} se condicao_se entao causa_se fimse |
+			  {comando_avalie} avalie condicao_avalie casos_avalie fimavalie |
+			  {comando_enquanto} enquanto condicao_se faca comandos comando fimenquanto |
+			  {comando_repita} repita comandos ate condicao_se |
+			  {comando_para1} para var de [frist]:inteiro ate [second]:inteiro faca comandos comando fimpara [four]: |
+			  {comando_para2} para var de [fifth]:inteiro passo [sixth]:inteiro faca comandos comando fimpara;
+			  exp_escreva = {varias_expressoes} exp_ou_explogica virgula exp_escreva | //dúvida se tira essa virgula
+			  {uma_expressao} exp_ou_explogica ;
+	exp_ou_explogica = exp;
+	condicao_se = {condicao_se}  exp_logica ;
+	causa_se = {causa_se} comandos comando comando_senao? ;
+	comando_senao = {comando_senao_se} senao comandos comando |
+				    {comando_senao_avalie} senao doispontos comandos comando ;			  	   
