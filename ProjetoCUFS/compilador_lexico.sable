@@ -141,104 +141,198 @@ Ignored Tokens
 	vazio, novalinha, tab, rn ;
 	
 Productions
+
+prog {-> prog} = {inicio} programa id inicio declaracao*  comando* fim 
+						{-> New prog.inicio(declaracao, comando)}; 	
 	
-	prog = {inicio} programa id inicio declaracao*  comando* fim ; //falta a parte de comando ainda, pra rodar, tem que tirar comando daqui..
-	//_______________________________________________________ DECLARAÇÕES:
-	declaracao = {variaveis} tipo doispontos var pontoevirgula 
-			   | {constante} constante id valor pontoevirgula ;   
-	var = {varias_variaveis} var_ou_vetor virgula var
-		| {uma_variavel} var_ou_vetor;
-	var_ou_vetor = {variavel} id
-			 	 | {vetor} id acolchete posicao fcolchete ;
-	posicao = {um_identificador} id |{um_inteiro} inteiro; 
+declaracao {-> declaracao} = {variaveis} tipo doispontos var pontoevirgula 
+						{-> New declaracao.variaveis([var])} |
+{constante} constante id valor pontoevirgula 
+						{-> New declaracao.constante(id, valor)};
+
+var  {-> varias_variaveis}  =  {v_variaveis} var_ou_vetor virgula var {-> New varias_variaveis.v_variaveis(var_ou_vetor, var)} | 
+{uma_variavel} var_ou_vetor {-> New varias_variaveis.uma_variavel(var_ou_vetor)} ;
+
+
+var_ou_vetor {-> var_vetor} = {variavel} id {-> New var_vetor.variavel(id)} |
+{vetor} id acolchete posicao fcolchete {-> New var_vetor.vetor(id, acolchete, posicao, fcolchete)} ;
 	
-	//________________________________________________ COMANDOS:
-	comandos = {comando_condicional} cond_comando? ;
-	cond_comando = {varios_comandos} comando+ ;
-	comando = {atribuicao_variavel} var atrib exp pontoevirgula |
-			  {comando_leia} leia aparentese var fparentese pontoevirgula |
-			  {comando_escreva} escreva aparentese exp_escreva fparentese pontoevirgula |
-			  {comando_se} se condicao_se entao causa_se fimse pontoevirgula |
-			  {comando_avalie} avalie condicao_avalie casos_avalie fimavalie pontoevirgula |
-			  {comando_enquanto} enquanto condicao_se faca comandos comando fimenquanto pontoevirgula |
-			  {comando_repita} repita comandos ate condicao_se pontoevirgula |
-			  {comando_para1} para var de [frist]:inteiro ate [second]:inteiro faca comandos comando fimpara [four]:pontoevirgula |
-			  {comando_para2} para var de [fifth]:inteiro passo [sixth]:inteiro faca comandos comando fimpara pontoevirgula ;
-	exp_escreva = {varias_expressoes} exp_ou_explogica virgula exp_escreva |
-				  {uma_expressao} exp_ou_explogica; 
-	exp_ou_explogica = exp;
-	condicao_se = {condicao_se} aparentese exp_logica fparentese ;
-	causa_se = {causa_se} comandos comando comando_senao? ;
-	comando_senao = {comando_senao_se} senao comandos comando |
-				    {comando_senao_avalie} senao doispontos comandos comando ;
-	condicao_avalie = aparentese exp fparentese; 
-	casos_avalie = cond_comando_casos? comando_senao? ;
-	cond_comando_casos = {varios_cases} comando_caso+ ;
-	comando_caso = {comando_case} caso valor doispontos comandos comando;
-	cond_comando_para = {varios_comandos_para} comando_para+;
-	comando_para = {comando_para} comando ;
+posicao {-> pos}= {um_identificador} id {-> New pos.um_identificador(id)} | 
+{um_inteiro} inteiro {-> New pos.um_inteiro(inteiro)};
+        	
+comandos {-> cmds} = {comando_condicional} cond_comando? {-> New cmds.comando_condicional(cond_comando)} ;
+
+cond_comando {-> cond_cmd} = {varios_comandos} comando+                                                            {-> New cond_cmd.varios_comandos(comando)};
+
+comando {-> cmd} = {att_variavel} var atrib exp pontoevirgula {-> New cmd.att_variavel(var, exp)} |
+{cmd_leia} leia aparentese var fparentese pontoevirgula {-> New cmd.cmd_leia(leia, var)}|
+{cmd_escreva} escreva aparentese exp_escreva fparentese pontoevirgula 
+                                                     {-> New cmd.cmd_escreva(escreva, exp_escreva)}|
+{cmd_se} se condicao_se entao causa_se fimse pontoevirgula
+ {-> New cmd.cmd_se(condicao_se, causa_se)}|
+{cmd_avalie} avalie condicao_avalie casos_avalie fimavalie pontoevirgula 
+ {-> New cmd.cmd_avalie(condicao_avalie, casos_avalie)}|
+{cmd_enquanto} enquanto condicao_se faca comandos comando fimenquanto pontoevirgula 
+ {-> New cmd.cmd_enquanto(condicao_se, comando)} |
+{cmd_repita} repita comandos ate condicao_se pontoevirgula 
+ {-> New cmd.cmd_repita(comandos, condicao_se)} |
+{cmd_para1} para var de [frist]:inteiro ate [second]:inteiro faca comandos comando fimpara [four]:pontoevirgula 		{-> New cmd.cmd_para1(var, frist, second, comando)}|
+{cmd_para2} para var de [fifth]:inteiro passo [sixth]:inteiro ate [seventh]:inteiro faca comandos comando fimpara pontoevirgula       		{-> New cmd.cmd_para2(var, fifth, sixth, seventh, comando)};
+exp_escreva {-> exp_escreva}= {varias_expressoes} exp_ou_explogica virgula exp_escreva 
+                      {-> New exp_escreva.varias_expressoes(exp_ou_explogica,    exp_escreva)}|
+{uma_expressao} exp_ou_explogica  {-> New exp_escreva.uma_expressao(exp_ou_explogica)}; 
+exp_ou_explogica {-> exp_ou_explogica} = {exp_explogica} exp 
+   {-> New exp_ou_explogica.exp_explogica(exp)};
+
+condicao_se {-> cndc_se} = {condicao_se} aparentese exp_logica fparentese {-> New cndc_se.condicao_se(exp_logica)};
+causa_se {-> csa_se} = {causa_se} comandos comando comando_senao? {-> New csa_se.causa_se(comando,  comando_senao)};
+
+comando_senao  {-> cmd_senao} = {comando_senao_se} senao comandos comando {-> New cmd_senao.comando_senao_se(comandos)} |
+{comando_senao_avalie} senao doispontos comandos comando {-> New cmd_senao.comando_senao_avalie(comandos)};
+
+condicao_avalie {-> cndc_avalie} = {condicao_avalie} aparentese exp fparentese {-> New cndc_avalie.condicao_avalie(exp)};
+
+casos_avalie {-> cs_avalie} = {casos} cond_comando_casos? comando_senao? {-> New cs_avalie.casos(cond_comando_casos, comando_senao)};
+
+cond_comando_casos {-> cc_casos} = {cmd_casos} comando_caso+ {-> New cc_casos.cmd_caso(comando_caso)};
+
+comando_caso {-> cmd_caso}= {comando_case} caso valor doispontos comandos comando  {-> New cmd_caso.comando_case(valor, comando)};
+
+cond_comando_para {-> cc_para}= {varios_comandos_para} comando_para+ {-> New cc_para.varios_comandos_para(comando_para)};
+
+comando_para {-> cmd_para}= {comando_para} comando {-> New cmd_para.comando_para(comando)};
+
 	
 	// EXPRESSAO (PODE SER ARITMETICA OU LÓGICA
-	exp = {expressao} expressao | {exp_logica} exp_logica ;
-	expressao = {soma} expressao sum termo |
-				{sub} expressao sub termo |
-				{mult} expressao mult termo |
-				{div} expressao div termo |
-				{termo} termo ;	
-	termo = {final} expressao_final ;
-	expressao_final = {valor_aninahdo} aparentese expressao fparentese |
-					  {uma_variavel} var_ou_vetor |
-					  {variavel_negativa} sub expressao_final |
-					  {valor_final} valor ;
-					   		  
-	//______________________________________ LOGICA:
-	exp_logica = {e} exp_logica e termo_logico |
-				 {ou} exp_logica ou termo_logico |
-				 {xor} exp_logica xor termo_logico |
-				 {nao} nao termo_logico |
-				 {exp_aninhada} aparentese exp_logica fparentese |
-				 {termo_logico} termo_logico ; 
-	termo_logico = {fator_logico} fator_logico; 
-	fator_logico = {igual} expressao igual termo |
-				   {maior} expressao maior termo |
-				   {menor} expressao menor termo |
-				   {maiorq} expressao maioreq termo |
-				   {menorq} expressao menorq termo |
-				   {diferente} expressao diferente termo ;	
-	tipo = {tint} tipointeiro | {tfloat} tiporeal | {tstr} tipocaractere | {tbool} tipobooleano ;
-	valor = {int} inteiro | {float} real | {str} string | {bool} booleano | {char} caractere;
+
+exp {-> exp} = {expressao} expressao {-> New exp.expressao(expressao)} |
+{exp_logica} exp_logica {-> New exp.exp_logica (exp_logica)};
+
+expressao {-> expressao}= {soma} expressao sum termo {-> New expressao.soma(left.expressao, right.expressao)} |
+{sub} expressao sub termo {-> New expressao.sub(left.expressao, right.expressao)} |
+{mult} expressao mult termo {-> New expressao.mult (left.expressao, right.expressao)} |
+{div} expressao div termo {-> New expressao.div(left.expressao, right.expressao)} |
+{termo} termo {-> termo.expressao};
+
+termo {-> termo} = {final} expressao_final {-> New termo.final(expressao_final)};
 	
+expressao_final {-> exp_final }= {valor_aninahdo} aparentese expressao fparentese {-> New exp_final.valor_aninahdo(expressao)} |
+{uma_variavel} var_ou_vetor {-> New exp_final.uma_variavel(var_ou_vetor)}|
+{variavel_negativa} sub expressao_final {-> New exp_final.variavel_negativa(expressao_final)}|
+{valor_final} valor {-> New exp_final.valor_final(valor)};
+
+exp_logica {-> exp_logica }= {e} exp_logica e termo_logico 
+{-> New exp_logica.e(left.exp_logica, right.exp_logica)}|
+{ou} exp_logica ou termo_logico
+{-> New exp_logica.ou(left.exp_logica, right.exp_logica)} |
+{xor} exp_logica xor termo_logico
+{-> New exp_logica.xor(left.exp_logica, right.exp_logica)} |
+{nao} nao termo_logico 
+{-> New exp_logica.nao(termo_logico)}|
+{exp_aninhada} aparentese exp_logica fparentese 
+{-> New exp_logica.exp_aninhada(exp_logica)}|
+{termo_logico} termo_logico 
+{-> New exp_logica.termo_logico(termo_logico)}; 
+
+termo_logico {-> t_logico}= {fator_logico} fator_logico
+{-> New t_logico.fator_logico(fator_logico)}; 
+
+fator_logico {-> f_logico}= {igual} expressao igual termo 
+{-> New f_logico.igual(left.expressao, right.expressao)}|
+{maior} expressao maior termo 
+{-> New f_logico.maior(left.expressao, right.expressao)}|
+{menor} expressao menor termo 
+{-> New f_logico.menor(left.expressao, right.expressao)}|
+{maiorq} expressao maioreq termo 
+{-> New f_logico.maiorq(left.expressao, right.expressao)}|
+{menorq} expressao menorq termo
+{-> New f_logico.menorq(left.expressao, right.expressao)} |
+{diferente} expressao diferente termo 
+{-> New f_logico.diferente(left.expressao, right.expressao)};	
+
+	tipo {-> tipo }= {tint} tipointeiro 
+{-> New tipo.tint(tipointeiro)}|
+                                     {tfloat} tiporeal 
+{-> New tipo.tfloat(tipointeiro)}|
+                                      {tstr} tipocaractere 
+{-> New tipo.tstr(tipocaractere)}|
+            {tbool} tipobooleano
+{-> New tipo.tbool(tipobooleano)};
+
+	valor {-> val}= {int} inteiro {-> New val.int(inteiro)}| 
+         {float} real {-> New val.float(real)}|
+         {str} string {-> New val.str(string)}| 
+                                   {bool} booleano {-> New val.bool(booleano)}| 
+         {char} caractere  {-> New val.char(caractere)};
+
 Abstract Syntax Tree
 
-	prog = {programa} programa id inicio declaracao* comando* fim
+	prog = declaracao comando;
+
+	declaracao = var | id valor; 
+
+	var = {rec_var} var_ou_vetor var | 
+          {var} var_ou_vetor ;
+	var_ou_vetor = {vars} id+ | 
+                   {vectors} id acolchete posicao fcolchete ;
 	
-	//_______________________________________________________ DECLARAÇÕES:
-	declaracao = {variaveis} tipo doispontos var // dúvida se tira "doispontos"
-			   | {constante} constante id valor;
-			   
-	var = {varias_variaveis} var_ou_vetor virgula var  //dúvida se tira essa "virgula"
-		| {uma_variavel} var_ou_vetor;	
-		
-	var_ou_vetor = {variavel} id
-			 	 | {vetor} id posicao ;
-	posicao = {um_identificador} id |{um_inteiro} inteiro;	
-	
-	//________________________________________________ COMANDOS:
-	comandos = {comando_condicional} cond_comando? ;
-	cond_comando = {varios_comandos} comando+ ;
-	comando = {atribuicao_variavel} var atrib exp |
-			  {comando_leia} leia var |
-			  {comando_escreva} escreva exp_escreva |
-			  {comando_se} se condicao_se entao causa_se fimse |
-			  {comando_avalie} avalie condicao_avalie casos_avalie fimavalie |
-			  {comando_enquanto} enquanto condicao_se faca comandos comando fimenquanto |
-			  {comando_repita} repita comandos ate condicao_se |
-			  {comando_para1} para var de [frist]:inteiro ate [second]:inteiro faca comandos comando fimpara [four]: |
-			  {comando_para2} para var de [fifth]:inteiro passo [sixth]:inteiro faca comandos comando fimpara;
-			  exp_escreva = {varias_expressoes} exp_ou_explogica virgula exp_escreva | //dúvida se tira essa virgula
-			  {uma_expressao} exp_ou_explogica ;
+	posicao = {id} id | 
+              {num} inteiro; 
+
+	comandos = {cond_comando} cond_comando* ;
+	cond_comando = {comandos} comando* ;
+	comando = {atribuicao} var exp |
+      		  {leia} leia var |
+		      {escreva} escreva exp_escreva |
+		      {se} condicao_se causa_se |
+		      {avalie} condicao_avalie casos_avalie |
+		      {enquanto} condicao_se [rec]:comando+ |
+		      {repita} comandos condicao_se |
+		      {para1} var [frist]:inteiro [second]:inteiro comando+ |
+		      {para2} var [fifth]:inteiro [sixth]:inteiro [seventh]:inteiro comando+ ;
+
+	exp_escreva = {varias_expressoes}  exp_ou_explogica exp_escreva |
+ 		           {uma_expressao} exp_ou_explogica ;
 	exp_ou_explogica = exp;
-	condicao_se = {condicao_se}  exp_logica ;
-	causa_se = {causa_se} comandos comando comando_senao? ;
-	comando_senao = {comando_senao_se} senao comandos comando |
-				    {comando_senao_avalie} senao doispontos comandos comando ;			  	   
+
+	condicao_se = exp_logica;
+	causa_se = comando+ comando_senao; 
+	
+	comando_senao = {senao_cmds} [a]:comando+ ;
+	condicao_avalie = exp;
+	casos_avalie = cond_comando_casos comando_senao;
+	cond_comando_casos = comando_caso+ ;
+	comando_caso  = valor comando+ ;
+	cond_comando_para = comando_para;
+	comando_para = comando+ ;
+	
+
+	exp = {exp} expressao |
+	      {exp_log} exp_logica;
+
+	expressao = {soma} [l]:expressao [r]:expressao |
+		        {sub} [l]:expressao [r]:expressao |
+		        {mult} [l]:expressao [r]:expressao |
+		        {div}  [l]:expressao [r]:expressao |
+		        {var_ou_vetor} var_ou_vetor |
+		        {valor} valor |
+		        {exp} expressao ; 
+
+	exp_logica = {e} [l]:exp_logica [r]:exp_logica |
+		         {ou} [l]:exp_logica [r]:exp_logica |
+		         {xor} [l]:exp_logica [r]:exp_logica |
+		         {not} termo_logico;
+	termo_logico = fator_logico; 
+
+	fator_logico = {igual} [l]:expressao [r]:expressao |
+		        {maior} [l]:expressao [r]:expressao |
+		        {menor} [l]:expressao [r]:expressao |
+		        {maiorq} [l]:expressao [r]:expressao |
+		        {menorq} [l]:expressao [r]:expressao |
+		        {diferente} [l]:expressao [r]:expressao;
+
+	valor = {int} inteiro | 
+            {float} real |
+			{str} string | 
+            {bool} booleano | 
+			{char} caractere;
