@@ -142,16 +142,17 @@ Ignored Tokens
 	
 Productions
 
-	prog = {inicio} programa id inicio declaracao* comando* fim {-> New prog.inicio(declaracao, comando)};
+	prog {-> prog} = {inicio} programa id inicio declaracao* comando* fim 
+										 {-> New prog.inicio(declaracao, comando)};
 							   	
 	declaracao {-> declaracao} = {variaveis} tipo doispontos var pontoevirgula 
 							 			 {-> New declaracao.variaveis([var])} |
 								 {constante} constante id valor pontoevirgula 
 							 			 {-> New declaracao.constante(id, valor)};
 				  
-	var  {-> var}  =  {v_variaveis} var_ou_vetor virgula var
+	var {-> var}  =  {v_variaveis} var_ou_vetor virgula var
 							  {-> New var.v_variaveis(var_ou_vetor, var)} |
-					  {uma_variavel} var_ou_vetor
+					 {uma_variavel} var_ou_vetor
 							  {-> New var.uma_variavel(var_ou_vetor)};
 	
 	var_ou_vetor {-> var_ou_vetor} = {variavel} id 
@@ -311,10 +312,8 @@ Abstract Syntax Tree
 		var = {rec_var} var_ou_vetor var | 
 	          {var} var_ou_vetor;
 	           	
-		var_ou_vetor = {vars} id+ | 
-	    			   {vectors} (id acolchete posicao fcolchete)+;
-	    			   {vectors} id acolchete posicao fcolchete;
-
+		var_ou_vetor = {vars} id+ |
+					   {vectors} id posicao;
 		
 		posicao = {id} id | 
 	              {num} inteiro; 
