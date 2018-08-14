@@ -312,9 +312,7 @@ Abstract Syntax Tree
 	          {var} var_ou_vetor;
 	           	
 		var_ou_vetor = {vars} id+ | 
-
 	    			   {vectors} (id acolchete posicao fcolchete)+;
-
 	    			   {vectors} id acolchete posicao fcolchete;
 
 		
