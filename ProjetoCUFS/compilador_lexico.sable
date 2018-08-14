@@ -312,11 +312,11 @@ Abstract Syntax Tree
 	          {var} var_ou_vetor;
 	           	
 		var_ou_vetor = {vars} id+ | 
-<<<<<<< HEAD
+
 	    			   {vectors} (id acolchete posicao fcolchete)+;
-=======
-	    			   {vectors} id acolchete posicao fcolchete ;
->>>>>>> d5fda3fd41c60d09206099a813a5757be3aeeca9
+
+	    			   {vectors} id acolchete posicao fcolchete;
+
 		
 		posicao = {id} id | 
 	              {num} inteiro; 
