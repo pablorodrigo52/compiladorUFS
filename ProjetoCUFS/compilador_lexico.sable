@@ -142,7 +142,7 @@ Ignored Tokens
 	
 Productions
 
-	prog = {inicio} programa id inicio declaracao* comando* fim {-> New prog(declaracao, comando)};
+	prog = {inicio} programa id inicio declaracao* comando* fim {-> New prog.inicio(declaracao, comando)};
 							   	
 	declaracao {-> declaracao} = {variaveis} tipo doispontos var pontoevirgula 
 							 			 {-> New declaracao.variaveis([var])} |
@@ -304,7 +304,7 @@ Productions
 	
 Abstract Syntax Tree
 	
-		prog = [l]:declaracao [r]:comando;
+		prog = declaracao comando;
 	
 		declaracao = {v_var} var | {u_var} id valor; 
 	
