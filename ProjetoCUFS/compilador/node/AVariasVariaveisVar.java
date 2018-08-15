@@ -8,7 +8,6 @@ import compilador.analysis.*;
 public final class AVariasVariaveisVar extends PVar
 {
     private PVarOuVetor _varOuVetor_;
-    private TVirgula _virgula_;
     private PVar _var_;
 
     public AVariasVariaveisVar()
@@ -18,13 +17,10 @@ public final class AVariasVariaveisVar extends PVar
 
     public AVariasVariaveisVar(
         @SuppressWarnings("hiding") PVarOuVetor _varOuVetor_,
-        @SuppressWarnings("hiding") TVirgula _virgula_,
         @SuppressWarnings("hiding") PVar _var_)
     {
         // Constructor
         setVarOuVetor(_varOuVetor_);
-
-        setVirgula(_virgula_);
 
         setVar(_var_);
 
@@ -35,7 +31,6 @@ public final class AVariasVariaveisVar extends PVar
     {
         return new AVariasVariaveisVar(
             cloneNode(this._varOuVetor_),
-            cloneNode(this._virgula_),
             cloneNode(this._var_));
     }
 
@@ -70,31 +65,6 @@ public final class AVariasVariaveisVar extends PVar
         this._varOuVetor_ = node;
     }
 
-    public TVirgula getVirgula()
-    {
-        return this._virgula_;
-    }
-
-    public void setVirgula(TVirgula node)
-    {
-        if(this._virgula_ != null)
-        {
-            this._virgula_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._virgula_ = node;
-    }
-
     public PVar getVar()
     {
         return this._var_;
@@ -125,7 +95,6 @@ public final class AVariasVariaveisVar extends PVar
     {
         return ""
             + toString(this._varOuVetor_)
-            + toString(this._virgula_)
             + toString(this._var_);
     }
 
@@ -136,12 +105,6 @@ public final class AVariasVariaveisVar extends PVar
         if(this._varOuVetor_ == child)
         {
             this._varOuVetor_ = null;
-            return;
-        }
-
-        if(this._virgula_ == child)
-        {
-            this._virgula_ = null;
             return;
         }
 
@@ -161,12 +124,6 @@ public final class AVariasVariaveisVar extends PVar
         if(this._varOuVetor_ == oldChild)
         {
             setVarOuVetor((PVarOuVetor) newChild);
-            return;
-        }
-
-        if(this._virgula_ == oldChild)
-        {
-            setVirgula((TVirgula) newChild);
             return;
         }
 

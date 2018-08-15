@@ -2,15 +2,13 @@
 
 package compilador.node;
 
+import java.util.*;
 import compilador.analysis.*;
 
 @SuppressWarnings("nls")
 public final class AComandoSenaoAvalieComandoSenao extends PComandoSenao
 {
-    private TSenao _senao_;
-    private TDoispontos _doispontos_;
-    private PComandos _comandos_;
-    private PComando _comando_;
+    private final LinkedList<PComando> _comando_ = new LinkedList<PComando>();
 
     public AComandoSenaoAvalieComandoSenao()
     {
@@ -18,18 +16,9 @@ public final class AComandoSenaoAvalieComandoSenao extends PComandoSenao
     }
 
     public AComandoSenaoAvalieComandoSenao(
-        @SuppressWarnings("hiding") TSenao _senao_,
-        @SuppressWarnings("hiding") TDoispontos _doispontos_,
-        @SuppressWarnings("hiding") PComandos _comandos_,
-        @SuppressWarnings("hiding") PComando _comando_)
+        @SuppressWarnings("hiding") List<?> _comando_)
     {
         // Constructor
-        setSenao(_senao_);
-
-        setDoispontos(_doispontos_);
-
-        setComandos(_comandos_);
-
         setComando(_comando_);
 
     }
@@ -38,10 +27,7 @@ public final class AComandoSenaoAvalieComandoSenao extends PComandoSenao
     public Object clone()
     {
         return new AComandoSenaoAvalieComandoSenao(
-            cloneNode(this._senao_),
-            cloneNode(this._doispontos_),
-            cloneNode(this._comandos_),
-            cloneNode(this._comando_));
+            cloneList(this._comando_));
     }
 
     @Override
@@ -50,113 +36,36 @@ public final class AComandoSenaoAvalieComandoSenao extends PComandoSenao
         ((Analysis) sw).caseAComandoSenaoAvalieComandoSenao(this);
     }
 
-    public TSenao getSenao()
-    {
-        return this._senao_;
-    }
-
-    public void setSenao(TSenao node)
-    {
-        if(this._senao_ != null)
-        {
-            this._senao_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._senao_ = node;
-    }
-
-    public TDoispontos getDoispontos()
-    {
-        return this._doispontos_;
-    }
-
-    public void setDoispontos(TDoispontos node)
-    {
-        if(this._doispontos_ != null)
-        {
-            this._doispontos_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._doispontos_ = node;
-    }
-
-    public PComandos getComandos()
-    {
-        return this._comandos_;
-    }
-
-    public void setComandos(PComandos node)
-    {
-        if(this._comandos_ != null)
-        {
-            this._comandos_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._comandos_ = node;
-    }
-
-    public PComando getComando()
+    public LinkedList<PComando> getComando()
     {
         return this._comando_;
     }
 
-    public void setComando(PComando node)
+    public void setComando(List<?> list)
     {
-        if(this._comando_ != null)
+        for(PComando e : this._comando_)
         {
-            this._comando_.parent(null);
+            e.parent(null);
         }
+        this._comando_.clear();
 
-        if(node != null)
+        for(Object obj_e : list)
         {
-            if(node.parent() != null)
+            PComando e = (PComando) obj_e;
+            if(e.parent() != null)
             {
-                node.parent().removeChild(node);
+                e.parent().removeChild(e);
             }
 
-            node.parent(this);
+            e.parent(this);
+            this._comando_.add(e);
         }
-
-        this._comando_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._senao_)
-            + toString(this._doispontos_)
-            + toString(this._comandos_)
             + toString(this._comando_);
     }
 
@@ -164,27 +73,8 @@ public final class AComandoSenaoAvalieComandoSenao extends PComandoSenao
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._senao_ == child)
+        if(this._comando_.remove(child))
         {
-            this._senao_ = null;
-            return;
-        }
-
-        if(this._doispontos_ == child)
-        {
-            this._doispontos_ = null;
-            return;
-        }
-
-        if(this._comandos_ == child)
-        {
-            this._comandos_ = null;
-            return;
-        }
-
-        if(this._comando_ == child)
-        {
-            this._comando_ = null;
             return;
         }
 
@@ -195,28 +85,22 @@ public final class AComandoSenaoAvalieComandoSenao extends PComandoSenao
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._senao_ == oldChild)
+        for(ListIterator<PComando> i = this._comando_.listIterator(); i.hasNext();)
         {
-            setSenao((TSenao) newChild);
-            return;
-        }
+            if(i.next() == oldChild)
+            {
+                if(newChild != null)
+                {
+                    i.set((PComando) newChild);
+                    newChild.parent(this);
+                    oldChild.parent(null);
+                    return;
+                }
 
-        if(this._doispontos_ == oldChild)
-        {
-            setDoispontos((TDoispontos) newChild);
-            return;
-        }
-
-        if(this._comandos_ == oldChild)
-        {
-            setComandos((PComandos) newChild);
-            return;
-        }
-
-        if(this._comando_ == oldChild)
-        {
-            setComando((PComando) newChild);
-            return;
+                i.remove();
+                oldChild.parent(null);
+                return;
+            }
         }
 
         throw new RuntimeException("Not a child.");

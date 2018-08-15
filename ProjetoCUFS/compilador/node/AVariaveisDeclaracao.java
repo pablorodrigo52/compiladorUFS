@@ -7,10 +7,7 @@ import compilador.analysis.*;
 @SuppressWarnings("nls")
 public final class AVariaveisDeclaracao extends PDeclaracao
 {
-    private PTipo _tipo_;
-    private TDoispontos _doispontos_;
     private PVar _var_;
-    private TPontoevirgula _pontoevirgula_;
 
     public AVariaveisDeclaracao()
     {
@@ -18,19 +15,10 @@ public final class AVariaveisDeclaracao extends PDeclaracao
     }
 
     public AVariaveisDeclaracao(
-        @SuppressWarnings("hiding") PTipo _tipo_,
-        @SuppressWarnings("hiding") TDoispontos _doispontos_,
-        @SuppressWarnings("hiding") PVar _var_,
-        @SuppressWarnings("hiding") TPontoevirgula _pontoevirgula_)
+        @SuppressWarnings("hiding") PVar _var_)
     {
         // Constructor
-        setTipo(_tipo_);
-
-        setDoispontos(_doispontos_);
-
         setVar(_var_);
-
-        setPontoevirgula(_pontoevirgula_);
 
     }
 
@@ -38,66 +26,13 @@ public final class AVariaveisDeclaracao extends PDeclaracao
     public Object clone()
     {
         return new AVariaveisDeclaracao(
-            cloneNode(this._tipo_),
-            cloneNode(this._doispontos_),
-            cloneNode(this._var_),
-            cloneNode(this._pontoevirgula_));
+            cloneNode(this._var_));
     }
 
     @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseAVariaveisDeclaracao(this);
-    }
-
-    public PTipo getTipo()
-    {
-        return this._tipo_;
-    }
-
-    public void setTipo(PTipo node)
-    {
-        if(this._tipo_ != null)
-        {
-            this._tipo_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._tipo_ = node;
-    }
-
-    public TDoispontos getDoispontos()
-    {
-        return this._doispontos_;
-    }
-
-    public void setDoispontos(TDoispontos node)
-    {
-        if(this._doispontos_ != null)
-        {
-            this._doispontos_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._doispontos_ = node;
     }
 
     public PVar getVar()
@@ -125,66 +60,20 @@ public final class AVariaveisDeclaracao extends PDeclaracao
         this._var_ = node;
     }
 
-    public TPontoevirgula getPontoevirgula()
-    {
-        return this._pontoevirgula_;
-    }
-
-    public void setPontoevirgula(TPontoevirgula node)
-    {
-        if(this._pontoevirgula_ != null)
-        {
-            this._pontoevirgula_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._pontoevirgula_ = node;
-    }
-
     @Override
     public String toString()
     {
         return ""
-            + toString(this._tipo_)
-            + toString(this._doispontos_)
-            + toString(this._var_)
-            + toString(this._pontoevirgula_);
+            + toString(this._var_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._tipo_ == child)
-        {
-            this._tipo_ = null;
-            return;
-        }
-
-        if(this._doispontos_ == child)
-        {
-            this._doispontos_ = null;
-            return;
-        }
-
         if(this._var_ == child)
         {
             this._var_ = null;
-            return;
-        }
-
-        if(this._pontoevirgula_ == child)
-        {
-            this._pontoevirgula_ = null;
             return;
         }
 
@@ -195,27 +84,9 @@ public final class AVariaveisDeclaracao extends PDeclaracao
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._tipo_ == oldChild)
-        {
-            setTipo((PTipo) newChild);
-            return;
-        }
-
-        if(this._doispontos_ == oldChild)
-        {
-            setDoispontos((TDoispontos) newChild);
-            return;
-        }
-
         if(this._var_ == oldChild)
         {
             setVar((PVar) newChild);
-            return;
-        }
-
-        if(this._pontoevirgula_ == oldChild)
-        {
-            setPontoevirgula((TPontoevirgula) newChild);
             return;
         }
 

@@ -8,7 +8,6 @@ import compilador.analysis.*;
 public final class AMultExpressao extends PExpressao
 {
     private PExpressao _expressao_;
-    private TMult _mult_;
     private PTermo _termo_;
 
     public AMultExpressao()
@@ -18,13 +17,10 @@ public final class AMultExpressao extends PExpressao
 
     public AMultExpressao(
         @SuppressWarnings("hiding") PExpressao _expressao_,
-        @SuppressWarnings("hiding") TMult _mult_,
         @SuppressWarnings("hiding") PTermo _termo_)
     {
         // Constructor
         setExpressao(_expressao_);
-
-        setMult(_mult_);
 
         setTermo(_termo_);
 
@@ -35,7 +31,6 @@ public final class AMultExpressao extends PExpressao
     {
         return new AMultExpressao(
             cloneNode(this._expressao_),
-            cloneNode(this._mult_),
             cloneNode(this._termo_));
     }
 
@@ -70,31 +65,6 @@ public final class AMultExpressao extends PExpressao
         this._expressao_ = node;
     }
 
-    public TMult getMult()
-    {
-        return this._mult_;
-    }
-
-    public void setMult(TMult node)
-    {
-        if(this._mult_ != null)
-        {
-            this._mult_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._mult_ = node;
-    }
-
     public PTermo getTermo()
     {
         return this._termo_;
@@ -125,7 +95,6 @@ public final class AMultExpressao extends PExpressao
     {
         return ""
             + toString(this._expressao_)
-            + toString(this._mult_)
             + toString(this._termo_);
     }
 
@@ -136,12 +105,6 @@ public final class AMultExpressao extends PExpressao
         if(this._expressao_ == child)
         {
             this._expressao_ = null;
-            return;
-        }
-
-        if(this._mult_ == child)
-        {
-            this._mult_ = null;
             return;
         }
 
@@ -161,12 +124,6 @@ public final class AMultExpressao extends PExpressao
         if(this._expressao_ == oldChild)
         {
             setExpressao((PExpressao) newChild);
-            return;
-        }
-
-        if(this._mult_ == oldChild)
-        {
-            setMult((TMult) newChild);
             return;
         }
 

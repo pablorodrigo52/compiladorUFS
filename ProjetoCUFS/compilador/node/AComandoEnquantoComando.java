@@ -2,18 +2,14 @@
 
 package compilador.node;
 
+import java.util.*;
 import compilador.analysis.*;
 
 @SuppressWarnings("nls")
 public final class AComandoEnquantoComando extends PComando
 {
-    private TEnquanto _enquanto_;
     private PCondicaoSe _condicaoSe_;
-    private TFaca _faca_;
-    private PComandos _comandos_;
-    private PComando _comando_;
-    private TFimenquanto _fimenquanto_;
-    private TPontoevirgula _pontoevirgula_;
+    private final LinkedList<PComando> _comando_ = new LinkedList<PComando>();
 
     public AComandoEnquantoComando()
     {
@@ -21,28 +17,13 @@ public final class AComandoEnquantoComando extends PComando
     }
 
     public AComandoEnquantoComando(
-        @SuppressWarnings("hiding") TEnquanto _enquanto_,
         @SuppressWarnings("hiding") PCondicaoSe _condicaoSe_,
-        @SuppressWarnings("hiding") TFaca _faca_,
-        @SuppressWarnings("hiding") PComandos _comandos_,
-        @SuppressWarnings("hiding") PComando _comando_,
-        @SuppressWarnings("hiding") TFimenquanto _fimenquanto_,
-        @SuppressWarnings("hiding") TPontoevirgula _pontoevirgula_)
+        @SuppressWarnings("hiding") List<?> _comando_)
     {
         // Constructor
-        setEnquanto(_enquanto_);
-
         setCondicaoSe(_condicaoSe_);
 
-        setFaca(_faca_);
-
-        setComandos(_comandos_);
-
         setComando(_comando_);
-
-        setFimenquanto(_fimenquanto_);
-
-        setPontoevirgula(_pontoevirgula_);
 
     }
 
@@ -50,44 +31,14 @@ public final class AComandoEnquantoComando extends PComando
     public Object clone()
     {
         return new AComandoEnquantoComando(
-            cloneNode(this._enquanto_),
             cloneNode(this._condicaoSe_),
-            cloneNode(this._faca_),
-            cloneNode(this._comandos_),
-            cloneNode(this._comando_),
-            cloneNode(this._fimenquanto_),
-            cloneNode(this._pontoevirgula_));
+            cloneList(this._comando_));
     }
 
     @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseAComandoEnquantoComando(this);
-    }
-
-    public TEnquanto getEnquanto()
-    {
-        return this._enquanto_;
-    }
-
-    public void setEnquanto(TEnquanto node)
-    {
-        if(this._enquanto_ != null)
-        {
-            this._enquanto_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._enquanto_ = node;
     }
 
     public PCondicaoSe getCondicaoSe()
@@ -115,187 +66,52 @@ public final class AComandoEnquantoComando extends PComando
         this._condicaoSe_ = node;
     }
 
-    public TFaca getFaca()
-    {
-        return this._faca_;
-    }
-
-    public void setFaca(TFaca node)
-    {
-        if(this._faca_ != null)
-        {
-            this._faca_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._faca_ = node;
-    }
-
-    public PComandos getComandos()
-    {
-        return this._comandos_;
-    }
-
-    public void setComandos(PComandos node)
-    {
-        if(this._comandos_ != null)
-        {
-            this._comandos_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._comandos_ = node;
-    }
-
-    public PComando getComando()
+    public LinkedList<PComando> getComando()
     {
         return this._comando_;
     }
 
-    public void setComando(PComando node)
+    public void setComando(List<?> list)
     {
-        if(this._comando_ != null)
+        for(PComando e : this._comando_)
         {
-            this._comando_.parent(null);
+            e.parent(null);
         }
+        this._comando_.clear();
 
-        if(node != null)
+        for(Object obj_e : list)
         {
-            if(node.parent() != null)
+            PComando e = (PComando) obj_e;
+            if(e.parent() != null)
             {
-                node.parent().removeChild(node);
+                e.parent().removeChild(e);
             }
 
-            node.parent(this);
+            e.parent(this);
+            this._comando_.add(e);
         }
-
-        this._comando_ = node;
-    }
-
-    public TFimenquanto getFimenquanto()
-    {
-        return this._fimenquanto_;
-    }
-
-    public void setFimenquanto(TFimenquanto node)
-    {
-        if(this._fimenquanto_ != null)
-        {
-            this._fimenquanto_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._fimenquanto_ = node;
-    }
-
-    public TPontoevirgula getPontoevirgula()
-    {
-        return this._pontoevirgula_;
-    }
-
-    public void setPontoevirgula(TPontoevirgula node)
-    {
-        if(this._pontoevirgula_ != null)
-        {
-            this._pontoevirgula_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._pontoevirgula_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._enquanto_)
             + toString(this._condicaoSe_)
-            + toString(this._faca_)
-            + toString(this._comandos_)
-            + toString(this._comando_)
-            + toString(this._fimenquanto_)
-            + toString(this._pontoevirgula_);
+            + toString(this._comando_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._enquanto_ == child)
-        {
-            this._enquanto_ = null;
-            return;
-        }
-
         if(this._condicaoSe_ == child)
         {
             this._condicaoSe_ = null;
             return;
         }
 
-        if(this._faca_ == child)
+        if(this._comando_.remove(child))
         {
-            this._faca_ = null;
-            return;
-        }
-
-        if(this._comandos_ == child)
-        {
-            this._comandos_ = null;
-            return;
-        }
-
-        if(this._comando_ == child)
-        {
-            this._comando_ = null;
-            return;
-        }
-
-        if(this._fimenquanto_ == child)
-        {
-            this._fimenquanto_ = null;
-            return;
-        }
-
-        if(this._pontoevirgula_ == child)
-        {
-            this._pontoevirgula_ = null;
             return;
         }
 
@@ -306,46 +122,28 @@ public final class AComandoEnquantoComando extends PComando
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._enquanto_ == oldChild)
-        {
-            setEnquanto((TEnquanto) newChild);
-            return;
-        }
-
         if(this._condicaoSe_ == oldChild)
         {
             setCondicaoSe((PCondicaoSe) newChild);
             return;
         }
 
-        if(this._faca_ == oldChild)
+        for(ListIterator<PComando> i = this._comando_.listIterator(); i.hasNext();)
         {
-            setFaca((TFaca) newChild);
-            return;
-        }
+            if(i.next() == oldChild)
+            {
+                if(newChild != null)
+                {
+                    i.set((PComando) newChild);
+                    newChild.parent(this);
+                    oldChild.parent(null);
+                    return;
+                }
 
-        if(this._comandos_ == oldChild)
-        {
-            setComandos((PComandos) newChild);
-            return;
-        }
-
-        if(this._comando_ == oldChild)
-        {
-            setComando((PComando) newChild);
-            return;
-        }
-
-        if(this._fimenquanto_ == oldChild)
-        {
-            setFimenquanto((TFimenquanto) newChild);
-            return;
-        }
-
-        if(this._pontoevirgula_ == oldChild)
-        {
-            setPontoevirgula((TPontoevirgula) newChild);
-            return;
+                i.remove();
+                oldChild.parent(null);
+                return;
+            }
         }
 
         throw new RuntimeException("Not a child.");

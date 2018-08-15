@@ -7,12 +7,8 @@ import compilador.analysis.*;
 @SuppressWarnings("nls")
 public final class AComandoSeComando extends PComando
 {
-    private TSe _se_;
     private PCondicaoSe _condicaoSe_;
-    private TEntao _entao_;
     private PCausaSe _causaSe_;
-    private TFimse _fimse_;
-    private TPontoevirgula _pontoevirgula_;
 
     public AComandoSeComando()
     {
@@ -20,25 +16,13 @@ public final class AComandoSeComando extends PComando
     }
 
     public AComandoSeComando(
-        @SuppressWarnings("hiding") TSe _se_,
         @SuppressWarnings("hiding") PCondicaoSe _condicaoSe_,
-        @SuppressWarnings("hiding") TEntao _entao_,
-        @SuppressWarnings("hiding") PCausaSe _causaSe_,
-        @SuppressWarnings("hiding") TFimse _fimse_,
-        @SuppressWarnings("hiding") TPontoevirgula _pontoevirgula_)
+        @SuppressWarnings("hiding") PCausaSe _causaSe_)
     {
         // Constructor
-        setSe(_se_);
-
         setCondicaoSe(_condicaoSe_);
 
-        setEntao(_entao_);
-
         setCausaSe(_causaSe_);
-
-        setFimse(_fimse_);
-
-        setPontoevirgula(_pontoevirgula_);
 
     }
 
@@ -46,43 +30,14 @@ public final class AComandoSeComando extends PComando
     public Object clone()
     {
         return new AComandoSeComando(
-            cloneNode(this._se_),
             cloneNode(this._condicaoSe_),
-            cloneNode(this._entao_),
-            cloneNode(this._causaSe_),
-            cloneNode(this._fimse_),
-            cloneNode(this._pontoevirgula_));
+            cloneNode(this._causaSe_));
     }
 
     @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseAComandoSeComando(this);
-    }
-
-    public TSe getSe()
-    {
-        return this._se_;
-    }
-
-    public void setSe(TSe node)
-    {
-        if(this._se_ != null)
-        {
-            this._se_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._se_ = node;
     }
 
     public PCondicaoSe getCondicaoSe()
@@ -110,31 +65,6 @@ public final class AComandoSeComando extends PComando
         this._condicaoSe_ = node;
     }
 
-    public TEntao getEntao()
-    {
-        return this._entao_;
-    }
-
-    public void setEntao(TEntao node)
-    {
-        if(this._entao_ != null)
-        {
-            this._entao_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._entao_ = node;
-    }
-
     public PCausaSe getCausaSe()
     {
         return this._causaSe_;
@@ -160,105 +90,27 @@ public final class AComandoSeComando extends PComando
         this._causaSe_ = node;
     }
 
-    public TFimse getFimse()
-    {
-        return this._fimse_;
-    }
-
-    public void setFimse(TFimse node)
-    {
-        if(this._fimse_ != null)
-        {
-            this._fimse_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._fimse_ = node;
-    }
-
-    public TPontoevirgula getPontoevirgula()
-    {
-        return this._pontoevirgula_;
-    }
-
-    public void setPontoevirgula(TPontoevirgula node)
-    {
-        if(this._pontoevirgula_ != null)
-        {
-            this._pontoevirgula_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._pontoevirgula_ = node;
-    }
-
     @Override
     public String toString()
     {
         return ""
-            + toString(this._se_)
             + toString(this._condicaoSe_)
-            + toString(this._entao_)
-            + toString(this._causaSe_)
-            + toString(this._fimse_)
-            + toString(this._pontoevirgula_);
+            + toString(this._causaSe_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._se_ == child)
-        {
-            this._se_ = null;
-            return;
-        }
-
         if(this._condicaoSe_ == child)
         {
             this._condicaoSe_ = null;
             return;
         }
 
-        if(this._entao_ == child)
-        {
-            this._entao_ = null;
-            return;
-        }
-
         if(this._causaSe_ == child)
         {
             this._causaSe_ = null;
-            return;
-        }
-
-        if(this._fimse_ == child)
-        {
-            this._fimse_ = null;
-            return;
-        }
-
-        if(this._pontoevirgula_ == child)
-        {
-            this._pontoevirgula_ = null;
             return;
         }
 
@@ -269,39 +121,15 @@ public final class AComandoSeComando extends PComando
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._se_ == oldChild)
-        {
-            setSe((TSe) newChild);
-            return;
-        }
-
         if(this._condicaoSe_ == oldChild)
         {
             setCondicaoSe((PCondicaoSe) newChild);
             return;
         }
 
-        if(this._entao_ == oldChild)
-        {
-            setEntao((TEntao) newChild);
-            return;
-        }
-
         if(this._causaSe_ == oldChild)
         {
             setCausaSe((PCausaSe) newChild);
-            return;
-        }
-
-        if(this._fimse_ == oldChild)
-        {
-            setFimse((TFimse) newChild);
-            return;
-        }
-
-        if(this._pontoevirgula_ == oldChild)
-        {
-            setPontoevirgula((TPontoevirgula) newChild);
             return;
         }
 

@@ -8,7 +8,6 @@ import compilador.analysis.*;
 public final class AOuExpLogica extends PExpLogica
 {
     private PExpLogica _expLogica_;
-    private TOu _ou_;
     private PTermoLogico _termoLogico_;
 
     public AOuExpLogica()
@@ -18,13 +17,10 @@ public final class AOuExpLogica extends PExpLogica
 
     public AOuExpLogica(
         @SuppressWarnings("hiding") PExpLogica _expLogica_,
-        @SuppressWarnings("hiding") TOu _ou_,
         @SuppressWarnings("hiding") PTermoLogico _termoLogico_)
     {
         // Constructor
         setExpLogica(_expLogica_);
-
-        setOu(_ou_);
 
         setTermoLogico(_termoLogico_);
 
@@ -35,7 +31,6 @@ public final class AOuExpLogica extends PExpLogica
     {
         return new AOuExpLogica(
             cloneNode(this._expLogica_),
-            cloneNode(this._ou_),
             cloneNode(this._termoLogico_));
     }
 
@@ -70,31 +65,6 @@ public final class AOuExpLogica extends PExpLogica
         this._expLogica_ = node;
     }
 
-    public TOu getOu()
-    {
-        return this._ou_;
-    }
-
-    public void setOu(TOu node)
-    {
-        if(this._ou_ != null)
-        {
-            this._ou_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._ou_ = node;
-    }
-
     public PTermoLogico getTermoLogico()
     {
         return this._termoLogico_;
@@ -125,7 +95,6 @@ public final class AOuExpLogica extends PExpLogica
     {
         return ""
             + toString(this._expLogica_)
-            + toString(this._ou_)
             + toString(this._termoLogico_);
     }
 
@@ -136,12 +105,6 @@ public final class AOuExpLogica extends PExpLogica
         if(this._expLogica_ == child)
         {
             this._expLogica_ = null;
-            return;
-        }
-
-        if(this._ou_ == child)
-        {
-            this._ou_ = null;
             return;
         }
 
@@ -161,12 +124,6 @@ public final class AOuExpLogica extends PExpLogica
         if(this._expLogica_ == oldChild)
         {
             setExpLogica((PExpLogica) newChild);
-            return;
-        }
-
-        if(this._ou_ == oldChild)
-        {
-            setOu((TOu) newChild);
             return;
         }
 

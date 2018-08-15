@@ -141,12 +141,12 @@ Ignored Tokens
 	vazio, novalinha, tab, rn ;
 	
 Productions
-
-	prog = {inicio} programa id inicio declaracao* comando* fim {-> New prog.inicio(declaracao, comando)};
+	
+	prog = {inicio} programa id inicio declaracao* comando* fim { -> New prog.inicio(id, [declaracao], [comando])};
 							   	
 	declaracao {-> declaracao} = {variaveis} tipo doispontos var pontoevirgula 
 							 			 {-> New declaracao.variaveis([var])} |
-								 {constante} constante id valor pontoevirgula 
+								 {constante} constante id valor pontoevirgula
 							 			 {-> New declaracao.constante(id, valor)};
 				  
 	var  {-> var}  =  {v_variaveis} var_ou_vetor virgula var
@@ -304,7 +304,7 @@ Productions
 	
 Abstract Syntax Tree
 	
-		prog = declaracao comando;
+		prog = {inicio} id declaracao comando;
 	
 		declaracao = {v_var} var | {u_var} id valor; 
 	

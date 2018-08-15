@@ -8,7 +8,6 @@ import compilador.analysis.*;
 public final class ASomaExpressao extends PExpressao
 {
     private PExpressao _expressao_;
-    private TSum _sum_;
     private PTermo _termo_;
 
     public ASomaExpressao()
@@ -18,13 +17,10 @@ public final class ASomaExpressao extends PExpressao
 
     public ASomaExpressao(
         @SuppressWarnings("hiding") PExpressao _expressao_,
-        @SuppressWarnings("hiding") TSum _sum_,
         @SuppressWarnings("hiding") PTermo _termo_)
     {
         // Constructor
         setExpressao(_expressao_);
-
-        setSum(_sum_);
 
         setTermo(_termo_);
 
@@ -35,7 +31,6 @@ public final class ASomaExpressao extends PExpressao
     {
         return new ASomaExpressao(
             cloneNode(this._expressao_),
-            cloneNode(this._sum_),
             cloneNode(this._termo_));
     }
 
@@ -70,31 +65,6 @@ public final class ASomaExpressao extends PExpressao
         this._expressao_ = node;
     }
 
-    public TSum getSum()
-    {
-        return this._sum_;
-    }
-
-    public void setSum(TSum node)
-    {
-        if(this._sum_ != null)
-        {
-            this._sum_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._sum_ = node;
-    }
-
     public PTermo getTermo()
     {
         return this._termo_;
@@ -125,7 +95,6 @@ public final class ASomaExpressao extends PExpressao
     {
         return ""
             + toString(this._expressao_)
-            + toString(this._sum_)
             + toString(this._termo_);
     }
 
@@ -136,12 +105,6 @@ public final class ASomaExpressao extends PExpressao
         if(this._expressao_ == child)
         {
             this._expressao_ = null;
-            return;
-        }
-
-        if(this._sum_ == child)
-        {
-            this._sum_ = null;
             return;
         }
 
@@ -161,12 +124,6 @@ public final class ASomaExpressao extends PExpressao
         if(this._expressao_ == oldChild)
         {
             setExpressao((PExpressao) newChild);
-            return;
-        }
-
-        if(this._sum_ == oldChild)
-        {
-            setSum((TSum) newChild);
             return;
         }
 

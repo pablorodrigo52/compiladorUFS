@@ -31,7 +31,7 @@ public interface Analysis extends Switch
     void caseAComandoEnquantoComando(AComandoEnquantoComando node);
     void caseAComandoRepitaComando(AComandoRepitaComando node);
     void caseAComandoPara1Comando(AComandoPara1Comando node);
-    void caseAComandoPara2Comando(AComandoPara2Comando node);
+    void caseAComandoPassoComando(AComandoPassoComando node);
     void caseAVariasExpressoesExpEscreva(AVariasExpressoesExpEscreva node);
     void caseAUmaExpressaoExpEscreva(AUmaExpressaoExpEscreva node);
     void caseAExpOuExplogica(AExpOuExplogica node);

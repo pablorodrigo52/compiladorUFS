@@ -2,16 +2,14 @@
 
 package compilador.node;
 
+import java.util.*;
 import compilador.analysis.*;
 
 @SuppressWarnings("nls")
 public final class AComandoRepitaComando extends PComando
 {
-    private TRepita _repita_;
-    private PComandos _comandos_;
-    private TAte _ate_;
+    private final LinkedList<PComando> _comando_ = new LinkedList<PComando>();
     private PCondicaoSe _condicaoSe_;
-    private TPontoevirgula _pontoevirgula_;
 
     public AComandoRepitaComando()
     {
@@ -19,22 +17,13 @@ public final class AComandoRepitaComando extends PComando
     }
 
     public AComandoRepitaComando(
-        @SuppressWarnings("hiding") TRepita _repita_,
-        @SuppressWarnings("hiding") PComandos _comandos_,
-        @SuppressWarnings("hiding") TAte _ate_,
-        @SuppressWarnings("hiding") PCondicaoSe _condicaoSe_,
-        @SuppressWarnings("hiding") TPontoevirgula _pontoevirgula_)
+        @SuppressWarnings("hiding") List<?> _comando_,
+        @SuppressWarnings("hiding") PCondicaoSe _condicaoSe_)
     {
         // Constructor
-        setRepita(_repita_);
-
-        setComandos(_comandos_);
-
-        setAte(_ate_);
+        setComando(_comando_);
 
         setCondicaoSe(_condicaoSe_);
-
-        setPontoevirgula(_pontoevirgula_);
 
     }
 
@@ -42,11 +31,8 @@ public final class AComandoRepitaComando extends PComando
     public Object clone()
     {
         return new AComandoRepitaComando(
-            cloneNode(this._repita_),
-            cloneNode(this._comandos_),
-            cloneNode(this._ate_),
-            cloneNode(this._condicaoSe_),
-            cloneNode(this._pontoevirgula_));
+            cloneList(this._comando_),
+            cloneNode(this._condicaoSe_));
     }
 
     @Override
@@ -55,79 +41,30 @@ public final class AComandoRepitaComando extends PComando
         ((Analysis) sw).caseAComandoRepitaComando(this);
     }
 
-    public TRepita getRepita()
+    public LinkedList<PComando> getComando()
     {
-        return this._repita_;
+        return this._comando_;
     }
 
-    public void setRepita(TRepita node)
+    public void setComando(List<?> list)
     {
-        if(this._repita_ != null)
+        for(PComando e : this._comando_)
         {
-            this._repita_.parent(null);
+            e.parent(null);
         }
+        this._comando_.clear();
 
-        if(node != null)
+        for(Object obj_e : list)
         {
-            if(node.parent() != null)
+            PComando e = (PComando) obj_e;
+            if(e.parent() != null)
             {
-                node.parent().removeChild(node);
+                e.parent().removeChild(e);
             }
 
-            node.parent(this);
+            e.parent(this);
+            this._comando_.add(e);
         }
-
-        this._repita_ = node;
-    }
-
-    public PComandos getComandos()
-    {
-        return this._comandos_;
-    }
-
-    public void setComandos(PComandos node)
-    {
-        if(this._comandos_ != null)
-        {
-            this._comandos_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._comandos_ = node;
-    }
-
-    public TAte getAte()
-    {
-        return this._ate_;
-    }
-
-    public void setAte(TAte node)
-    {
-        if(this._ate_ != null)
-        {
-            this._ate_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._ate_ = node;
     }
 
     public PCondicaoSe getCondicaoSe()
@@ -155,73 +92,26 @@ public final class AComandoRepitaComando extends PComando
         this._condicaoSe_ = node;
     }
 
-    public TPontoevirgula getPontoevirgula()
-    {
-        return this._pontoevirgula_;
-    }
-
-    public void setPontoevirgula(TPontoevirgula node)
-    {
-        if(this._pontoevirgula_ != null)
-        {
-            this._pontoevirgula_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._pontoevirgula_ = node;
-    }
-
     @Override
     public String toString()
     {
         return ""
-            + toString(this._repita_)
-            + toString(this._comandos_)
-            + toString(this._ate_)
-            + toString(this._condicaoSe_)
-            + toString(this._pontoevirgula_);
+            + toString(this._comando_)
+            + toString(this._condicaoSe_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._repita_ == child)
+        if(this._comando_.remove(child))
         {
-            this._repita_ = null;
-            return;
-        }
-
-        if(this._comandos_ == child)
-        {
-            this._comandos_ = null;
-            return;
-        }
-
-        if(this._ate_ == child)
-        {
-            this._ate_ = null;
             return;
         }
 
         if(this._condicaoSe_ == child)
         {
             this._condicaoSe_ = null;
-            return;
-        }
-
-        if(this._pontoevirgula_ == child)
-        {
-            this._pontoevirgula_ = null;
             return;
         }
 
@@ -232,33 +122,27 @@ public final class AComandoRepitaComando extends PComando
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._repita_ == oldChild)
+        for(ListIterator<PComando> i = this._comando_.listIterator(); i.hasNext();)
         {
-            setRepita((TRepita) newChild);
-            return;
-        }
+            if(i.next() == oldChild)
+            {
+                if(newChild != null)
+                {
+                    i.set((PComando) newChild);
+                    newChild.parent(this);
+                    oldChild.parent(null);
+                    return;
+                }
 
-        if(this._comandos_ == oldChild)
-        {
-            setComandos((PComandos) newChild);
-            return;
-        }
-
-        if(this._ate_ == oldChild)
-        {
-            setAte((TAte) newChild);
-            return;
+                i.remove();
+                oldChild.parent(null);
+                return;
+            }
         }
 
         if(this._condicaoSe_ == oldChild)
         {
             setCondicaoSe((PCondicaoSe) newChild);
-            return;
-        }
-
-        if(this._pontoevirgula_ == oldChild)
-        {
-            setPontoevirgula((TPontoevirgula) newChild);
             return;
         }
 

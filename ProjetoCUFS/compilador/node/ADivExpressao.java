@@ -8,7 +8,6 @@ import compilador.analysis.*;
 public final class ADivExpressao extends PExpressao
 {
     private PExpressao _expressao_;
-    private TDiv _div_;
     private PTermo _termo_;
 
     public ADivExpressao()
@@ -18,13 +17,10 @@ public final class ADivExpressao extends PExpressao
 
     public ADivExpressao(
         @SuppressWarnings("hiding") PExpressao _expressao_,
-        @SuppressWarnings("hiding") TDiv _div_,
         @SuppressWarnings("hiding") PTermo _termo_)
     {
         // Constructor
         setExpressao(_expressao_);
-
-        setDiv(_div_);
 
         setTermo(_termo_);
 
@@ -35,7 +31,6 @@ public final class ADivExpressao extends PExpressao
     {
         return new ADivExpressao(
             cloneNode(this._expressao_),
-            cloneNode(this._div_),
             cloneNode(this._termo_));
     }
 
@@ -70,31 +65,6 @@ public final class ADivExpressao extends PExpressao
         this._expressao_ = node;
     }
 
-    public TDiv getDiv()
-    {
-        return this._div_;
-    }
-
-    public void setDiv(TDiv node)
-    {
-        if(this._div_ != null)
-        {
-            this._div_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._div_ = node;
-    }
-
     public PTermo getTermo()
     {
         return this._termo_;
@@ -125,7 +95,6 @@ public final class ADivExpressao extends PExpressao
     {
         return ""
             + toString(this._expressao_)
-            + toString(this._div_)
             + toString(this._termo_);
     }
 
@@ -136,12 +105,6 @@ public final class ADivExpressao extends PExpressao
         if(this._expressao_ == child)
         {
             this._expressao_ = null;
-            return;
-        }
-
-        if(this._div_ == child)
-        {
-            this._div_ = null;
             return;
         }
 
@@ -161,12 +124,6 @@ public final class ADivExpressao extends PExpressao
         if(this._expressao_ == oldChild)
         {
             setExpressao((PExpressao) newChild);
-            return;
-        }
-
-        if(this._div_ == oldChild)
-        {
-            setDiv((TDiv) newChild);
             return;
         }
 

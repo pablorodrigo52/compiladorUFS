@@ -8,7 +8,6 @@ import compilador.analysis.*;
 public final class AIgualFatorLogico extends PFatorLogico
 {
     private PExpressao _expressao_;
-    private TIgual _igual_;
     private PTermo _termo_;
 
     public AIgualFatorLogico()
@@ -18,13 +17,10 @@ public final class AIgualFatorLogico extends PFatorLogico
 
     public AIgualFatorLogico(
         @SuppressWarnings("hiding") PExpressao _expressao_,
-        @SuppressWarnings("hiding") TIgual _igual_,
         @SuppressWarnings("hiding") PTermo _termo_)
     {
         // Constructor
         setExpressao(_expressao_);
-
-        setIgual(_igual_);
 
         setTermo(_termo_);
 
@@ -35,7 +31,6 @@ public final class AIgualFatorLogico extends PFatorLogico
     {
         return new AIgualFatorLogico(
             cloneNode(this._expressao_),
-            cloneNode(this._igual_),
             cloneNode(this._termo_));
     }
 
@@ -70,31 +65,6 @@ public final class AIgualFatorLogico extends PFatorLogico
         this._expressao_ = node;
     }
 
-    public TIgual getIgual()
-    {
-        return this._igual_;
-    }
-
-    public void setIgual(TIgual node)
-    {
-        if(this._igual_ != null)
-        {
-            this._igual_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._igual_ = node;
-    }
-
     public PTermo getTermo()
     {
         return this._termo_;
@@ -125,7 +95,6 @@ public final class AIgualFatorLogico extends PFatorLogico
     {
         return ""
             + toString(this._expressao_)
-            + toString(this._igual_)
             + toString(this._termo_);
     }
 
@@ -136,12 +105,6 @@ public final class AIgualFatorLogico extends PFatorLogico
         if(this._expressao_ == child)
         {
             this._expressao_ = null;
-            return;
-        }
-
-        if(this._igual_ == child)
-        {
-            this._igual_ = null;
             return;
         }
 
@@ -161,12 +124,6 @@ public final class AIgualFatorLogico extends PFatorLogico
         if(this._expressao_ == oldChild)
         {
             setExpressao((PExpressao) newChild);
-            return;
-        }
-
-        if(this._igual_ == oldChild)
-        {
-            setIgual((TIgual) newChild);
             return;
         }
 

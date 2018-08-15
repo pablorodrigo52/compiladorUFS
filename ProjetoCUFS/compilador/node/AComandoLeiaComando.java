@@ -7,11 +7,7 @@ import compilador.analysis.*;
 @SuppressWarnings("nls")
 public final class AComandoLeiaComando extends PComando
 {
-    private TLeia _leia_;
-    private TAparentese _aparentese_;
     private PVar _var_;
-    private TFparentese _fparentese_;
-    private TPontoevirgula _pontoevirgula_;
 
     public AComandoLeiaComando()
     {
@@ -19,22 +15,10 @@ public final class AComandoLeiaComando extends PComando
     }
 
     public AComandoLeiaComando(
-        @SuppressWarnings("hiding") TLeia _leia_,
-        @SuppressWarnings("hiding") TAparentese _aparentese_,
-        @SuppressWarnings("hiding") PVar _var_,
-        @SuppressWarnings("hiding") TFparentese _fparentese_,
-        @SuppressWarnings("hiding") TPontoevirgula _pontoevirgula_)
+        @SuppressWarnings("hiding") PVar _var_)
     {
         // Constructor
-        setLeia(_leia_);
-
-        setAparentese(_aparentese_);
-
         setVar(_var_);
-
-        setFparentese(_fparentese_);
-
-        setPontoevirgula(_pontoevirgula_);
 
     }
 
@@ -42,67 +26,13 @@ public final class AComandoLeiaComando extends PComando
     public Object clone()
     {
         return new AComandoLeiaComando(
-            cloneNode(this._leia_),
-            cloneNode(this._aparentese_),
-            cloneNode(this._var_),
-            cloneNode(this._fparentese_),
-            cloneNode(this._pontoevirgula_));
+            cloneNode(this._var_));
     }
 
     @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseAComandoLeiaComando(this);
-    }
-
-    public TLeia getLeia()
-    {
-        return this._leia_;
-    }
-
-    public void setLeia(TLeia node)
-    {
-        if(this._leia_ != null)
-        {
-            this._leia_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._leia_ = node;
-    }
-
-    public TAparentese getAparentese()
-    {
-        return this._aparentese_;
-    }
-
-    public void setAparentese(TAparentese node)
-    {
-        if(this._aparentese_ != null)
-        {
-            this._aparentese_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._aparentese_ = node;
     }
 
     public PVar getVar()
@@ -130,98 +60,20 @@ public final class AComandoLeiaComando extends PComando
         this._var_ = node;
     }
 
-    public TFparentese getFparentese()
-    {
-        return this._fparentese_;
-    }
-
-    public void setFparentese(TFparentese node)
-    {
-        if(this._fparentese_ != null)
-        {
-            this._fparentese_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._fparentese_ = node;
-    }
-
-    public TPontoevirgula getPontoevirgula()
-    {
-        return this._pontoevirgula_;
-    }
-
-    public void setPontoevirgula(TPontoevirgula node)
-    {
-        if(this._pontoevirgula_ != null)
-        {
-            this._pontoevirgula_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._pontoevirgula_ = node;
-    }
-
     @Override
     public String toString()
     {
         return ""
-            + toString(this._leia_)
-            + toString(this._aparentese_)
-            + toString(this._var_)
-            + toString(this._fparentese_)
-            + toString(this._pontoevirgula_);
+            + toString(this._var_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._leia_ == child)
-        {
-            this._leia_ = null;
-            return;
-        }
-
-        if(this._aparentese_ == child)
-        {
-            this._aparentese_ = null;
-            return;
-        }
-
         if(this._var_ == child)
         {
             this._var_ = null;
-            return;
-        }
-
-        if(this._fparentese_ == child)
-        {
-            this._fparentese_ = null;
-            return;
-        }
-
-        if(this._pontoevirgula_ == child)
-        {
-            this._pontoevirgula_ = null;
             return;
         }
 
@@ -232,33 +84,9 @@ public final class AComandoLeiaComando extends PComando
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._leia_ == oldChild)
-        {
-            setLeia((TLeia) newChild);
-            return;
-        }
-
-        if(this._aparentese_ == oldChild)
-        {
-            setAparentese((TAparentese) newChild);
-            return;
-        }
-
         if(this._var_ == oldChild)
         {
             setVar((PVar) newChild);
-            return;
-        }
-
-        if(this._fparentese_ == oldChild)
-        {
-            setFparentese((TFparentese) newChild);
-            return;
-        }
-
-        if(this._pontoevirgula_ == oldChild)
-        {
-            setPontoevirgula((TPontoevirgula) newChild);
             return;
         }
 

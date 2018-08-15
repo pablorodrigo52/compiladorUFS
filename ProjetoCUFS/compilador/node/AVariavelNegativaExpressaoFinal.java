@@ -7,7 +7,6 @@ import compilador.analysis.*;
 @SuppressWarnings("nls")
 public final class AVariavelNegativaExpressaoFinal extends PExpressaoFinal
 {
-    private TSub _sub_;
     private PExpressaoFinal _expressaoFinal_;
 
     public AVariavelNegativaExpressaoFinal()
@@ -16,12 +15,9 @@ public final class AVariavelNegativaExpressaoFinal extends PExpressaoFinal
     }
 
     public AVariavelNegativaExpressaoFinal(
-        @SuppressWarnings("hiding") TSub _sub_,
         @SuppressWarnings("hiding") PExpressaoFinal _expressaoFinal_)
     {
         // Constructor
-        setSub(_sub_);
-
         setExpressaoFinal(_expressaoFinal_);
 
     }
@@ -30,7 +26,6 @@ public final class AVariavelNegativaExpressaoFinal extends PExpressaoFinal
     public Object clone()
     {
         return new AVariavelNegativaExpressaoFinal(
-            cloneNode(this._sub_),
             cloneNode(this._expressaoFinal_));
     }
 
@@ -38,31 +33,6 @@ public final class AVariavelNegativaExpressaoFinal extends PExpressaoFinal
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseAVariavelNegativaExpressaoFinal(this);
-    }
-
-    public TSub getSub()
-    {
-        return this._sub_;
-    }
-
-    public void setSub(TSub node)
-    {
-        if(this._sub_ != null)
-        {
-            this._sub_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._sub_ = node;
     }
 
     public PExpressaoFinal getExpressaoFinal()
@@ -94,7 +64,6 @@ public final class AVariavelNegativaExpressaoFinal extends PExpressaoFinal
     public String toString()
     {
         return ""
-            + toString(this._sub_)
             + toString(this._expressaoFinal_);
     }
 
@@ -102,12 +71,6 @@ public final class AVariavelNegativaExpressaoFinal extends PExpressaoFinal
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._sub_ == child)
-        {
-            this._sub_ = null;
-            return;
-        }
-
         if(this._expressaoFinal_ == child)
         {
             this._expressaoFinal_ = null;
@@ -121,12 +84,6 @@ public final class AVariavelNegativaExpressaoFinal extends PExpressaoFinal
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._sub_ == oldChild)
-        {
-            setSub((TSub) newChild);
-            return;
-        }
-
         if(this._expressaoFinal_ == oldChild)
         {
             setExpressaoFinal((PExpressaoFinal) newChild);

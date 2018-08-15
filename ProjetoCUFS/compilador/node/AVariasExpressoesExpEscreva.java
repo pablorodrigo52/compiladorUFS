@@ -8,7 +8,6 @@ import compilador.analysis.*;
 public final class AVariasExpressoesExpEscreva extends PExpEscreva
 {
     private PExpOuExplogica _expOuExplogica_;
-    private TVirgula _virgula_;
     private PExpEscreva _expEscreva_;
 
     public AVariasExpressoesExpEscreva()
@@ -18,13 +17,10 @@ public final class AVariasExpressoesExpEscreva extends PExpEscreva
 
     public AVariasExpressoesExpEscreva(
         @SuppressWarnings("hiding") PExpOuExplogica _expOuExplogica_,
-        @SuppressWarnings("hiding") TVirgula _virgula_,
         @SuppressWarnings("hiding") PExpEscreva _expEscreva_)
     {
         // Constructor
         setExpOuExplogica(_expOuExplogica_);
-
-        setVirgula(_virgula_);
 
         setExpEscreva(_expEscreva_);
 
@@ -35,7 +31,6 @@ public final class AVariasExpressoesExpEscreva extends PExpEscreva
     {
         return new AVariasExpressoesExpEscreva(
             cloneNode(this._expOuExplogica_),
-            cloneNode(this._virgula_),
             cloneNode(this._expEscreva_));
     }
 
@@ -70,31 +65,6 @@ public final class AVariasExpressoesExpEscreva extends PExpEscreva
         this._expOuExplogica_ = node;
     }
 
-    public TVirgula getVirgula()
-    {
-        return this._virgula_;
-    }
-
-    public void setVirgula(TVirgula node)
-    {
-        if(this._virgula_ != null)
-        {
-            this._virgula_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._virgula_ = node;
-    }
-
     public PExpEscreva getExpEscreva()
     {
         return this._expEscreva_;
@@ -125,7 +95,6 @@ public final class AVariasExpressoesExpEscreva extends PExpEscreva
     {
         return ""
             + toString(this._expOuExplogica_)
-            + toString(this._virgula_)
             + toString(this._expEscreva_);
     }
 
@@ -136,12 +105,6 @@ public final class AVariasExpressoesExpEscreva extends PExpEscreva
         if(this._expOuExplogica_ == child)
         {
             this._expOuExplogica_ = null;
-            return;
-        }
-
-        if(this._virgula_ == child)
-        {
-            this._virgula_ = null;
             return;
         }
 
@@ -161,12 +124,6 @@ public final class AVariasExpressoesExpEscreva extends PExpEscreva
         if(this._expOuExplogica_ == oldChild)
         {
             setExpOuExplogica((PExpOuExplogica) newChild);
-            return;
-        }
-
-        if(this._virgula_ == oldChild)
-        {
-            setVirgula((TVirgula) newChild);
             return;
         }
 

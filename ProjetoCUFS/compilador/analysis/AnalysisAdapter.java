@@ -189,7 +189,7 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
-    public void caseAComandoPara2Comando(AComandoPara2Comando node)
+    public void caseAComandoPassoComando(AComandoPassoComando node)
     {
         defaultCase(node);
     }

@@ -8,7 +8,6 @@ import compilador.analysis.*;
 public final class ASubExpressao extends PExpressao
 {
     private PExpressao _expressao_;
-    private TSub _sub_;
     private PTermo _termo_;
 
     public ASubExpressao()
@@ -18,13 +17,10 @@ public final class ASubExpressao extends PExpressao
 
     public ASubExpressao(
         @SuppressWarnings("hiding") PExpressao _expressao_,
-        @SuppressWarnings("hiding") TSub _sub_,
         @SuppressWarnings("hiding") PTermo _termo_)
     {
         // Constructor
         setExpressao(_expressao_);
-
-        setSub(_sub_);
 
         setTermo(_termo_);
 
@@ -35,7 +31,6 @@ public final class ASubExpressao extends PExpressao
     {
         return new ASubExpressao(
             cloneNode(this._expressao_),
-            cloneNode(this._sub_),
             cloneNode(this._termo_));
     }
 
@@ -70,31 +65,6 @@ public final class ASubExpressao extends PExpressao
         this._expressao_ = node;
     }
 
-    public TSub getSub()
-    {
-        return this._sub_;
-    }
-
-    public void setSub(TSub node)
-    {
-        if(this._sub_ != null)
-        {
-            this._sub_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._sub_ = node;
-    }
-
     public PTermo getTermo()
     {
         return this._termo_;
@@ -125,7 +95,6 @@ public final class ASubExpressao extends PExpressao
     {
         return ""
             + toString(this._expressao_)
-            + toString(this._sub_)
             + toString(this._termo_);
     }
 
@@ -136,12 +105,6 @@ public final class ASubExpressao extends PExpressao
         if(this._expressao_ == child)
         {
             this._expressao_ = null;
-            return;
-        }
-
-        if(this._sub_ == child)
-        {
-            this._sub_ = null;
             return;
         }
 
@@ -161,12 +124,6 @@ public final class ASubExpressao extends PExpressao
         if(this._expressao_ == oldChild)
         {
             setExpressao((PExpressao) newChild);
-            return;
-        }
-
-        if(this._sub_ == oldChild)
-        {
-            setSub((TSub) newChild);
             return;
         }
 

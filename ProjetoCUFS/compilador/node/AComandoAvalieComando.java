@@ -7,11 +7,8 @@ import compilador.analysis.*;
 @SuppressWarnings("nls")
 public final class AComandoAvalieComando extends PComando
 {
-    private TAvalie _avalie_;
     private PCondicaoAvalie _condicaoAvalie_;
     private PCasosAvalie _casosAvalie_;
-    private TFimavalie _fimavalie_;
-    private TPontoevirgula _pontoevirgula_;
 
     public AComandoAvalieComando()
     {
@@ -19,22 +16,13 @@ public final class AComandoAvalieComando extends PComando
     }
 
     public AComandoAvalieComando(
-        @SuppressWarnings("hiding") TAvalie _avalie_,
         @SuppressWarnings("hiding") PCondicaoAvalie _condicaoAvalie_,
-        @SuppressWarnings("hiding") PCasosAvalie _casosAvalie_,
-        @SuppressWarnings("hiding") TFimavalie _fimavalie_,
-        @SuppressWarnings("hiding") TPontoevirgula _pontoevirgula_)
+        @SuppressWarnings("hiding") PCasosAvalie _casosAvalie_)
     {
         // Constructor
-        setAvalie(_avalie_);
-
         setCondicaoAvalie(_condicaoAvalie_);
 
         setCasosAvalie(_casosAvalie_);
-
-        setFimavalie(_fimavalie_);
-
-        setPontoevirgula(_pontoevirgula_);
 
     }
 
@@ -42,42 +30,14 @@ public final class AComandoAvalieComando extends PComando
     public Object clone()
     {
         return new AComandoAvalieComando(
-            cloneNode(this._avalie_),
             cloneNode(this._condicaoAvalie_),
-            cloneNode(this._casosAvalie_),
-            cloneNode(this._fimavalie_),
-            cloneNode(this._pontoevirgula_));
+            cloneNode(this._casosAvalie_));
     }
 
     @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseAComandoAvalieComando(this);
-    }
-
-    public TAvalie getAvalie()
-    {
-        return this._avalie_;
-    }
-
-    public void setAvalie(TAvalie node)
-    {
-        if(this._avalie_ != null)
-        {
-            this._avalie_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._avalie_ = node;
     }
 
     public PCondicaoAvalie getCondicaoAvalie()
@@ -130,77 +90,18 @@ public final class AComandoAvalieComando extends PComando
         this._casosAvalie_ = node;
     }
 
-    public TFimavalie getFimavalie()
-    {
-        return this._fimavalie_;
-    }
-
-    public void setFimavalie(TFimavalie node)
-    {
-        if(this._fimavalie_ != null)
-        {
-            this._fimavalie_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._fimavalie_ = node;
-    }
-
-    public TPontoevirgula getPontoevirgula()
-    {
-        return this._pontoevirgula_;
-    }
-
-    public void setPontoevirgula(TPontoevirgula node)
-    {
-        if(this._pontoevirgula_ != null)
-        {
-            this._pontoevirgula_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._pontoevirgula_ = node;
-    }
-
     @Override
     public String toString()
     {
         return ""
-            + toString(this._avalie_)
             + toString(this._condicaoAvalie_)
-            + toString(this._casosAvalie_)
-            + toString(this._fimavalie_)
-            + toString(this._pontoevirgula_);
+            + toString(this._casosAvalie_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._avalie_ == child)
-        {
-            this._avalie_ = null;
-            return;
-        }
-
         if(this._condicaoAvalie_ == child)
         {
             this._condicaoAvalie_ = null;
@@ -213,18 +114,6 @@ public final class AComandoAvalieComando extends PComando
             return;
         }
 
-        if(this._fimavalie_ == child)
-        {
-            this._fimavalie_ = null;
-            return;
-        }
-
-        if(this._pontoevirgula_ == child)
-        {
-            this._pontoevirgula_ = null;
-            return;
-        }
-
         throw new RuntimeException("Not a child.");
     }
 
@@ -232,12 +121,6 @@ public final class AComandoAvalieComando extends PComando
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._avalie_ == oldChild)
-        {
-            setAvalie((TAvalie) newChild);
-            return;
-        }
-
         if(this._condicaoAvalie_ == oldChild)
         {
             setCondicaoAvalie((PCondicaoAvalie) newChild);
@@ -247,18 +130,6 @@ public final class AComandoAvalieComando extends PComando
         if(this._casosAvalie_ == oldChild)
         {
             setCasosAvalie((PCasosAvalie) newChild);
-            return;
-        }
-
-        if(this._fimavalie_ == oldChild)
-        {
-            setFimavalie((TFimavalie) newChild);
-            return;
-        }
-
-        if(this._pontoevirgula_ == oldChild)
-        {
-            setPontoevirgula((TPontoevirgula) newChild);
             return;
         }
 

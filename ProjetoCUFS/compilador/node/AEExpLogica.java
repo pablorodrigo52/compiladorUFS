@@ -8,7 +8,6 @@ import compilador.analysis.*;
 public final class AEExpLogica extends PExpLogica
 {
     private PExpLogica _expLogica_;
-    private TE _e_;
     private PTermoLogico _termoLogico_;
 
     public AEExpLogica()
@@ -18,13 +17,10 @@ public final class AEExpLogica extends PExpLogica
 
     public AEExpLogica(
         @SuppressWarnings("hiding") PExpLogica _expLogica_,
-        @SuppressWarnings("hiding") TE _e_,
         @SuppressWarnings("hiding") PTermoLogico _termoLogico_)
     {
         // Constructor
         setExpLogica(_expLogica_);
-
-        setE(_e_);
 
         setTermoLogico(_termoLogico_);
 
@@ -35,7 +31,6 @@ public final class AEExpLogica extends PExpLogica
     {
         return new AEExpLogica(
             cloneNode(this._expLogica_),
-            cloneNode(this._e_),
             cloneNode(this._termoLogico_));
     }
 
@@ -70,31 +65,6 @@ public final class AEExpLogica extends PExpLogica
         this._expLogica_ = node;
     }
 
-    public TE getE()
-    {
-        return this._e_;
-    }
-
-    public void setE(TE node)
-    {
-        if(this._e_ != null)
-        {
-            this._e_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._e_ = node;
-    }
-
     public PTermoLogico getTermoLogico()
     {
         return this._termoLogico_;
@@ -125,7 +95,6 @@ public final class AEExpLogica extends PExpLogica
     {
         return ""
             + toString(this._expLogica_)
-            + toString(this._e_)
             + toString(this._termoLogico_);
     }
 
@@ -136,12 +105,6 @@ public final class AEExpLogica extends PExpLogica
         if(this._expLogica_ == child)
         {
             this._expLogica_ = null;
-            return;
-        }
-
-        if(this._e_ == child)
-        {
-            this._e_ = null;
             return;
         }
 
@@ -161,12 +124,6 @@ public final class AEExpLogica extends PExpLogica
         if(this._expLogica_ == oldChild)
         {
             setExpLogica((PExpLogica) newChild);
-            return;
-        }
-
-        if(this._e_ == oldChild)
-        {
-            setE((TE) newChild);
             return;
         }
 

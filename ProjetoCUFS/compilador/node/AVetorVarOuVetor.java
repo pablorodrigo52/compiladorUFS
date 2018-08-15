@@ -8,9 +8,6 @@ import compilador.analysis.*;
 public final class AVetorVarOuVetor extends PVarOuVetor
 {
     private TId _id_;
-    private TAcolchete _acolchete_;
-    private PPosicao _posicao_;
-    private TFcolchete _fcolchete_;
 
     public AVetorVarOuVetor()
     {
@@ -18,19 +15,10 @@ public final class AVetorVarOuVetor extends PVarOuVetor
     }
 
     public AVetorVarOuVetor(
-        @SuppressWarnings("hiding") TId _id_,
-        @SuppressWarnings("hiding") TAcolchete _acolchete_,
-        @SuppressWarnings("hiding") PPosicao _posicao_,
-        @SuppressWarnings("hiding") TFcolchete _fcolchete_)
+        @SuppressWarnings("hiding") TId _id_)
     {
         // Constructor
         setId(_id_);
-
-        setAcolchete(_acolchete_);
-
-        setPosicao(_posicao_);
-
-        setFcolchete(_fcolchete_);
 
     }
 
@@ -38,10 +26,7 @@ public final class AVetorVarOuVetor extends PVarOuVetor
     public Object clone()
     {
         return new AVetorVarOuVetor(
-            cloneNode(this._id_),
-            cloneNode(this._acolchete_),
-            cloneNode(this._posicao_),
-            cloneNode(this._fcolchete_));
+            cloneNode(this._id_));
     }
 
     @Override
@@ -75,89 +60,11 @@ public final class AVetorVarOuVetor extends PVarOuVetor
         this._id_ = node;
     }
 
-    public TAcolchete getAcolchete()
-    {
-        return this._acolchete_;
-    }
-
-    public void setAcolchete(TAcolchete node)
-    {
-        if(this._acolchete_ != null)
-        {
-            this._acolchete_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._acolchete_ = node;
-    }
-
-    public PPosicao getPosicao()
-    {
-        return this._posicao_;
-    }
-
-    public void setPosicao(PPosicao node)
-    {
-        if(this._posicao_ != null)
-        {
-            this._posicao_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._posicao_ = node;
-    }
-
-    public TFcolchete getFcolchete()
-    {
-        return this._fcolchete_;
-    }
-
-    public void setFcolchete(TFcolchete node)
-    {
-        if(this._fcolchete_ != null)
-        {
-            this._fcolchete_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._fcolchete_ = node;
-    }
-
     @Override
     public String toString()
     {
         return ""
-            + toString(this._id_)
-            + toString(this._acolchete_)
-            + toString(this._posicao_)
-            + toString(this._fcolchete_);
+            + toString(this._id_);
     }
 
     @Override
@@ -167,24 +74,6 @@ public final class AVetorVarOuVetor extends PVarOuVetor
         if(this._id_ == child)
         {
             this._id_ = null;
-            return;
-        }
-
-        if(this._acolchete_ == child)
-        {
-            this._acolchete_ = null;
-            return;
-        }
-
-        if(this._posicao_ == child)
-        {
-            this._posicao_ = null;
-            return;
-        }
-
-        if(this._fcolchete_ == child)
-        {
-            this._fcolchete_ = null;
             return;
         }
 
@@ -198,24 +87,6 @@ public final class AVetorVarOuVetor extends PVarOuVetor
         if(this._id_ == oldChild)
         {
             setId((TId) newChild);
-            return;
-        }
-
-        if(this._acolchete_ == oldChild)
-        {
-            setAcolchete((TAcolchete) newChild);
-            return;
-        }
-
-        if(this._posicao_ == oldChild)
-        {
-            setPosicao((PPosicao) newChild);
-            return;
-        }
-
-        if(this._fcolchete_ == oldChild)
-        {
-            setFcolchete((TFcolchete) newChild);
             return;
         }
 

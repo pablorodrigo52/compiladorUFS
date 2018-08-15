@@ -2,16 +2,14 @@
 
 package compilador.node;
 
+import java.util.*;
 import compilador.analysis.*;
 
 @SuppressWarnings("nls")
 public final class AComandoCaseComandoCaso extends PComandoCaso
 {
-    private TCaso _caso_;
     private PValor _valor_;
-    private TDoispontos _doispontos_;
-    private PComandos _comandos_;
-    private PComando _comando_;
+    private final LinkedList<PComando> _comando_ = new LinkedList<PComando>();
 
     public AComandoCaseComandoCaso()
     {
@@ -19,20 +17,11 @@ public final class AComandoCaseComandoCaso extends PComandoCaso
     }
 
     public AComandoCaseComandoCaso(
-        @SuppressWarnings("hiding") TCaso _caso_,
         @SuppressWarnings("hiding") PValor _valor_,
-        @SuppressWarnings("hiding") TDoispontos _doispontos_,
-        @SuppressWarnings("hiding") PComandos _comandos_,
-        @SuppressWarnings("hiding") PComando _comando_)
+        @SuppressWarnings("hiding") List<?> _comando_)
     {
         // Constructor
-        setCaso(_caso_);
-
         setValor(_valor_);
-
-        setDoispontos(_doispontos_);
-
-        setComandos(_comandos_);
 
         setComando(_comando_);
 
@@ -42,42 +31,14 @@ public final class AComandoCaseComandoCaso extends PComandoCaso
     public Object clone()
     {
         return new AComandoCaseComandoCaso(
-            cloneNode(this._caso_),
             cloneNode(this._valor_),
-            cloneNode(this._doispontos_),
-            cloneNode(this._comandos_),
-            cloneNode(this._comando_));
+            cloneList(this._comando_));
     }
 
     @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseAComandoCaseComandoCaso(this);
-    }
-
-    public TCaso getCaso()
-    {
-        return this._caso_;
-    }
-
-    public void setCaso(TCaso node)
-    {
-        if(this._caso_ != null)
-        {
-            this._caso_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._caso_ = node;
     }
 
     public PValor getValor()
@@ -105,89 +66,37 @@ public final class AComandoCaseComandoCaso extends PComandoCaso
         this._valor_ = node;
     }
 
-    public TDoispontos getDoispontos()
-    {
-        return this._doispontos_;
-    }
-
-    public void setDoispontos(TDoispontos node)
-    {
-        if(this._doispontos_ != null)
-        {
-            this._doispontos_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._doispontos_ = node;
-    }
-
-    public PComandos getComandos()
-    {
-        return this._comandos_;
-    }
-
-    public void setComandos(PComandos node)
-    {
-        if(this._comandos_ != null)
-        {
-            this._comandos_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._comandos_ = node;
-    }
-
-    public PComando getComando()
+    public LinkedList<PComando> getComando()
     {
         return this._comando_;
     }
 
-    public void setComando(PComando node)
+    public void setComando(List<?> list)
     {
-        if(this._comando_ != null)
+        for(PComando e : this._comando_)
         {
-            this._comando_.parent(null);
+            e.parent(null);
         }
+        this._comando_.clear();
 
-        if(node != null)
+        for(Object obj_e : list)
         {
-            if(node.parent() != null)
+            PComando e = (PComando) obj_e;
+            if(e.parent() != null)
             {
-                node.parent().removeChild(node);
+                e.parent().removeChild(e);
             }
 
-            node.parent(this);
+            e.parent(this);
+            this._comando_.add(e);
         }
-
-        this._comando_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._caso_)
             + toString(this._valor_)
-            + toString(this._doispontos_)
-            + toString(this._comandos_)
             + toString(this._comando_);
     }
 
@@ -195,33 +104,14 @@ public final class AComandoCaseComandoCaso extends PComandoCaso
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._caso_ == child)
-        {
-            this._caso_ = null;
-            return;
-        }
-
         if(this._valor_ == child)
         {
             this._valor_ = null;
             return;
         }
 
-        if(this._doispontos_ == child)
+        if(this._comando_.remove(child))
         {
-            this._doispontos_ = null;
-            return;
-        }
-
-        if(this._comandos_ == child)
-        {
-            this._comandos_ = null;
-            return;
-        }
-
-        if(this._comando_ == child)
-        {
-            this._comando_ = null;
             return;
         }
 
@@ -232,34 +122,28 @@ public final class AComandoCaseComandoCaso extends PComandoCaso
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._caso_ == oldChild)
-        {
-            setCaso((TCaso) newChild);
-            return;
-        }
-
         if(this._valor_ == oldChild)
         {
             setValor((PValor) newChild);
             return;
         }
 
-        if(this._doispontos_ == oldChild)
+        for(ListIterator<PComando> i = this._comando_.listIterator(); i.hasNext();)
         {
-            setDoispontos((TDoispontos) newChild);
-            return;
-        }
+            if(i.next() == oldChild)
+            {
+                if(newChild != null)
+                {
+                    i.set((PComando) newChild);
+                    newChild.parent(this);
+                    oldChild.parent(null);
+                    return;
+                }
 
-        if(this._comandos_ == oldChild)
-        {
-            setComandos((PComandos) newChild);
-            return;
-        }
-
-        if(this._comando_ == oldChild)
-        {
-            setComando((PComando) newChild);
-            return;
+                i.remove();
+                oldChild.parent(null);
+                return;
+            }
         }
 
         throw new RuntimeException("Not a child.");

@@ -8,7 +8,6 @@ import compilador.analysis.*;
 public final class AMenorqFatorLogico extends PFatorLogico
 {
     private PExpressao _expressao_;
-    private TMenorq _menorq_;
     private PTermo _termo_;
 
     public AMenorqFatorLogico()
@@ -18,13 +17,10 @@ public final class AMenorqFatorLogico extends PFatorLogico
 
     public AMenorqFatorLogico(
         @SuppressWarnings("hiding") PExpressao _expressao_,
-        @SuppressWarnings("hiding") TMenorq _menorq_,
         @SuppressWarnings("hiding") PTermo _termo_)
     {
         // Constructor
         setExpressao(_expressao_);
-
-        setMenorq(_menorq_);
 
         setTermo(_termo_);
 
@@ -35,7 +31,6 @@ public final class AMenorqFatorLogico extends PFatorLogico
     {
         return new AMenorqFatorLogico(
             cloneNode(this._expressao_),
-            cloneNode(this._menorq_),
             cloneNode(this._termo_));
     }
 
@@ -70,31 +65,6 @@ public final class AMenorqFatorLogico extends PFatorLogico
         this._expressao_ = node;
     }
 
-    public TMenorq getMenorq()
-    {
-        return this._menorq_;
-    }
-
-    public void setMenorq(TMenorq node)
-    {
-        if(this._menorq_ != null)
-        {
-            this._menorq_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._menorq_ = node;
-    }
-
     public PTermo getTermo()
     {
         return this._termo_;
@@ -125,7 +95,6 @@ public final class AMenorqFatorLogico extends PFatorLogico
     {
         return ""
             + toString(this._expressao_)
-            + toString(this._menorq_)
             + toString(this._termo_);
     }
 
@@ -136,12 +105,6 @@ public final class AMenorqFatorLogico extends PFatorLogico
         if(this._expressao_ == child)
         {
             this._expressao_ = null;
-            return;
-        }
-
-        if(this._menorq_ == child)
-        {
-            this._menorq_ = null;
             return;
         }
 
@@ -161,12 +124,6 @@ public final class AMenorqFatorLogico extends PFatorLogico
         if(this._expressao_ == oldChild)
         {
             setExpressao((PExpressao) newChild);
-            return;
-        }
-
-        if(this._menorq_ == oldChild)
-        {
-            setMenorq((TMenorq) newChild);
             return;
         }
 

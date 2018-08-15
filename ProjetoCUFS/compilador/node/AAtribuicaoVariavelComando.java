@@ -8,9 +8,7 @@ import compilador.analysis.*;
 public final class AAtribuicaoVariavelComando extends PComando
 {
     private PVar _var_;
-    private TAtrib _atrib_;
     private PExp _exp_;
-    private TPontoevirgula _pontoevirgula_;
 
     public AAtribuicaoVariavelComando()
     {
@@ -19,18 +17,12 @@ public final class AAtribuicaoVariavelComando extends PComando
 
     public AAtribuicaoVariavelComando(
         @SuppressWarnings("hiding") PVar _var_,
-        @SuppressWarnings("hiding") TAtrib _atrib_,
-        @SuppressWarnings("hiding") PExp _exp_,
-        @SuppressWarnings("hiding") TPontoevirgula _pontoevirgula_)
+        @SuppressWarnings("hiding") PExp _exp_)
     {
         // Constructor
         setVar(_var_);
 
-        setAtrib(_atrib_);
-
         setExp(_exp_);
-
-        setPontoevirgula(_pontoevirgula_);
 
     }
 
@@ -39,9 +31,7 @@ public final class AAtribuicaoVariavelComando extends PComando
     {
         return new AAtribuicaoVariavelComando(
             cloneNode(this._var_),
-            cloneNode(this._atrib_),
-            cloneNode(this._exp_),
-            cloneNode(this._pontoevirgula_));
+            cloneNode(this._exp_));
     }
 
     @Override
@@ -75,31 +65,6 @@ public final class AAtribuicaoVariavelComando extends PComando
         this._var_ = node;
     }
 
-    public TAtrib getAtrib()
-    {
-        return this._atrib_;
-    }
-
-    public void setAtrib(TAtrib node)
-    {
-        if(this._atrib_ != null)
-        {
-            this._atrib_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._atrib_ = node;
-    }
-
     public PExp getExp()
     {
         return this._exp_;
@@ -125,39 +90,12 @@ public final class AAtribuicaoVariavelComando extends PComando
         this._exp_ = node;
     }
 
-    public TPontoevirgula getPontoevirgula()
-    {
-        return this._pontoevirgula_;
-    }
-
-    public void setPontoevirgula(TPontoevirgula node)
-    {
-        if(this._pontoevirgula_ != null)
-        {
-            this._pontoevirgula_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._pontoevirgula_ = node;
-    }
-
     @Override
     public String toString()
     {
         return ""
             + toString(this._var_)
-            + toString(this._atrib_)
-            + toString(this._exp_)
-            + toString(this._pontoevirgula_);
+            + toString(this._exp_);
     }
 
     @Override
@@ -170,21 +108,9 @@ public final class AAtribuicaoVariavelComando extends PComando
             return;
         }
 
-        if(this._atrib_ == child)
-        {
-            this._atrib_ = null;
-            return;
-        }
-
         if(this._exp_ == child)
         {
             this._exp_ = null;
-            return;
-        }
-
-        if(this._pontoevirgula_ == child)
-        {
-            this._pontoevirgula_ = null;
             return;
         }
 
@@ -201,21 +127,9 @@ public final class AAtribuicaoVariavelComando extends PComando
             return;
         }
 
-        if(this._atrib_ == oldChild)
-        {
-            setAtrib((TAtrib) newChild);
-            return;
-        }
-
         if(this._exp_ == oldChild)
         {
             setExp((PExp) newChild);
-            return;
-        }
-
-        if(this._pontoevirgula_ == oldChild)
-        {
-            setPontoevirgula((TPontoevirgula) newChild);
             return;
         }
 

@@ -7,7 +7,6 @@ import compilador.analysis.*;
 @SuppressWarnings("nls")
 public final class ANaoExpLogica extends PExpLogica
 {
-    private TNao _nao_;
     private PTermoLogico _termoLogico_;
 
     public ANaoExpLogica()
@@ -16,12 +15,9 @@ public final class ANaoExpLogica extends PExpLogica
     }
 
     public ANaoExpLogica(
-        @SuppressWarnings("hiding") TNao _nao_,
         @SuppressWarnings("hiding") PTermoLogico _termoLogico_)
     {
         // Constructor
-        setNao(_nao_);
-
         setTermoLogico(_termoLogico_);
 
     }
@@ -30,7 +26,6 @@ public final class ANaoExpLogica extends PExpLogica
     public Object clone()
     {
         return new ANaoExpLogica(
-            cloneNode(this._nao_),
             cloneNode(this._termoLogico_));
     }
 
@@ -38,31 +33,6 @@ public final class ANaoExpLogica extends PExpLogica
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseANaoExpLogica(this);
-    }
-
-    public TNao getNao()
-    {
-        return this._nao_;
-    }
-
-    public void setNao(TNao node)
-    {
-        if(this._nao_ != null)
-        {
-            this._nao_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._nao_ = node;
     }
 
     public PTermoLogico getTermoLogico()
@@ -94,7 +64,6 @@ public final class ANaoExpLogica extends PExpLogica
     public String toString()
     {
         return ""
-            + toString(this._nao_)
             + toString(this._termoLogico_);
     }
 
@@ -102,12 +71,6 @@ public final class ANaoExpLogica extends PExpLogica
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._nao_ == child)
-        {
-            this._nao_ = null;
-            return;
-        }
-
         if(this._termoLogico_ == child)
         {
             this._termoLogico_ = null;
@@ -121,12 +84,6 @@ public final class ANaoExpLogica extends PExpLogica
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._nao_ == oldChild)
-        {
-            setNao((TNao) newChild);
-            return;
-        }
-
         if(this._termoLogico_ == oldChild)
         {
             setTermoLogico((PTermoLogico) newChild);

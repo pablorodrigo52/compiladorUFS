@@ -7,9 +7,7 @@ import compilador.analysis.*;
 @SuppressWarnings("nls")
 public final class ACondicaoAvalie extends PCondicaoAvalie
 {
-    private TAparentese _aparentese_;
     private PExp _exp_;
-    private TFparentese _fparentese_;
 
     public ACondicaoAvalie()
     {
@@ -17,16 +15,10 @@ public final class ACondicaoAvalie extends PCondicaoAvalie
     }
 
     public ACondicaoAvalie(
-        @SuppressWarnings("hiding") TAparentese _aparentese_,
-        @SuppressWarnings("hiding") PExp _exp_,
-        @SuppressWarnings("hiding") TFparentese _fparentese_)
+        @SuppressWarnings("hiding") PExp _exp_)
     {
         // Constructor
-        setAparentese(_aparentese_);
-
         setExp(_exp_);
-
-        setFparentese(_fparentese_);
 
     }
 
@@ -34,40 +26,13 @@ public final class ACondicaoAvalie extends PCondicaoAvalie
     public Object clone()
     {
         return new ACondicaoAvalie(
-            cloneNode(this._aparentese_),
-            cloneNode(this._exp_),
-            cloneNode(this._fparentese_));
+            cloneNode(this._exp_));
     }
 
     @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseACondicaoAvalie(this);
-    }
-
-    public TAparentese getAparentese()
-    {
-        return this._aparentese_;
-    }
-
-    public void setAparentese(TAparentese node)
-    {
-        if(this._aparentese_ != null)
-        {
-            this._aparentese_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._aparentese_ = node;
     }
 
     public PExp getExp()
@@ -95,59 +60,20 @@ public final class ACondicaoAvalie extends PCondicaoAvalie
         this._exp_ = node;
     }
 
-    public TFparentese getFparentese()
-    {
-        return this._fparentese_;
-    }
-
-    public void setFparentese(TFparentese node)
-    {
-        if(this._fparentese_ != null)
-        {
-            this._fparentese_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._fparentese_ = node;
-    }
-
     @Override
     public String toString()
     {
         return ""
-            + toString(this._aparentese_)
-            + toString(this._exp_)
-            + toString(this._fparentese_);
+            + toString(this._exp_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._aparentese_ == child)
-        {
-            this._aparentese_ = null;
-            return;
-        }
-
         if(this._exp_ == child)
         {
             this._exp_ = null;
-            return;
-        }
-
-        if(this._fparentese_ == child)
-        {
-            this._fparentese_ = null;
             return;
         }
 
@@ -158,21 +84,9 @@ public final class ACondicaoAvalie extends PCondicaoAvalie
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._aparentese_ == oldChild)
-        {
-            setAparentese((TAparentese) newChild);
-            return;
-        }
-
         if(this._exp_ == oldChild)
         {
             setExp((PExp) newChild);
-            return;
-        }
-
-        if(this._fparentese_ == oldChild)
-        {
-            setFparentese((TFparentese) newChild);
             return;
         }
 

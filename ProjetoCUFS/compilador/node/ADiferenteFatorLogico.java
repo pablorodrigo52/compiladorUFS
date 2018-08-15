@@ -8,7 +8,6 @@ import compilador.analysis.*;
 public final class ADiferenteFatorLogico extends PFatorLogico
 {
     private PExpressao _expressao_;
-    private TDiferente _diferente_;
     private PTermo _termo_;
 
     public ADiferenteFatorLogico()
@@ -18,13 +17,10 @@ public final class ADiferenteFatorLogico extends PFatorLogico
 
     public ADiferenteFatorLogico(
         @SuppressWarnings("hiding") PExpressao _expressao_,
-        @SuppressWarnings("hiding") TDiferente _diferente_,
         @SuppressWarnings("hiding") PTermo _termo_)
     {
         // Constructor
         setExpressao(_expressao_);
-
-        setDiferente(_diferente_);
 
         setTermo(_termo_);
 
@@ -35,7 +31,6 @@ public final class ADiferenteFatorLogico extends PFatorLogico
     {
         return new ADiferenteFatorLogico(
             cloneNode(this._expressao_),
-            cloneNode(this._diferente_),
             cloneNode(this._termo_));
     }
 
@@ -70,31 +65,6 @@ public final class ADiferenteFatorLogico extends PFatorLogico
         this._expressao_ = node;
     }
 
-    public TDiferente getDiferente()
-    {
-        return this._diferente_;
-    }
-
-    public void setDiferente(TDiferente node)
-    {
-        if(this._diferente_ != null)
-        {
-            this._diferente_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._diferente_ = node;
-    }
-
     public PTermo getTermo()
     {
         return this._termo_;
@@ -125,7 +95,6 @@ public final class ADiferenteFatorLogico extends PFatorLogico
     {
         return ""
             + toString(this._expressao_)
-            + toString(this._diferente_)
             + toString(this._termo_);
     }
 
@@ -136,12 +105,6 @@ public final class ADiferenteFatorLogico extends PFatorLogico
         if(this._expressao_ == child)
         {
             this._expressao_ = null;
-            return;
-        }
-
-        if(this._diferente_ == child)
-        {
-            this._diferente_ = null;
             return;
         }
 
@@ -161,12 +124,6 @@ public final class ADiferenteFatorLogico extends PFatorLogico
         if(this._expressao_ == oldChild)
         {
             setExpressao((PExpressao) newChild);
-            return;
-        }
-
-        if(this._diferente_ == oldChild)
-        {
-            setDiferente((TDiferente) newChild);
             return;
         }
 
