@@ -24,7 +24,6 @@ public class Main {
             Parser parser;
             Start ast; 
             
-            
             parser = new Parser (lexer);
             token = lexer.peek();
             while(!token.getClass().getSimpleName().equals("EOF")) {
