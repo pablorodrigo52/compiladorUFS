@@ -2,7 +2,7 @@
 
 package compilador.lexer;
 
-import compilador.node.*;
+import compilador.node.InvalidToken;
 
 @SuppressWarnings("serial")
 public class LexerException extends Exception

@@ -1,14 +1,12 @@
 package compilador.interpret;
-import compilador.parser.* ; 
-import compilador.lexer.* ; 
-import compilador.node.* ; 
-  
-import java.io.* ;
-import java.util.ArrayDeque;
-import java.util.Deque;
+import java.io.FileReader;
+import java.io.PushbackReader;
 
-import javax.swing.text.StyledEditorKit.ForegroundAction; 
-import compilador.interpret.ComentarioAninhado;
+import compilador.lexer.Lexer;
+import compilador.lexer.LexerException;
+import compilador.node.Start;
+import compilador.node.Token;
+import compilador.parser.Parser;
 
 public class Main { 
    public static void main(String[] args) { 	

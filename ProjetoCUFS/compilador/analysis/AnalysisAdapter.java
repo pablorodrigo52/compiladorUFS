@@ -2,7 +2,8 @@
 
 package compilador.analysis;
 
-import java.util.*;
+import java.util.Hashtable;
+
 import compilador.node.*;
 
 public class AnalysisAdapter implements Analysis

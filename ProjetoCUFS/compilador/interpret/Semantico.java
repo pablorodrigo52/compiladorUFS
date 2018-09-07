@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import compilador.analysis.DepthFirstAdapter;
-import compilador.node.*;
+import compilador.node.Start;
 
 public class Semantico extends DepthFirstAdapter {
 	

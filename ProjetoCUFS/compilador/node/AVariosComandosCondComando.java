@@ -2,8 +2,11 @@
 
 package compilador.node;
 
-import java.util.*;
-import compilador.analysis.*;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.ListIterator;
+
+import compilador.analysis.Analysis;
 
 @SuppressWarnings("nls")
 public final class AVariosComandosCondComando extends PCondComando

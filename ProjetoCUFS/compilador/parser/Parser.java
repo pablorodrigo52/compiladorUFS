@@ -2,14 +2,19 @@
 
 package compilador.parser;
 
-import compilador.lexer.*;
-import compilador.node.*;
-import compilador.analysis.*;
-import java.util.*;
-
-import java.io.DataInputStream;
 import java.io.BufferedInputStream;
+import java.io.DataInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.ListIterator;
+
+import compilador.analysis.Analysis;
+import compilador.analysis.AnalysisAdapter;
+import compilador.lexer.Lexer;
+import compilador.lexer.LexerException;
+import compilador.node.*;
 
 @SuppressWarnings("nls")
 public class Parser

@@ -2,7 +2,7 @@
 
 package compilador.node;
 
-import compilador.analysis.*;
+import compilador.analysis.Analysis;
 
 @SuppressWarnings("nls")
 public final class TE extends Token

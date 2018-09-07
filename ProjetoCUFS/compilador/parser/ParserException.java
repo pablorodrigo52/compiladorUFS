@@ -2,7 +2,7 @@
 
 package compilador.parser;
 
-import compilador.node.*;
+import compilador.node.Token;
 
 @SuppressWarnings("serial")
 public class ParserException extends Exception
