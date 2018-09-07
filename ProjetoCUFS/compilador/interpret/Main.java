@@ -1,5 +1,4 @@
 package compilador.interpret;
-
 import compilador.parser.* ; 
 import compilador.lexer.* ; 
 import compilador.node.* ; 
@@ -12,7 +11,7 @@ import javax.swing.text.StyledEditorKit.ForegroundAction;
 import compilador.interpret.ComentarioAninhado;
 
 public class Main { 
-   public static void main(String[] args) { 
+   public static void main(String[] args) { 	
 	   
 	   
 	   if (args.length > 0) { 
@@ -43,29 +42,6 @@ public class Main {
             if (!filtro.pilhaVazia()) {
             	System.out.println("\n\n\nERRO: Comentário não aninhado na linha: "+ filtro.line + " coluna: " + filtro.position + ": erro em " + ComentarioAninhado.pilha.peek());
             }
-            
-            /* - Parte sintatica e semântica
-            Parser parser = new Parser(lexer); 
-            Start ast = parser.parse() ;  
-            Interpreter interp = new Interpreter () ; 
-            ast.apply(interp) ; 
-            
-            *
-            *
-            *   public void caseAProgram(AProgram node) { 
-      				String lhs = node.getLeft().getText().trim(); 
-				      String rhs = node.getRight().getText().trim(); 
-				      int result = (new Integer(lhs)).intValue() + (new Integer(rhs)).intValue(); 
-				      System.out.println(lhs + "+" + rhs + "=" + result); 
-   				} 
-            *
-            *
-            */
-            
-            
-            
-            
-            
          } 
          catch (Exception e) { 
             System.out.println (e);
@@ -75,9 +51,22 @@ public class Main {
          System.exit(1);
       } 
    }
-   
-   
-   
-   
-   
 }
+
+
+/* - Parte sintatica e semântica
+Parser parser = new Parser(lexer); 
+Start ast = parser.parse() ;  
+Interpreter interp = new Interpreter () ; 
+ast.apply(interp) ; 
+*
+*
+*   public void caseAProgram(AProgram node) { 
+			String lhs = node.getLeft().getText().trim(); 
+	      String rhs = node.getRight().getText().trim(); 
+	      int result = (new Integer(lhs)).intValue() + (new Integer(rhs)).intValue(); 
+	      System.out.println(lhs + "+" + rhs + "=" + result); 
+		} 
+*
+*
+*/
