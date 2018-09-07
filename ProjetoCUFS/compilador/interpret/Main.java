@@ -22,12 +22,14 @@ public class Main {
             Lexer lexer = new Lexer (new PushbackReader(new FileReader(args[0]), 1024));
             Token token = null;
             Parser parser;
-            Start ast; 
+            Start ast;
+            Semantico interpreter = new Semantico();
             
             parser = new Parser (lexer);
             token = lexer.peek();
             while(!token.getClass().getSimpleName().equals("EOF")) {
             	ast = parser.parse();
+            	ast.apply(interpreter);
             	System.out.println(ast.toString());
             	try {
 	            	token = lexer.peek();

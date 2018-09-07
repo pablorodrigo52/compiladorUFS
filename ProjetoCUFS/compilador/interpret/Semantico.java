@@ -1,5 +1,6 @@
 package compilador.interpret;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import compilador.analysis.DepthFirstAdapter;
@@ -7,18 +8,55 @@ import compilador.node.*;
 
 public class Semantico extends DepthFirstAdapter {
 	
-		HashMap<String, Semantico> tabelaDeSimbolos;
+		HashMap<String, Semantico> tabelaDeSimbolos; //variavel que deve conter os simbolos que vou lendo
+		private ArrayList<String> erros = new ArrayList<>(); //essa daqui vai conter os erros que encontrar para exibir ao usuário
+		
 		
 		public Semantico () {
 			tabelaDeSimbolos = new HashMap<>();
 		}
 		
+	
+		public boolean adiciona_no_hash(String id) {
+			if (tabelaDeSimbolos.containsKey(id))
+				return false;
+			else
+				return true;
+		}
+		
+		
+		
 		@Override
 		public void outStart(Start node) {
 		// TODO Auto-generated method stub
-		super.outStart(node);
+			String id = node.getPProg().toString();
+			
+			System.out.println(id);
+			
+			
 		}
-	
+}
+
+
+
+/* 
+
+
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		@Override
 		public void outAAtribuicaoVariavelComando(AAtribuicaoVariavelComando node) {
 		// TODO Auto-generated method stub
@@ -421,3 +459,7 @@ public class Semantico extends DepthFirstAdapter {
 		}
 				
 }
+
+
+
+*/
