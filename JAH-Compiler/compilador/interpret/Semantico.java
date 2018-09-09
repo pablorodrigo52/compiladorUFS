@@ -6,6 +6,9 @@ import java.util.HashMap;
 import compilador.analysis.DepthFirstAdapter;
 import compilador.node.AAtribuicaoVariavelComando;
 import compilador.node.ACharValor;
+import compilador.node.AComandoEscrevaComando;
+import compilador.node.AComandoLeiaComando;
+import compilador.node.AComandoSeComando;
 import compilador.node.AConstanteDeclaracao;
 import compilador.node.AFloatValor;
 import compilador.node.AInicioProg;
@@ -68,8 +71,10 @@ public class Semantico extends DepthFirstAdapter {
 			
 			if(!adiciona_no_hash(ID, "")) {
 				String msg = "ERRO na linha ["+linha+"], na coluna ["+coluna+"]. Experimente utilizar um nome que nao seja ["+ID+"] para o nome do programa.\n";
-				System.out.println(msg);
-				erros.add(msg);
+				if (!erros.contains(msg)) {
+	        		System.err.println(msg);
+	        		erros.add(msg);
+	        	}
 			}
 			super.outAInicioProg(node);
 		 }
@@ -87,8 +92,10 @@ public class Semantico extends DepthFirstAdapter {
 			for (int i = 0; i < ID.length; i++) {
 				if(!adiciona_no_hash(ID[i], tipo)) {
 					String msg = "ERRO. A variável ["+ID[i]+"] já está sendo utilizado(a).";
-					System.out.println(msg);
-					erros.add(msg);
+					if (!erros.contains(msg)) {
+		        		System.err.println(msg);
+		        		erros.add(msg);
+		        	}
 				}
 			}
 		
@@ -106,22 +113,28 @@ public class Semantico extends DepthFirstAdapter {
 				 if(!adiciona_no_hash(nomeConst, constante)) {
 					 String msg = "ERRO. O nome da Constante ["+nomeConst+"] já está sendo utilizada [" + Integer.toString(no.getId().getLine()) 
 					 + "," + Integer.toString(no.getId().getPos()) + "]";
-					 System.err.println(msg);
-					 erros.add(msg);
+					 if (!erros.contains(msg)) {
+			        		System.err.println(msg);
+			        		erros.add(msg);
+			        	}
 				 }
 			 }else if(no.getValor() instanceof AFloatValor) {
 				 if(!adiciona_no_hash(nomeConst, constante)) {
 				     String msg = "ERRO. O nome da Constante ["+nomeConst+"] já está sendo utilizada [" + Integer.toString(no.getId().getLine()) 
 					 + "," + Integer.toString(no.getId().getPos()) + "]";
-					 System.err.println(msg);
-					 erros.add(msg);
+				     if (!erros.contains(msg)) {
+			        		System.err.println(msg);
+			        		erros.add(msg);
+			        	}
 				 }
 			 }else if(no.getValor() instanceof AStrValor) {
 				   if(!adiciona_no_hash(nomeConst, constante)) {
 					     String msg = "ERRO. O nome da Constante ["+nomeConst+"] já está sendo utilizada [" + Integer.toString(no.getId().getLine()) 
 						 + "," + Integer.toString(no.getId().getPos()) + "]";
-						 System.err.println(msg);
-						 erros.add(msg);
+					     if (!erros.contains(msg)) {
+				        		System.err.println(msg);
+				        		erros.add(msg);
+				        	}
 					 }
 			 }
 			 super.outAConstanteDeclaracao(node);
@@ -129,22 +142,78 @@ public class Semantico extends DepthFirstAdapter {
 		
 		@Override
 		public void outAAtribuicaoVariavelComando(AAtribuicaoVariavelComando node)
-
 	    {
 	        String var = node.getVar().toString().replaceAll(" ", "");
 			Node exp = node.getExp();
-			
+			//INCOMPLETO...
 			if(tabelaDeSimbolos.containsKey(var)) {
 				String tipo = tabelaDeSimbolos.get(var);
 				//System.out.println(tipo);
 				String classe = dicionario.get(tipo).getClass().getSimpleName().toString();
 				//System.out.println(classe);
 			}else{
-				String msg = "ERRO. A variável ["+var+"] não foi declarada.";
-				//System.err.println(msg);
-				erros.add(msg);
+				String msg = "ERRO. Você está tentando realizar uma atribuição a uma variável que ainda não foi declarada. A variavel é: ["+var+"]";
+				if (!erros.contains(msg)) {
+	        		System.err.println(msg);
+	        		erros.add(msg);
+	        	}
 			}
 	    }
+		
+		@Override
+		public void outAComandoLeiaComando(AComandoLeiaComando node)
+	    {
+	        String IDS = node.getVar().toString();
+	        String[] ID = config.splitter(IDS);
+	        
+	        for (int i = 0; i < ID.length; i++) {
+		        if(!tabelaDeSimbolos.containsKey(ID[i])) {
+		        	String msg = "ERRO. Em seu comando 'leia' você utilizou a variável ["+ID[i]+"] que ainda não foi declarada, ou ela não é uma variável. Verifique isso.";
+		        	if (!erros.contains(msg)) {
+		        		System.err.println(msg);
+		        		erros.add(msg);
+		        	}
+		        }
+	        }
+	    }
+		
+		@Override
+		public void outAComandoEscrevaComando(AComandoEscrevaComando node)
+	    {
+			String IDS = node.getExpEscreva().toString();
+		
+	        String[] ID = config.splitter(IDS);
+	        
+	        for (int i = 0; i < ID.length; i++) {
+		        if(!tabelaDeSimbolos.containsKey(ID[i])) {
+		        	String msg = "ERRO. Em seu comando 'escreva' você utilizou a variável ["+ID[i]+"] que ainda não foi declarada, ou ela não é uma variável. Verifique isso.";
+		        	if (!erros.contains(msg)) {
+		        		System.err.println(msg);
+		        		erros.add(msg);
+		        	}
+		        }
+	        }
+	    }
+		
+		@Override
+		public void outAComandoSeComando(AComandoSeComando node)
+	    {
+			String condicao = node.getCondicaoSe().toString();
+			String[] condicao_quebrada = config.splitter(condicao);
+			
+			for(int i = 0; i < condicao_quebrada.length; i++) {
+				if(!tabelaDeSimbolos.containsKey(condicao_quebrada[i])) {
+		        	String msg = "ERRO. Opa! Você está usando o comando condicional de forma errada. A variável ["+condicao_quebrada[i]+"] ainda não foi declarada, ou ela não é uma variável. Verifique isso.";
+		        	if (!erros.contains(msg)) {
+		        		System.err.println(msg);
+		        		erros.add(msg);
+		        	}
+		        }
+			}
+			
+	    }
+		
+		
 }
 
 
