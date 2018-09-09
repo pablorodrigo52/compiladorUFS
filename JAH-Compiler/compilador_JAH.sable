@@ -168,7 +168,7 @@ Productions
          					 | {comando_se} se condicao_se entao causa_se fimse pontoevirgula                          {-> New comando.comando_se (condicao_se , causa_se)}
          					 | {comando_avalie} avalie condicao_avalie casos_avalie fimavalie pontoevirgula            {-> New comando.comando_avalie (condicao_avalie , casos_avalie)}
          					 | {comando_enquanto} enquanto condicao_se faca comandos comando fimenquanto pontoevirgula {-> New comando.comando_enquanto (condicao_se, [comando])}
-         					 | {comando_repita} repita pcomando+ ate condicao_se pontoevirgula    	 			       {-> New comando.comando_repita([pcomando.comando], condicao_se)}
+         					 | {comando_repita} repita comandos comando ate condicao_se pontoevirgula    	 		   {-> New comando.comando_repita([comando], condicao_se)}
          					 | {comando_para1} para var de [frist]:inteiro ate [second]:inteiro faca comandos comando fimpara [four]:pontoevirgula {-> New comando.comando_para1 (var, frist, second, [comando])}
          					 | {comando_passo} para var de [fifth]:inteiro passo [sixth]:inteiro ate [seventh]:inteiro faca comandos comando fimpara pontoevirgula {-> New comando.comando_passo (var, fifth, sixth, seventh, [comando])} ;
 
