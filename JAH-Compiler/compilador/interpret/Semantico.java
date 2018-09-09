@@ -5,7 +5,11 @@ import java.util.HashMap;
 
 import compilador.analysis.DepthFirstAdapter;
 import compilador.node.AInicioProg;
+import compilador.node.AUmIdentificadorPosicao;
+import compilador.node.AUmInteiroPosicao;
+import compilador.node.AUmaVariavelVar;
 import compilador.node.AVariaveisDeclaracao;
+import compilador.node.AVetorVarOuVetor;
 import compilador.node.Node;
 import compilador.node.Start;
 
@@ -21,12 +25,13 @@ public class Semantico extends DepthFirstAdapter {
 		}
 		
 		public boolean adiciona_no_hash(String id, Node no) {
-			if (tabelaDeSimbolos.get(id) != null) {
+			if (tabelaDeSimbolos.containsKey(id)) {
+				//System.out.println("Não consegui inserir: "+ id);
 				return false;
 			}
 			else{
 				tabelaDeSimbolos.put(id, no);
-				System.out.println("Inseri :" + id);
+				//System.out.println("Inseri: "+id);
 				return true;
 			}
 		}
@@ -46,6 +51,7 @@ public class Semantico extends DepthFirstAdapter {
 			int linha = no.getId().getLine();
 			int coluna = no.getId().getPos();
 			
+			
 			if(!adiciona_no_hash(ID, no)) {
 				String msg = "ERRO na linha ["+linha+"], na coluna ["+coluna+"]. Experimente utilizar um nome que nao seja ["+ID+"] para o nome do programa.\n";
 				System.out.println(msg);
@@ -62,17 +68,17 @@ public class Semantico extends DepthFirstAdapter {
 			String IDS = no.getVar().toString();
 			
 			String[] ID = config.splitter(IDS);
+			tipo = tipo.replaceAll(" ", "");
 			
 			for (int i = 0; i < ID.length; i++) {
 				if(!adiciona_no_hash(ID[i], no)) {
-					String msg = "ERRO. A palavra ["+ID[i]+"] já está sendo utilizada.";
+					String msg = "ERRO. A variável ["+ID[i]+"] já está sendo utilizado(a).";
 					System.out.println(msg);
 					erros.add(msg);
 				}
 			}
 	        super.outAVariaveisDeclaracao(node);
 	    }
-		
 		
 }
 
