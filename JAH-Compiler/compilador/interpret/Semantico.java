@@ -4,8 +4,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import compilador.analysis.DepthFirstAdapter;
+import compilador.node.ACharValor;
+import compilador.node.AConstanteDeclaracao;
+import compilador.node.AExpressaoExp;
+import compilador.node.AFloatValor;
 import compilador.node.AInicioProg;
+import compilador.node.AIntValor;
+import compilador.node.AStrValor;
+import compilador.node.ATintTipo;
 import compilador.node.AVariaveisDeclaracao;
+import compilador.node.AVariavelVarOuVetor;
 import compilador.node.Node;
 import compilador.node.Start;
 
@@ -62,16 +70,70 @@ public class Semantico extends DepthFirstAdapter {
 			String IDS = no.getVar().toString();
 			
 			String[] ID = config.splitter(IDS);
-			
-			for (int i = 0; i < ID.length; i++) {
-				if(!adiciona_no_hash(ID[i], no)) {
-					String msg = "ERRO. A palavra ["+ID[i]+"] já está sendo utilizada.";
-					System.out.println(msg);
-					erros.add(msg);
-				}
-			}
+		
+		while(true)	{
+		 if(no.getTipo() instanceof ATintTipo ) {
+			 for (int i = 0; i < ID.length; i++) {
+					if(!adiciona_no_hash(ID[i], no)) {
+						String msg = "ERRO. Variavel ["+ID[i]+"] ja declarada.";
+						System.out.println(msg);
+						erros.add(msg);
+					}
+				} 
+		  }	
+				
 	        super.outAVariaveisDeclaracao(node);
 	    }
+	 }	
+		
+	 @Override
+	public void outAConstanteDeclaracao(AConstanteDeclaracao node) {
+	
+		 AConstanteDeclaracao no = node;
+		 String nomeConst = no.getId().toString();
+		 
+	   if(no.getValor() instanceof AIntValor) {	 
+		 if(!adiciona_no_hash(nomeConst, no)) {
+			 String msg = "ERRO. O nome da Constante ["+nomeConst+"] já está sendo utilizada [" + Integer.toString(no.getId().getLine()) 
+			 + "," + Integer.toString(no.getId().getPos()) + "]";
+			 System.err.println(msg);
+		 }
+	   }else if(no.getValor() instanceof AFloatValor) {
+		 if(!adiciona_no_hash(nomeConst, no)) {
+		     String msg = "ERRO. O nome da Constante ["+nomeConst+"] já está sendo utilizada [" + Integer.toString(no.getId().getLine()) 
+			 + "," + Integer.toString(no.getId().getPos()) + "]";
+			 System.err.println(msg);
+		 }
+	   }else if(no.getValor() instanceof AStrValor) {
+		   if(!adiciona_no_hash(nomeConst, no)) {
+			     String msg = "ERRO. O nome da Constante ["+nomeConst+"] já está sendo utilizada [" + Integer.toString(no.getId().getLine()) 
+				 + "," + Integer.toString(no.getId().getPos()) + "]";
+				 System.err.println(msg);
+			 }
+	   }
+	   super.outAConstanteDeclaracao(node);
+  }	 
+	@Override
+	public void outACharValor(ACharValor node) { //incompleto, to sem saber fazer
+		
+		ACharValor no = node;
+		String charValor = no.getCaractere().getText();
+		
+		if (charValor ==  no.toString())
+		
+	super.outACharValor(node);
+	}
+	
+	@Override
+	public void outAExpressaoExp(AExpressaoExp node) {
+		
+		AExpressaoExp no = node;
+		
+	super.outAExpressaoExp(node);
+	}
+	
+	
+	
 		
 		
 }
