@@ -4,33 +4,47 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import compilador.analysis.DepthFirstAdapter;
+import compilador.node.AAtribuicaoVariavelComando;
+import compilador.node.ACharValor;
+import compilador.node.AConstanteDeclaracao;
+import compilador.node.AFloatValor;
 import compilador.node.AInicioProg;
-import compilador.node.AUmIdentificadorPosicao;
-import compilador.node.AUmInteiroPosicao;
-import compilador.node.AUmaVariavelVar;
+import compilador.node.AIntValor;
+import compilador.node.AStrValor;
 import compilador.node.AVariaveisDeclaracao;
-import compilador.node.AVetorVarOuVetor;
 import compilador.node.Node;
 import compilador.node.Start;
 
 public class Semantico extends DepthFirstAdapter {
 	
-		HashMap<String, Node> tabelaDeSimbolos; //variavel que deve conter os simbolos que vou lendo
-		private ArrayList<String> erros = new ArrayList<>(); //essa daqui vai conter os erros que encontrar para exibir ao usuário
-		
+	
 		ConfiguracoesSemantico config = new ConfiguracoesSemantico();
+	
+		HashMap<String, String> tabelaDeSimbolos; //variavel que deve conter os simbolos que vou lendo
+		private ArrayList<String> erros = new ArrayList<>(); //essa daqui vai conter os erros que encontrar para exibir ao usuário
+		private HashMap <String, Node> dicionario = new HashMap<>();
 		
+		ACharValor caractere = new ACharValor();
+		AFloatValor real = new AFloatValor();
+		AIntValor inteiro = new AIntValor();
+		AStrValor string = new AStrValor();
+	
 		public Semantico () {
 			tabelaDeSimbolos = new HashMap<>();
+			
+			dicionario.put("caractere", caractere);
+			dicionario.put("real", real);
+			dicionario.put("inteiro", inteiro);
+			dicionario.put("string", string);
 		}
 		
-		public boolean adiciona_no_hash(String id, Node no) {
-			if (tabelaDeSimbolos.containsKey(id)) {
+		public boolean adiciona_no_hash(String key, String value) {
+			if (tabelaDeSimbolos.get(key) != null) {
 				//System.out.println("Não consegui inserir: "+ id);
 				return false;
 			}
 			else{
-				tabelaDeSimbolos.put(id, no);
+				tabelaDeSimbolos.put(key, value);
 				//System.out.println("Inseri: "+id);
 				return true;
 			}
@@ -52,7 +66,7 @@ public class Semantico extends DepthFirstAdapter {
 			int coluna = no.getId().getPos();
 			
 			
-			if(!adiciona_no_hash(ID, no)) {
+			if(!adiciona_no_hash(ID, "")) {
 				String msg = "ERRO na linha ["+linha+"], na coluna ["+coluna+"]. Experimente utilizar um nome que nao seja ["+ID+"] para o nome do programa.\n";
 				System.out.println(msg);
 				erros.add(msg);
@@ -71,15 +85,66 @@ public class Semantico extends DepthFirstAdapter {
 			tipo = tipo.replaceAll(" ", "");
 			
 			for (int i = 0; i < ID.length; i++) {
-				if(!adiciona_no_hash(ID[i], no)) {
+				if(!adiciona_no_hash(ID[i], tipo)) {
 					String msg = "ERRO. A variável ["+ID[i]+"] já está sendo utilizado(a).";
 					System.out.println(msg);
 					erros.add(msg);
 				}
 			}
-	        super.outAVariaveisDeclaracao(node);
-	    }
 		
+	        super.outAVariaveisDeclaracao(node);
+	 }	
+		
+		@Override
+	 	public void outAConstanteDeclaracao(AConstanteDeclaracao node) {
+	
+			 AConstanteDeclaracao no = node;
+			 String nomeConst = no.getId().toString();
+			 String constante = "const";
+			 
+			 if(no.getValor() instanceof AIntValor) {	 
+				 if(!adiciona_no_hash(nomeConst, constante)) {
+					 String msg = "ERRO. O nome da Constante ["+nomeConst+"] já está sendo utilizada [" + Integer.toString(no.getId().getLine()) 
+					 + "," + Integer.toString(no.getId().getPos()) + "]";
+					 System.err.println(msg);
+					 erros.add(msg);
+				 }
+			 }else if(no.getValor() instanceof AFloatValor) {
+				 if(!adiciona_no_hash(nomeConst, constante)) {
+				     String msg = "ERRO. O nome da Constante ["+nomeConst+"] já está sendo utilizada [" + Integer.toString(no.getId().getLine()) 
+					 + "," + Integer.toString(no.getId().getPos()) + "]";
+					 System.err.println(msg);
+					 erros.add(msg);
+				 }
+			 }else if(no.getValor() instanceof AStrValor) {
+				   if(!adiciona_no_hash(nomeConst, constante)) {
+					     String msg = "ERRO. O nome da Constante ["+nomeConst+"] já está sendo utilizada [" + Integer.toString(no.getId().getLine()) 
+						 + "," + Integer.toString(no.getId().getPos()) + "]";
+						 System.err.println(msg);
+						 erros.add(msg);
+					 }
+			 }
+			 super.outAConstanteDeclaracao(node);
+		}	 
+		
+		@Override
+		public void outAAtribuicaoVariavelComando(AAtribuicaoVariavelComando node)
+
+	    {
+	        String var = node.getVar().toString().replaceAll(" ", "");
+			Node exp = node.getExp();
+			
+			if(tabelaDeSimbolos.containsKey(var)) {
+				String tipo = tabelaDeSimbolos.get(var);
+				//System.out.println(tipo);
+				String classe = dicionario.get(tipo).getClass().getSimpleName().toString();
+				//System.out.println(classe);
+			}else{
+				String msg = "ERRO. A variável ["+var+"] não foi declarada.";
+				//System.err.println(msg);
+				erros.add(msg);
+			}
+	    }
 }
 
 

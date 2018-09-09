@@ -1,4 +1,4 @@
-programa exemplo
+programa prog1
 inicio
 	
 	inteiro: exemplo, teste, teste2, teste3, vetorDeInteiro[15];
@@ -11,12 +11,13 @@ inicio
 	
 	
 	b := 'b';
-	i,j := 'ij';
+
 	_a := 1+2;
 	teste := a * 5;
 	teste2 := ((5+7)+7) + (10+10) - ((20/2)*(30+40));
-	
+	c := 1,07;
 	b := a;
+	dasdsa := 1298;
 	
 	leia(a);
 	leia(teste,teste2,teste3);

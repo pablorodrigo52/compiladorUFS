@@ -255,10 +255,10 @@ Abstract Syntax Tree
     var = {varias_variaveis} var_ou_vetor var 
     	| {uma_variavel} var_ou_vetor ;
 
-    var_ou_vetor = {variavel} id | 
+    var_ou_vetor = {variavel} id |
      			   {vetor} id ;
 
-    posicao = {um_identificador} id | 
+    posicao = {um_identificador} id |
      		  {um_inteiro} inteiro ;
 
     comandos = {comando_condicional} cond_comando? ;
