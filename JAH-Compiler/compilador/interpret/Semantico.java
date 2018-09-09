@@ -9,12 +9,14 @@ import compilador.node.ACharValor;
 import compilador.node.AComandoEscrevaComando;
 import compilador.node.AComandoLeiaComando;
 import compilador.node.AComandoSeComando;
+import compilador.node.ACondicaoSeCondicaoSe;
 import compilador.node.AConstanteDeclaracao;
 import compilador.node.AFloatValor;
 import compilador.node.AInicioProg;
 import compilador.node.AIntValor;
 import compilador.node.AStrValor;
 import compilador.node.AVariaveisDeclaracao;
+import compilador.node.AVariosComandosCondComando;
 import compilador.node.Node;
 import compilador.node.Start;
 
@@ -200,6 +202,10 @@ public class Semantico extends DepthFirstAdapter {
 	    {
 			String condicao = node.getCondicaoSe().toString();
 			String[] condicao_quebrada = config.splitter(condicao);
+			
+			String causa = node.getCausaSe().toString();
+			
+			System.out.println(causa);
 			
 			for(int i = 0; i < condicao_quebrada.length; i++) {
 				if(!tabelaDeSimbolos.containsKey(condicao_quebrada[i])) {
